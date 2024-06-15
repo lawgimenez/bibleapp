@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65A2C1D874E00A65B29 /* MainView.swift */; };
+		86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65D2C1D901300A65B29 /* SignInView.swift */; };
+		86CDC6612C1D907500A65B29 /* AuthObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC6602C1D907500A65B29 /* AuthObservable.swift */; };
 		86ED4B312C1D2BE100A1FB80 /* BibleAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED4B302C1D2BE100A1FB80 /* BibleAppApp.swift */; };
-		86ED4B332C1D2BE100A1FB80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED4B322C1D2BE100A1FB80 /* ContentView.swift */; };
 		86ED4B352C1D2BE100A1FB80 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED4B342C1D2BE100A1FB80 /* Item.swift */; };
 		86ED4B372C1D2BE300A1FB80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86ED4B362C1D2BE300A1FB80 /* Assets.xcassets */; };
 		86ED4B3A2C1D2BE300A1FB80 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86ED4B392C1D2BE300A1FB80 /* Preview Assets.xcassets */; };
@@ -35,9 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		86CDC65A2C1D874E00A65B29 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		86CDC65D2C1D901300A65B29 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		86CDC6602C1D907500A65B29 /* AuthObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthObservable.swift; sourceTree = "<group>"; };
 		86ED4B2D2C1D2BE100A1FB80 /* BibleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BibleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86ED4B302C1D2BE100A1FB80 /* BibleAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleAppApp.swift; sourceTree = "<group>"; };
-		86ED4B322C1D2BE100A1FB80 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		86ED4B342C1D2BE100A1FB80 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		86ED4B362C1D2BE300A1FB80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86ED4B392C1D2BE300A1FB80 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -73,6 +77,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		86CDC6592C1D874200A65B29 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				86CDC65A2C1D874E00A65B29 /* MainView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		86CDC65C2C1D900800A65B29 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				86CDC65D2C1D901300A65B29 /* SignInView.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		86CDC65F2C1D906200A65B29 /* Observables */ = {
+			isa = PBXGroup;
+			children = (
+				86CDC6602C1D907500A65B29 /* AuthObservable.swift */,
+			);
+			path = Observables;
+			sourceTree = "<group>";
+		};
 		86ED4B242C1D2BE100A1FB80 = {
 			isa = PBXGroup;
 			children = (
@@ -96,8 +124,10 @@
 		86ED4B2F2C1D2BE100A1FB80 /* BibleApp */ = {
 			isa = PBXGroup;
 			children = (
+				86CDC65F2C1D906200A65B29 /* Observables */,
+				86CDC65C2C1D900800A65B29 /* Account */,
+				86CDC6592C1D874200A65B29 /* Main */,
 				86ED4B302C1D2BE100A1FB80 /* BibleAppApp.swift */,
-				86ED4B322C1D2BE100A1FB80 /* ContentView.swift */,
 				86ED4B342C1D2BE100A1FB80 /* Item.swift */,
 				86ED4B362C1D2BE300A1FB80 /* Assets.xcassets */,
 				86ED4B382C1D2BE300A1FB80 /* Preview Content */,
@@ -260,8 +290,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86ED4B332C1D2BE100A1FB80 /* ContentView.swift in Sources */,
+				86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */,
 				86ED4B352C1D2BE100A1FB80 /* Item.swift in Sources */,
+				86CDC6612C1D907500A65B29 /* AuthObservable.swift in Sources */,
+				86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */,
 				86ED4B312C1D2BE100A1FB80 /* BibleAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
