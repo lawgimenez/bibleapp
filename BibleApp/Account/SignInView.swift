@@ -16,6 +16,7 @@ struct SignInView: View {
     @FocusState private var isFocusedEmail: Bool
     @FocusState private var isFocusedPassword: Bool
     @State private var showPassword = false
+    @State private var showCreateAccountOption = false
     
     var body: some View {
         VStack {
@@ -88,6 +89,17 @@ struct SignInView: View {
             .contentShape(Rectangle())
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .padding([.bottom, .top], 10)
+            Button(action: createAccount) {
+                Text("I don't have an account")
+                    .foregroundStyle(Color(.gray))
+                    .frame(width: 200, height: 40)
+                    .dynamicTypeSize(.small)
+            }
+            .frame(width: 200, height: 40)
+            .background(.clear)
+            .contentShape(Rectangle())
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .buttonStyle(.plain)
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -116,6 +128,12 @@ struct SignInView: View {
             authObservable.email = ""
             authObservable.password = ""
         }
+    }
+    
+    private func createAccount() {
+        let logger = Logger()
+        logger.debug("Create Account")
+        showCreateAccountOption.toggle()
     }
 }
 
