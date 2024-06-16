@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */; };
+		86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADD2C1EDE08004B81C6 /* HomeView.swift */; };
 		86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65A2C1D874E00A65B29 /* MainView.swift */; };
 		86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65D2C1D901300A65B29 /* SignInView.swift */; };
 		86CDC6612C1D907500A65B29 /* AuthObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC6602C1D907500A65B29 /* AuthObservable.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		86588ADD2C1EDE08004B81C6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		86CDC65A2C1D874E00A65B29 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		86CDC65D2C1D901300A65B29 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		86CDC6602C1D907500A65B29 /* AuthObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthObservable.swift; sourceTree = "<group>"; };
@@ -81,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				86CDC65A2C1D874E00A65B29 /* MainView.swift */,
+				86588ADD2C1EDE08004B81C6 /* HomeView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -89,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				86CDC65D2C1D901300A65B29 /* SignInView.swift */,
+				86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -291,9 +297,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */,
+				86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */,
 				86ED4B352C1D2BE100A1FB80 /* Item.swift in Sources */,
 				86CDC6612C1D907500A65B29 /* AuthObservable.swift in Sources */,
 				86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */,
+				86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */,
 				86ED4B312C1D2BE100A1FB80 /* BibleAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
