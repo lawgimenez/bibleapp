@@ -30,4 +30,18 @@ class BibleObservable: ObservableObject {
         let bibles = try JSONDecoder().decode(Bible.self, from: data)
         arrayBibles = bibles.data
     }
+    
+    func getBooks(bookId: String) async throws {
+        let booksUrlString = String(format: Urls.Api.books, bookId)
+        let url = URL(string: booksUrlString)
+        let session = URLSession.shared
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
+        let (data, urlResponse) = try await session.data(for: request)
+        if let json = try? JSONSerialization.jsonObject(with: data, options: []), let dataDict = json as? NSDictionary {
+            print("JSON Data = \(dataDict)")
+        }
+    }
 }

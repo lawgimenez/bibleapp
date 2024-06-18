@@ -12,5 +12,6 @@ class Urls {
     
     public enum Api {
         static let bibles = "\(baseAPI)/bibles"
+        static let books = "\(baseAPI)/bibles/%@/books"
     }
 }
