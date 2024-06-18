@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		862298002C217911006E9D13 /* Urls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862297FF2C217911006E9D13 /* Urls.swift */; };
 		86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */; };
 		86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADD2C1EDE08004B81C6 /* HomeView.swift */; };
 		86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65A2C1D874E00A65B29 /* MainView.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		862297FF2C217911006E9D13 /* Urls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Urls.swift; sourceTree = "<group>"; };
 		86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		86588ADD2C1EDE08004B81C6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		86CDC65A2C1D874E00A65B29 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -81,6 +83,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		862297FE2C217900006E9D13 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				862297FF2C217911006E9D13 /* Urls.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		862298012C217B4E006E9D13 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		86CDC6592C1D874200A65B29 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +147,8 @@
 		86ED4B2F2C1D2BE100A1FB80 /* BibleApp */ = {
 			isa = PBXGroup;
 			children = (
+				862298012C217B4E006E9D13 /* Models */,
+				862297FE2C217900006E9D13 /* Utils */,
 				86CDC65F2C1D906200A65B29 /* Observables */,
 				86CDC65C2C1D900800A65B29 /* Account */,
 				86CDC6592C1D874200A65B29 /* Main */,
@@ -299,6 +318,7 @@
 				86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */,
 				86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */,
 				86ED4B352C1D2BE100A1FB80 /* Item.swift in Sources */,
+				862298002C217911006E9D13 /* Urls.swift in Sources */,
 				86CDC6612C1D907500A65B29 /* AuthObservable.swift in Sources */,
 				86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */,
 				86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */,
