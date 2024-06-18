@@ -25,7 +25,7 @@ struct BibleAppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            BibleView()
         }
         .modelContainer(sharedModelContainer)
     }

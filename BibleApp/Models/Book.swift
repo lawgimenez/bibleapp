@@ -7,6 +7,8 @@
 
 struct Book: Decodable {
     
+    var data: [Data]
+    
     struct Data: Decodable, Identifiable {
         
         var id: String
@@ -14,7 +16,7 @@ struct Book: Decodable {
         var abbreviation: String
         var name: String
         var nameLong: String
-        var chapters: [Chapters]
+        var chapters: [Chapters]?
         
         struct Chapters: Decodable, Identifiable {
             
