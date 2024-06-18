@@ -16,6 +16,7 @@ class BibleObservable: ObservableObject {
     @Published var arrayBibles = [Bible.Data]()
     @Published var arrayBooks = [Book.Data]()
     @Published var arrayChapters = [Chapter.Data]()
+    @Published var arraySections = [Section.Data]()
     
     func getBibles() async throws {
         let url = URL(string: Urls.Api.bibles)
@@ -40,7 +41,6 @@ class BibleObservable: ObservableObject {
         request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
         let (data, _) = try await session.data(for: request)
         let book = try JSONDecoder().decode(Book.self, from: data)
-        print("Books = \(book)")
         arrayBooks = book.data
     }
     
@@ -55,6 +55,18 @@ class BibleObservable: ObservableObject {
         let (data, _) = try await session.data(for: request)
         let chapter = try JSONDecoder().decode(Chapter.self, from: data)
         arrayChapters = chapter.data
-        print("Chapter: \(chapter.data)")
+    }
+    
+    func getSections(bibleId: String, bookId: String) async throws {
+        let chaptersUrlString = String(format: Urls.Api.sections, bibleId, bookId)
+        let url = URL(string: chaptersUrlString)
+        let session = URLSession.shared
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
+        let (data, _) = try await session.data(for: request)
+        let section = try JSONDecoder().decode(Section.self, from: data)
+        arraySections = section.data
     }
 }

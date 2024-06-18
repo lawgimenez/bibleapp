@@ -14,7 +14,8 @@
 		8622980C2C218394006E9D13 /* BibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622980B2C218394006E9D13 /* BibleView.swift */; };
 		8622980E2C2183CD006E9D13 /* BooksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622980D2C2183CD006E9D13 /* BooksView.swift */; };
 		862298102C218BEE006E9D13 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622980F2C218BEE006E9D13 /* Chapter.swift */; };
-		862298122C218E62006E9D13 /* ChapterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862298112C218E62006E9D13 /* ChapterView.swift */; };
+		862298122C218E62006E9D13 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862298112C218E62006E9D13 /* SectionView.swift */; };
+		862298142C21940C006E9D13 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862298132C21940C006E9D13 /* Section.swift */; };
 		86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */; };
 		86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADD2C1EDE08004B81C6 /* HomeView.swift */; };
 		86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65A2C1D874E00A65B29 /* MainView.swift */; };
@@ -54,7 +55,8 @@
 		8622980B2C218394006E9D13 /* BibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleView.swift; sourceTree = "<group>"; };
 		8622980D2C2183CD006E9D13 /* BooksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksView.swift; sourceTree = "<group>"; };
 		8622980F2C218BEE006E9D13 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
-		862298112C218E62006E9D13 /* ChapterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterView.swift; sourceTree = "<group>"; };
+		862298112C218E62006E9D13 /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
+		862298132C21940C006E9D13 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		86588ADD2C1EDE08004B81C6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		86CDC65A2C1D874E00A65B29 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				862298022C217B6E006E9D13 /* Bible.swift */,
 				862298092C218226006E9D13 /* Book.swift */,
 				8622980F2C218BEE006E9D13 /* Chapter.swift */,
+				862298132C21940C006E9D13 /* Section.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -120,7 +123,7 @@
 			children = (
 				8622980B2C218394006E9D13 /* BibleView.swift */,
 				8622980D2C2183CD006E9D13 /* BooksView.swift */,
-				862298112C218E62006E9D13 /* ChapterView.swift */,
+				862298112C218E62006E9D13 /* SectionView.swift */,
 			);
 			path = Bible;
 			sourceTree = "<group>";
@@ -357,8 +360,9 @@
 				8622980E2C2183CD006E9D13 /* BooksView.swift in Sources */,
 				86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */,
 				86ED4B312C1D2BE100A1FB80 /* BibleAppApp.swift in Sources */,
+				862298142C21940C006E9D13 /* Section.swift in Sources */,
 				862298102C218BEE006E9D13 /* Chapter.swift in Sources */,
-				862298122C218E62006E9D13 /* ChapterView.swift in Sources */,
+				862298122C218E62006E9D13 /* SectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

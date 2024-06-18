@@ -14,5 +14,6 @@ class Urls {
         static let bibles = "\(baseAPI)/bibles?language=eng"
         static let books = "\(baseAPI)/bibles/%@/books"
         static let chapters = "\(baseAPI)/bibles/%@/books/%@/chapters"
+        static let sections = "\(baseAPI)/bibles/%@/books/%@/sections"
     }
 }
