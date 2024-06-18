@@ -18,7 +18,9 @@ struct PassageView: View {
             VStack {
                 ScrollView(showsIndicators: false) {
                     if let passage = bibleObservable.passage {
-                        Text(LocalizedStringKey(passage.content.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)))
+                        let passageData = passage.content.data(using: .unicode)
+                        let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+                        Text(AttributedString(attributedPassageData!))
                     }
                 }
             }
