@@ -7,7 +7,7 @@
 
 struct Chapter: Decodable {
     
-    var data: Data
+    var data: [Data]
     
     struct Data: Decodable, Identifiable {
         

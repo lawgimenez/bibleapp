@@ -9,18 +9,28 @@ import SwiftUI
 
 struct ChapterView: View {
     
-    var chapters: [Book.Data.Chapters]
+    @EnvironmentObject private var bibleObservable: BibleObservable
+    var bibleId: String
+    var bookId: String
     
     var body: some View {
         NavigationStack {
             VStack {
-                List(chapters) { chapter in
+                List(bibleObservable.arrayChapters) { chapter in
                     VStack {
                         Text(chapter.number)
                         Text(chapter.reference)
                     }
                 }
             }
+            .task {
+                do {
+                    try await bibleObservable.getChapter(bibleId: bibleId, bookId: bookId)
+                } catch {
+                    print(error)
+                }
+            }
+            .navigationTitle("Chapters")
         }
     }
 }

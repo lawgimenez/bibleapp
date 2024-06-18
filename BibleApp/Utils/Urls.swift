@@ -13,6 +13,6 @@ class Urls {
     public enum Api {
         static let bibles = "\(baseAPI)/bibles?language=eng"
         static let books = "\(baseAPI)/bibles/%@/books"
-        static let chapters = "\(baseAPI)/bibles/%@/chapters/%@"
+        static let chapters = "\(baseAPI)/bibles/%@/books/%@/chapters"
     }
 }
