@@ -40,4 +40,17 @@ class BibleObservable: ObservableObject {
         let book = try JSONDecoder().decode(Book.self, from: data)
         arrayBooks = book.data
     }
+    
+    func getChapter(bibleId: String, chapterId: String) async throws {
+        let chaptersUrlString = String(format: Urls.Api.chapters, bibleId, chapterId)
+        let url = URL(string: chaptersUrlString)
+        let session = URLSession.shared
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
+        let (data, _) = try await session.data(for: request)
+        let chapter = try JSONDecoder().decode(Chapter.self, from: data)
+        print("Chapter: \(chapter.data)")
+    }
 }
