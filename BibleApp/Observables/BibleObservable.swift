@@ -83,4 +83,15 @@ class BibleObservable: ObservableObject {
             print("Verse dict: \(dataDict)")
         }
     }
+    
+    func getPassage(bibleId: String, anyId: String) async throws {
+        let passageUrlString = String(format: Urls.Api.passage, bibleId, anyId)
+        let url = URL(string: passageUrlString)
+        let session = URLSession.shared
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
+        let (data, _) = try await session.data(for: request)
+    }
 }
