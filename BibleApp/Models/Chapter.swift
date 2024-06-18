@@ -15,11 +15,11 @@ struct Chapter: Decodable {
         var bibleId: String
         var number: String
         var bookId: String
-        var content: String
+        var content: String?
         var reference: String
-        var verseCount: Int
-        var next: Verse
-        var previous: Verse
+        var verseCount: Int?
+        var next: Verse?
+        var previous: Verse?
         
         struct Verse: Decodable, Identifiable {
             

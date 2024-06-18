@@ -25,8 +25,7 @@ class BibleObservable: ObservableObject {
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
-        let (data, urlResponse) = try await session.data(for: request)
-        print(urlResponse)
+        let (data, _) = try await session.data(for: request)
         let bibles = try JSONDecoder().decode(Bible.self, from: data)
         arrayBibles = bibles.data
     }
@@ -65,8 +64,23 @@ class BibleObservable: ObservableObject {
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
-        let (data, _) = try await session.data(for: request)
+        let (data, urlResponse) = try await session.data(for: request)
+        print("Get sections response: \(urlResponse)")
         let section = try JSONDecoder().decode(Section.self, from: data)
         arraySections = section.data
+    }
+    
+    func getVerse(bibleId: String, verseId: String) async throws {
+        let verseUrlString = String(format: Urls.Api.verse, bibleId, verseId)
+        let url = URL(string: verseUrlString)
+        let session = URLSession.shared
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
+        let (data, _) = try await session.data(for: request)
+        if let json = try? JSONSerialization.jsonObject(with: data, options: []), let dataDict = json as? NSDictionary {
+            print("Verse dict: \(dataDict)")
+        }
     }
 }

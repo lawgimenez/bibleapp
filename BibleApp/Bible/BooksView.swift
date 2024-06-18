@@ -17,7 +17,9 @@ struct BooksView: View {
             VStack {
                 List(bibleObservable.arrayBooks) { book in
                     NavigationLink {
-                        SectionView(bibleId: bible.id, bookId: book.id)
+                        let _ = print("Bible ID = \(bible.id)")
+                        let _ = print("BookID = \(book.id)")
+                        ChapterView(bibleId: bible.id, bookId: book.id)
                             .environmentObject(bibleObservable)
                     } label: {
                         Text(book.name)

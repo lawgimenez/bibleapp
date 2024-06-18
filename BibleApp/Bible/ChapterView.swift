@@ -1,5 +1,5 @@
 //
-//  SectionView.swift
+//  ChapterView.swift
 //  BibleApp
 //
 //  Created by Lawrence Gimenez on 6/18/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SectionView: View {
+struct ChapterView: View {
     
     @EnvironmentObject private var bibleObservable: BibleObservable
     var bibleId: String
@@ -16,22 +16,17 @@ struct SectionView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                List(bibleObservable.arraySections) { section in
-                    NavigationLink {
-                        VerseView(bibleId: bibleId, verseId: section.firstVerseId)
-                    } label: {
-                        Text(section.title)
-                    }
+                List(bibleObservable.arrayChapters) { chapter in
+                    Text(chapter.reference)
                 }
             }
             .task {
                 do {
-                    try await bibleObservable.getSections(bibleId: bibleId, bookId: bookId)
+                    try await bibleObservable.getChapter(bibleId: bibleId, bookId: bookId)
                 } catch {
                     print(error)
                 }
             }
-            .navigationTitle("Sections")
         }
     }
 }
