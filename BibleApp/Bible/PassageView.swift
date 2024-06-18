@@ -16,8 +16,10 @@ struct PassageView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                if let passage = bibleObservable.passage {
-                    Text(passage.content)
+                ScrollView(showsIndicators: false) {
+                    if let passage = bibleObservable.passage {
+                        Text(LocalizedStringKey(passage.content.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)))
+                    }
                 }
             }
             .navigationTitle("Passage")
