@@ -23,8 +23,7 @@ class BibleObservable: ObservableObject {
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
-        let (data, urlResponse) = try await session.data(for: request)
-        logger.debug("Bible URL response: \(urlResponse)")
+        let (data, _) = try await session.data(for: request)
         let bibles = try JSONDecoder().decode(Bible.self, from: data)
         arrayBibles = bibles.data
     }
