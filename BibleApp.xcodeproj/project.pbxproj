@@ -18,6 +18,8 @@
 		862298142C21940C006E9D13 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862298132C21940C006E9D13 /* Section.swift */; };
 		862298162C2196BA006E9D13 /* VerseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862298152C2196BA006E9D13 /* VerseView.swift */; };
 		862298182C2198AC006E9D13 /* ChapterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862298172C2198AC006E9D13 /* ChapterView.swift */; };
+		8622981A2C219C18006E9D13 /* Passage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862298192C219C18006E9D13 /* Passage.swift */; };
+		8622981C2C219C9B006E9D13 /* PassageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622981B2C219C9B006E9D13 /* PassageView.swift */; };
 		86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */; };
 		86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADD2C1EDE08004B81C6 /* HomeView.swift */; };
 		86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65A2C1D874E00A65B29 /* MainView.swift */; };
@@ -61,6 +63,8 @@
 		862298132C21940C006E9D13 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		862298152C2196BA006E9D13 /* VerseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerseView.swift; sourceTree = "<group>"; };
 		862298172C2198AC006E9D13 /* ChapterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterView.swift; sourceTree = "<group>"; };
+		862298192C219C18006E9D13 /* Passage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passage.swift; sourceTree = "<group>"; };
+		8622981B2C219C9B006E9D13 /* PassageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassageView.swift; sourceTree = "<group>"; };
 		86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		86588ADD2C1EDE08004B81C6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		86CDC65A2C1D874E00A65B29 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 				862298092C218226006E9D13 /* Book.swift */,
 				8622980F2C218BEE006E9D13 /* Chapter.swift */,
 				862298132C21940C006E9D13 /* Section.swift */,
+				862298192C219C18006E9D13 /* Passage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -130,6 +135,7 @@
 				862298112C218E62006E9D13 /* SectionView.swift */,
 				862298152C2196BA006E9D13 /* VerseView.swift */,
 				862298172C2198AC006E9D13 /* ChapterView.swift */,
+				8622981B2C219C9B006E9D13 /* PassageView.swift */,
 			);
 			path = Bible;
 			sourceTree = "<group>";
@@ -357,6 +363,7 @@
 				86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */,
 				862298182C2198AC006E9D13 /* ChapterView.swift in Sources */,
 				862298032C217B6E006E9D13 /* Bible.swift in Sources */,
+				8622981A2C219C18006E9D13 /* Passage.swift in Sources */,
 				8622980C2C218394006E9D13 /* BibleView.swift in Sources */,
 				8622980A2C218226006E9D13 /* Book.swift in Sources */,
 				862298062C217C1C006E9D13 /* BibleObservable.swift in Sources */,
@@ -367,6 +374,7 @@
 				86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */,
 				8622980E2C2183CD006E9D13 /* BooksView.swift in Sources */,
 				86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */,
+				8622981C2C219C9B006E9D13 /* PassageView.swift in Sources */,
 				86ED4B312C1D2BE100A1FB80 /* BibleAppApp.swift in Sources */,
 				862298142C21940C006E9D13 /* Section.swift in Sources */,
 				862298102C218BEE006E9D13 /* Chapter.swift in Sources */,

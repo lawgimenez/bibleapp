@@ -17,7 +17,12 @@ struct ChapterView: View {
         NavigationStack {
             VStack {
                 List(bibleObservable.arrayChapters) { chapter in
-                    Text(chapter.reference)
+                    NavigationLink {
+                        PassageView(bibleId: bibleId, chapterId: chapter.id)
+                            .environmentObject(bibleObservable)
+                    } label: {
+                        Text(chapter.reference)
+                    }
                 }
             }
             .task {

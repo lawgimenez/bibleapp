@@ -16,6 +16,6 @@ class Urls {
         static let chapters = "\(baseAPI)/bibles/%@/books/%@/chapters"
         static let sections = "\(baseAPI)/bibles/%@/books/%@/sections"
         static let verse = "\(baseAPI)/bibles/%@/verses/%@"
-        static let passage = "\(baseAPI)/bibles/%@/passages/%@"
+        static let passage = "\(baseAPI)/bibles/%@/passages/%@?content-type=html&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false&use-org-id=false"
     }
 }
