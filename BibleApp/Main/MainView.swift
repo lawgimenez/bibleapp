@@ -12,8 +12,13 @@ struct MainView: View {
     @StateObject private var bibleObservable = BibleObservable()
     
     var body: some View {
-        VStack {
-            
+        NavigationStack {
+            VStack {
+                List(bibleObservable.arrayBibles) { bible in
+                    Text(bible.name)
+                }
+            }
+            .navigationTitle("Bibles")
         }
         .task {
             do {

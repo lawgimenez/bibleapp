@@ -103,6 +103,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		862298072C21813B006E9D13 /* Bible */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Bible;
+			sourceTree = "<group>";
+		};
 		86CDC6592C1D874200A65B29 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +160,7 @@
 		86ED4B2F2C1D2BE100A1FB80 /* BibleApp */ = {
 			isa = PBXGroup;
 			children = (
+				862298072C21813B006E9D13 /* Bible */,
 				862298012C217B4E006E9D13 /* Models */,
 				862297FE2C217900006E9D13 /* Utils */,
 				86CDC65F2C1D906200A65B29 /* Observables */,

@@ -9,7 +9,7 @@ struct Bible: Decodable {
     
     var data: [Data]
     
-    struct Data: Decodable {
+    struct Data: Decodable, Identifiable {
         
         var id: String
         var dblId: String
