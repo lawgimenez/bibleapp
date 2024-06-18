@@ -10,6 +10,7 @@
 		862298002C217911006E9D13 /* Urls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862297FF2C217911006E9D13 /* Urls.swift */; };
 		862298032C217B6E006E9D13 /* Bible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862298022C217B6E006E9D13 /* Bible.swift */; };
 		862298062C217C1C006E9D13 /* BibleObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862298052C217C1C006E9D13 /* BibleObservable.swift */; };
+		8622980A2C218226006E9D13 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862298092C218226006E9D13 /* Book.swift */; };
 		86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */; };
 		86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADD2C1EDE08004B81C6 /* HomeView.swift */; };
 		86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65A2C1D874E00A65B29 /* MainView.swift */; };
@@ -45,6 +46,7 @@
 		862297FF2C217911006E9D13 /* Urls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Urls.swift; sourceTree = "<group>"; };
 		862298022C217B6E006E9D13 /* Bible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bible.swift; sourceTree = "<group>"; };
 		862298052C217C1C006E9D13 /* BibleObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleObservable.swift; sourceTree = "<group>"; };
+		862298092C218226006E9D13 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		86588ADD2C1EDE08004B81C6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		86CDC65A2C1D874E00A65B29 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				862298022C217B6E006E9D13 /* Bible.swift */,
+				862298092C218226006E9D13 /* Book.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */,
 				86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */,
 				862298032C217B6E006E9D13 /* Bible.swift in Sources */,
+				8622980A2C218226006E9D13 /* Book.swift in Sources */,
 				862298062C217C1C006E9D13 /* BibleObservable.swift in Sources */,
 				86ED4B352C1D2BE100A1FB80 /* Item.swift in Sources */,
 				862298002C217911006E9D13 /* Urls.swift in Sources */,
