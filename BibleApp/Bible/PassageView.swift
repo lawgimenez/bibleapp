@@ -12,7 +12,9 @@ struct PassageView: View {
     
     @EnvironmentObject private var bibleObservable: BibleObservable
     @State private var selectedRange: NSRange?
-    @State private var textHeight: CGFloat = .zero
+    @State private var textHeight: CGFloat = 300
+    @State private var passage = ""
+    @State private var textStyle = UIFont.TextStyle.body
     var bibleId: String
     var chapterId: String
     
@@ -25,11 +27,14 @@ struct PassageView: View {
                         let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
 //                        SelectableText(attributedPassageData!)
 //                        Text(AttributedString(attributedPassageData!))
-                        passageText(passage.content.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil), selectedRange: $selectedRange, textHeight: $textHeight).frame(width: .infinity, height: 300)
+                        TextSelectable(text: $passage, textStyle: $textStyle)
                         
                     //}
 //                    TextViewSelectable(text: $passageText)
                 }
+            }
+            .onChange(of: bibleObservable.passageContent) {
+                passage = bibleObservable.passageContent
             }
             .background(Color.red)
             .navigationTitle("Passage")
@@ -42,15 +47,6 @@ struct PassageView: View {
                 }
             }
         }
-    }
-    
-    private func passageText(_ content: String, selectedRange: Binding<NSRange?>, textHeight: Binding<CGFloat>) -> some View {
-        print("content = \(content)")
-        var selectedRange: NSRange?
-        let text = TextSelectable(height: textHeight, text: content, selectedRange: selectedRange) { range in
-            selectedRange = range
-        }
-        return text
     }
 }
 
