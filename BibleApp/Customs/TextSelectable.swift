@@ -80,6 +80,13 @@ class CustomTextView: UITextView {
     @objc func highlightText() {
         if let range = self.selectedTextRange, let selectedText = self.text(in: range) {
             print("Selected text is \(selectedText)")
+            let highlightAttributes: [NSAttributedString.Key: Any] = [
+                .backgroundColor: UIColor.orange,
+                .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
+            ]
+            let mutableString = NSMutableAttributedString.init(string: text)
+            mutableString.addAttributes(highlightAttributes, range: selectedRange)
+            attributedText = mutableString
         }
     }
 }
