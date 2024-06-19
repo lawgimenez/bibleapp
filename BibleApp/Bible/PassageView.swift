@@ -21,17 +21,7 @@ struct PassageView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                //ScrollView(showsIndicators: false) {
-                    if let passage = bibleObservable.passage {
-                        let passageData = passage.content.data(using: .unicode)
-                        let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
-//                        SelectableText(attributedPassageData!)
-//                        Text(AttributedString(attributedPassageData!))
-                        TextSelectable(text: $passage, textStyle: $textStyle)
-                        
-                    //}
-//                    TextViewSelectable(text: $passageText)
-                }
+                TextSelectable(text: $passage, textStyle: $textStyle)
             }
             .onChange(of: bibleObservable.passageContent) {
                 let passageData = bibleObservable.passageContent.data(using: .unicode)

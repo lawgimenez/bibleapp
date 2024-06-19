@@ -9,7 +9,6 @@ import SwiftUI
 
 struct TextSelectable: UIViewRepresentable {
     
-//    @Binding var height: CGFloat
     @Binding var text: NSAttributedString
     @Binding var textStyle: UIFont.TextStyle
     var selectedRange: NSRange?
@@ -26,15 +25,8 @@ struct TextSelectable: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: CustomTextView, context: Context) {
-//        uiView.text = text
         uiView.attributedText = text
         uiView.font = UIFont.preferredFont(forTextStyle: textStyle)
-//        if uiView.selectedRange != selectedRange {
-//            uiView.selectedRange = selectedRange ?? NSRange(location: 0, length: 0)
-//        }
-//        DispatchQueue.main.async {
-//            height = uiView.intrinsicContentSize.height
-//        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -56,24 +48,6 @@ struct TextSelectable: UIViewRepresentable {
 }
 
 class CustomTextView: UITextView {
-    
-//    var maxLayoutWidth: CGFloat = 0 {
-//        didSet {
-//            guard maxLayoutWidth != oldValue else { return }
-//            
-//            invalidateIntrinsicContentSize()
-//        }
-//    }
-//    
-//    override var intrinsicContentSize: CGSize {
-//        guard maxLayoutWidth > 0 else {
-//            return super.intrinsicContentSize
-//        }
-//        
-//        return sizeThatFits(
-//            CGSize(width: maxLayoutWidth, height: .greatestFiniteMagnitude)
-//        )
-//    }
     
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         if action == #selector(highlightText) {
