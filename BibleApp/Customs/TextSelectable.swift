@@ -10,7 +10,7 @@ import SwiftUI
 struct TextSelectable: UIViewRepresentable {
     
 //    @Binding var height: CGFloat
-    @Binding var text: String
+    @Binding var text: NSAttributedString
     @Binding var textStyle: UIFont.TextStyle
     var selectedRange: NSRange?
     var onSelectedRangeChanged: ((NSRange?) -> Void)?
@@ -26,7 +26,8 @@ struct TextSelectable: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: CustomTextView, context: Context) {
-        uiView.text = text
+//        uiView.text = text
+        uiView.attributedText = text
         uiView.font = UIFont.preferredFont(forTextStyle: textStyle)
 //        if uiView.selectedRange != selectedRange {
 //            uiView.selectedRange = selectedRange ?? NSRange(location: 0, length: 0)
@@ -42,14 +43,14 @@ struct TextSelectable: UIViewRepresentable {
     
     class Coordinator: NSObject, UITextViewDelegate {
         
-        var text: Binding<String>
+        var text: Binding<NSAttributedString>
         
-        init(_ text: Binding<String>) {
+        init(_ text: Binding<NSAttributedString>) {
             self.text = text
         }
         
         func textViewDidChange(_ textView: UITextView) {
-            self.text.wrappedValue = textView.text
+            self.text.wrappedValue = textView.attributedText
         }
     }
 }
