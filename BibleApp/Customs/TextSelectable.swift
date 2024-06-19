@@ -86,8 +86,20 @@ class CustomTextView: UITextView {
         let highlightTextAction = UIAction(title: "Highlight Passage") { action in
             self.highlightText()
         }
+        let addNotesAction = UIAction(title: "Add Notes") { action in
+            
+        }
+        let copyAction = UIAction(title: "Copy") { action in
+            
+        }
+        let shareAction = UIAction(title: "Share") { action in
+            
+        }
         var actions = suggestedActions
         actions.insert(highlightTextAction, at: 0)
+        actions.insert(addNotesAction, at: 1)
+        actions.insert(copyAction, at: 2)
+        actions.insert(shareAction, at: 3)
         return UIMenu(children: actions)
     }
     
