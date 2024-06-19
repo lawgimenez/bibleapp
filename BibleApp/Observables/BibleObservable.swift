@@ -18,6 +18,7 @@ class BibleObservable: ObservableObject {
     @Published var arrayChapters = [Chapter.Data]()
     @Published var arraySections = [Section.Data]()
     @Published var passage: Passage.Data?
+    @Published var passageContent: String = ""
     
     func getBibles() async throws {
         let url = URL(string: Urls.Api.bibles)
@@ -95,11 +96,8 @@ class BibleObservable: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
         let (data, _) = try await session.data(for: request)
-        if let json = try? JSONSerialization.jsonObject(with: data, options: []), let dataDict = json as? NSDictionary {
-            print("passage data: \(dataDict)")
-        }
         let passage = try JSONDecoder().decode(Passage.self, from: data)
-        print("Passage: \(passage)")
         self.passage = passage.data
+        self.passageContent = passage.data.content
     }
 }

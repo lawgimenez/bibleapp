@@ -22,9 +22,12 @@
 		8622981C2C219C9B006E9D13 /* PassageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622981B2C219C9B006E9D13 /* PassageView.swift */; };
 		86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */; };
 		86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADD2C1EDE08004B81C6 /* HomeView.swift */; };
+		86BBF9152C22893F00718344 /* TextSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBF9142C22893F00718344 /* TextSelectable.swift */; };
 		86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65A2C1D874E00A65B29 /* MainView.swift */; };
 		86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65D2C1D901300A65B29 /* SignInView.swift */; };
 		86CDC6612C1D907500A65B29 /* AuthObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC6602C1D907500A65B29 /* AuthObservable.swift */; };
+		86E2EB632C2272FF00C58E6F /* TextViewSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E2EB622C2272FF00C58E6F /* TextViewSelectable.swift */; };
+		86E2EB662C22773C00C58E6F /* SelectableText in Frameworks */ = {isa = PBXBuildFile; productRef = 86E2EB652C22773C00C58E6F /* SelectableText */; };
 		86ED4B312C1D2BE100A1FB80 /* BibleAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED4B302C1D2BE100A1FB80 /* BibleAppApp.swift */; };
 		86ED4B352C1D2BE100A1FB80 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED4B342C1D2BE100A1FB80 /* Item.swift */; };
 		86ED4B372C1D2BE300A1FB80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86ED4B362C1D2BE300A1FB80 /* Assets.xcassets */; };
@@ -67,9 +70,11 @@
 		8622981B2C219C9B006E9D13 /* PassageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassageView.swift; sourceTree = "<group>"; };
 		86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		86588ADD2C1EDE08004B81C6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		86BBF9142C22893F00718344 /* TextSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectable.swift; sourceTree = "<group>"; };
 		86CDC65A2C1D874E00A65B29 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		86CDC65D2C1D901300A65B29 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		86CDC6602C1D907500A65B29 /* AuthObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthObservable.swift; sourceTree = "<group>"; };
+		86E2EB622C2272FF00C58E6F /* TextViewSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewSelectable.swift; sourceTree = "<group>"; };
 		86ED4B2D2C1D2BE100A1FB80 /* BibleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BibleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86ED4B302C1D2BE100A1FB80 /* BibleAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleAppApp.swift; sourceTree = "<group>"; };
 		86ED4B342C1D2BE100A1FB80 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -87,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86E2EB662C22773C00C58E6F /* SelectableText in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +146,14 @@
 			path = Bible;
 			sourceTree = "<group>";
 		};
+		86BBF9132C22892600718344 /* Customs */ = {
+			isa = PBXGroup;
+			children = (
+				86BBF9142C22893F00718344 /* TextSelectable.swift */,
+			);
+			path = Customs;
+			sourceTree = "<group>";
+		};
 		86CDC6592C1D874200A65B29 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +204,7 @@
 		86ED4B2F2C1D2BE100A1FB80 /* BibleApp */ = {
 			isa = PBXGroup;
 			children = (
+				86BBF9132C22892600718344 /* Customs */,
 				862298072C21813B006E9D13 /* Bible */,
 				862298012C217B4E006E9D13 /* Models */,
 				862297FE2C217900006E9D13 /* Utils */,
@@ -200,6 +215,7 @@
 				86ED4B342C1D2BE100A1FB80 /* Item.swift */,
 				86ED4B362C1D2BE300A1FB80 /* Assets.xcassets */,
 				86ED4B382C1D2BE300A1FB80 /* Preview Content */,
+				86E2EB622C2272FF00C58E6F /* TextViewSelectable.swift */,
 			);
 			path = BibleApp;
 			sourceTree = "<group>";
@@ -245,6 +261,9 @@
 			dependencies = (
 			);
 			name = BibleApp;
+			packageProductDependencies = (
+				86E2EB652C22773C00C58E6F /* SelectableText */,
+			);
 			productName = BibleApp;
 			productReference = 86ED4B2D2C1D2BE100A1FB80 /* BibleApp.app */;
 			productType = "com.apple.product-type.application";
@@ -317,6 +336,9 @@
 				Base,
 			);
 			mainGroup = 86ED4B242C1D2BE100A1FB80;
+			packageReferences = (
+				86E2EB642C22773C00C58E6F /* XCRemoteSwiftPackageReference "SelectableText" */,
+			);
 			productRefGroup = 86ED4B2E2C1D2BE100A1FB80 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -369,6 +391,7 @@
 				862298062C217C1C006E9D13 /* BibleObservable.swift in Sources */,
 				86ED4B352C1D2BE100A1FB80 /* Item.swift in Sources */,
 				862298002C217911006E9D13 /* Urls.swift in Sources */,
+				86E2EB632C2272FF00C58E6F /* TextViewSelectable.swift in Sources */,
 				862298162C2196BA006E9D13 /* VerseView.swift in Sources */,
 				86CDC6612C1D907500A65B29 /* AuthObservable.swift in Sources */,
 				86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */,
@@ -379,6 +402,7 @@
 				862298142C21940C006E9D13 /* Section.swift in Sources */,
 				862298102C218BEE006E9D13 /* Chapter.swift in Sources */,
 				862298122C218E62006E9D13 /* SectionView.swift in Sources */,
+				86BBF9152C22893F00718344 /* TextSelectable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +732,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		86E2EB642C22773C00C58E6F /* XCRemoteSwiftPackageReference "SelectableText" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kevinhermawan/SelectableText";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		86E2EB652C22773C00C58E6F /* SelectableText */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86E2EB642C22773C00C58E6F /* XCRemoteSwiftPackageReference "SelectableText" */;
+			productName = SelectableText;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 86ED4B252C1D2BE100A1FB80 /* Project object */;
 }

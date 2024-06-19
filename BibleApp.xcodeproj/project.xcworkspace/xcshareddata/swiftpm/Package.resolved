@@ -1,0 +1,15 @@
+{
+  "originHash" : "01a6e036e0d829786cdc5b266395aa8949fab521f84da4a88316ee8abe25855d",
+  "pins" : [
+    {
+      "identity" : "selectabletext",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kevinhermawan/SelectableText",
+      "state" : {
+        "revision" : "b55f8c56458b93c46bce08fd048138b749885bf6",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 3
+}
