@@ -14,15 +14,17 @@ class PassageData {
     let orgId: String
     let bibleId: String
     let bookId: String
+    let chapterId: String
     let reference: String
     let content: String
     let copyright: String
     
-    init(id: String, orgId: String, bibleId: String, bookId: String, reference: String, content: String, copyright: String) {
+    init(id: String, orgId: String, bibleId: String, bookId: String, chapterId: String, reference: String, content: String, copyright: String) {
         self.id = id
         self.orgId = orgId
         self.bibleId = bibleId
         self.bookId = bookId
+        self.chapterId = chapterId
         self.reference = reference
         self.content = content
         self.copyright = copyright

@@ -51,8 +51,7 @@ class BibleObservable: ObservableObject {
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
-        let (data, urlResponse) = try await session.data(for: request)
-        print("Get books response: \(urlResponse)")
+        let (data, _) = try await session.data(for: request)
         let books = try JSONDecoder().decode(Book.self, from: data)
         // Insert data
         for book in books.data {
@@ -92,17 +91,17 @@ class BibleObservable: ObservableObject {
     
     func getPassage(bibleId: String, anyId: String, modelContext: ModelContext) async throws {
         let passageUrlString = String(format: Urls.Api.passage, bibleId, anyId)
-        print("Passage URL: \(passageUrlString)")
         let url = URL(string: passageUrlString)
         let session = URLSession.shared
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
-        let (data, _) = try await session.data(for: request)
+        let (data, urlResponse) = try await session.data(for: request)
+        print("Passage URL response: \(urlResponse)")
         let passage = try JSONDecoder().decode(Passage.self, from: data).data
         // Insert data
-        let passageData = PassageData(id: passage.id, orgId: passage.orgId, bibleId: passage.bibleId, bookId: passage.bookId, reference: passage.reference, content: passage.content, copyright: passage.copyright)
+        let passageData = PassageData(id: passage.id, orgId: passage.orgId, bibleId: passage.bibleId, bookId: passage.bookId, chapterId: anyId, reference: passage.reference, content: passage.content, copyright: passage.copyright)
         modelContext.insert(passageData)
         do {
             try modelContext.save()

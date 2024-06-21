@@ -22,6 +22,15 @@ struct PassageView: View {
     var bibleId: String
     var chapterId: String
     
+    init(bibleId: String, chapterId: String) {
+        self.bibleId = bibleId
+        self.chapterId = chapterId
+        let predicate = #Predicate<PassageData> {
+            $0.bibleId == bibleId && $0.chapterId == chapterId
+        }
+        _passage = Query(filter: predicate)
+    }
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -48,6 +57,8 @@ struct PassageView: View {
                     let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
                     passageAttributed = attributedPassageData!
                 }
+                print("Lawx: Passage bookID: \(bibleId)")
+                print("Lawx: Passage chapterID: \(chapterId)")
             }
         }
     }
