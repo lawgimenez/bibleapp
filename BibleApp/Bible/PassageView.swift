@@ -43,6 +43,11 @@ struct PassageView: View {
                 } catch {
                     print(error)
                 }
+                if let passageData = passage.first {
+                    let passageData = passageData.content.data(using: .unicode)
+                    let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+                    passageAttributed = attributedPassageData!
+                }
             }
         }
     }
