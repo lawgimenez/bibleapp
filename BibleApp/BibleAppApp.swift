@@ -14,7 +14,8 @@ struct BibleAppApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
-            BibleData.self
+            BibleData.self,
+            BookData.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

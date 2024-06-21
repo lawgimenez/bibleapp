@@ -43,7 +43,7 @@ class BibleObservable: ObservableObject {
         arrayBibles = bibles.data
     }
     
-    func getBooks(bibleId: String) async throws {
+    func getBooks(bibleId: String, modelContext: ModelContext) async throws {
         let booksUrlString = String(format: Urls.Api.books, bibleId)
         let url = URL(string: booksUrlString)
         let session = URLSession.shared
@@ -51,9 +51,20 @@ class BibleObservable: ObservableObject {
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
-        let (data, _) = try await session.data(for: request)
-        let book = try JSONDecoder().decode(Book.self, from: data)
-        arrayBooks = book.data
+        let (data, urlResponse) = try await session.data(for: request)
+        print("Get books response: \(urlResponse)")
+        let books = try JSONDecoder().decode(Book.self, from: data)
+        // Insert data
+        for book in books.data {
+            let bookData = BookData(id: book.id, bibleId: book.bibleId, abbreviation: book.abbreviation, name: book.name, nameLong: book.nameLong)
+            modelContext.insert(bookData)
+        }
+        do {
+            try modelContext.save()
+        } catch {
+            print("Book data error: \(error)")
+        }
+        arrayBooks = books.data
     }
     
     func getChapter(bibleId: String, bookId: String) async throws {
