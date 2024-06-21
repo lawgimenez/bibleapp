@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ChapterView: View {
     
+    @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var bibleObservable: BibleObservable
+    @Query private var chapters: [ChapterData]
     var bibleId: String
     var bookId: String
     
     var body: some View {
         NavigationStack {
             VStack {
-                List(bibleObservable.arrayChapters) { chapter in
+                List(chapters) { chapter in
                     NavigationLink {
                         PassageView(bibleId: bibleId, chapterId: chapter.id)
                             .environmentObject(bibleObservable)
@@ -27,7 +30,7 @@ struct ChapterView: View {
             }
             .task {
                 do {
-                    try await bibleObservable.getChapter(bibleId: bibleId, bookId: bookId)
+                    try await bibleObservable.getChapter(bibleId: bibleId, bookId: bookId, modelContext: modelContext)
                 } catch {
                     print(error)
                 }

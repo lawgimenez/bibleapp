@@ -15,7 +15,8 @@ struct BibleAppApp: App {
         let schema = Schema([
             Item.self,
             BibleData.self,
-            BookData.self
+            BookData.self,
+            ChapterData.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

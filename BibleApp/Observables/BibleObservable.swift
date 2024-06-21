@@ -67,7 +67,7 @@ class BibleObservable: ObservableObject {
         arrayBooks = books.data
     }
     
-    func getChapter(bibleId: String, bookId: String) async throws {
+    func getChapter(bibleId: String, bookId: String, modelContext: ModelContext) async throws {
         let chaptersUrlString = String(format: Urls.Api.chapters, bibleId, bookId)
         let url = URL(string: chaptersUrlString)
         let session = URLSession.shared
@@ -76,8 +76,18 @@ class BibleObservable: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
         let (data, _) = try await session.data(for: request)
-        let chapter = try JSONDecoder().decode(Chapter.self, from: data)
-        arrayChapters = chapter.data
+        let chapters = try JSONDecoder().decode(Chapter.self, from: data)
+        // Insert data
+        for chapter in chapters.data {
+            let chapterData = ChapterData(id: chapter.id, bibleId: chapter.bibleId, number: chapter.number, bookId: chapter.bookId, content: chapter.content ?? "", reference: chapter.reference, verseCount: chapter.verseCount ?? 0)
+            modelContext.insert(chapterData)
+        }
+        do {
+            try modelContext.save()
+        } catch {
+            print("Chapter data error: \(error)")
+        }
+        arrayChapters = chapters.data
     }
     
     func getSections(bibleId: String, bookId: String) async throws {

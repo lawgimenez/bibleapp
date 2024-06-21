@@ -38,6 +38,7 @@
 		86ED4B502C1D2BE300A1FB80 /* BibleAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED4B4F2C1D2BE300A1FB80 /* BibleAppUITestsLaunchTests.swift */; };
 		86F61CA02C2571130022E371 /* BibleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F61C9F2C2571130022E371 /* BibleData.swift */; };
 		86F61CA22C25806D0022E371 /* BookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F61CA12C25806D0022E371 /* BookData.swift */; };
+		86F61CA42C2584C40022E371 /* ChapterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F61CA32C2584C40022E371 /* ChapterData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		86ED4B4F2C1D2BE300A1FB80 /* BibleAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		86F61C9F2C2571130022E371 /* BibleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleData.swift; sourceTree = "<group>"; };
 		86F61CA12C25806D0022E371 /* BookData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookData.swift; sourceTree = "<group>"; };
+		86F61CA32C2584C40022E371 /* ChapterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +260,7 @@
 			children = (
 				86F61C9F2C2571130022E371 /* BibleData.swift */,
 				86F61CA12C25806D0022E371 /* BookData.swift */,
+				86F61CA32C2584C40022E371 /* ChapterData.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */,
 				86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */,
 				86F61CA02C2571130022E371 /* BibleData.swift in Sources */,
+				86F61CA42C2584C40022E371 /* ChapterData.swift in Sources */,
 				862298182C2198AC006E9D13 /* ChapterView.swift in Sources */,
 				862298032C217B6E006E9D13 /* Bible.swift in Sources */,
 				86F61CA22C25806D0022E371 /* BookData.swift in Sources */,
