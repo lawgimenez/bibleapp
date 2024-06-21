@@ -1,5 +1,5 @@
 //
-//  ChapterData.swift
+//  PassageData.swift
 //  BibleApp
 //
 //  Created by Lawrence Gimenez on 6/21/24.
@@ -8,23 +8,23 @@
 import SwiftData
 
 @Model
-class ChapterData {
+class PassageData {
     
     @Attribute(.unique) let id: String
+    let orgId: String
     let bibleId: String
-    let number: String
     let bookId: String
-    let content: String
     let reference: String
-    let verseCount: Int
+    let content: String
+    let copyright: String
     
-    init(id: String, bibleId: String, number: String, bookId: String, content: String, reference: String, verseCount: Int) {
+    init(id: String, orgId: String, bibleId: String, bookId: String, reference: String, content: String, copyright: String) {
         self.id = id
+        self.orgId = orgId
         self.bibleId = bibleId
-        self.number = number
         self.bookId = bookId
-        self.content = content
         self.reference = reference
-        self.verseCount = verseCount
+        self.content = content
+        self.copyright = copyright
     }
 }

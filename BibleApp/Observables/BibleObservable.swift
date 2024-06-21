@@ -90,6 +90,29 @@ class BibleObservable: ObservableObject {
         arrayChapters = chapters.data
     }
     
+    func getPassage(bibleId: String, anyId: String, modelContext: ModelContext) async throws {
+        let passageUrlString = String(format: Urls.Api.passage, bibleId, anyId)
+        print("Passage URL: \(passageUrlString)")
+        let url = URL(string: passageUrlString)
+        let session = URLSession.shared
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
+        let (data, _) = try await session.data(for: request)
+        let passage = try JSONDecoder().decode(Passage.self, from: data).data
+        // Insert data
+        let passageData = PassageData(id: passage.id, orgId: passage.orgId, bibleId: passage.bibleId, bookId: passage.bookId, reference: passage.reference, content: passage.content, copyright: passage.copyright)
+        modelContext.insert(passageData)
+        do {
+            try modelContext.save()
+        } catch {
+            print("Passage data error: \(error)")
+        }
+        self.passage = passage
+        self.passageContent = passage.content
+    }
+    
     func getSections(bibleId: String, bookId: String) async throws {
         let chaptersUrlString = String(format: Urls.Api.sections, bibleId, bookId)
         let url = URL(string: chaptersUrlString)
@@ -116,20 +139,5 @@ class BibleObservable: ObservableObject {
         if let json = try? JSONSerialization.jsonObject(with: data, options: []), let dataDict = json as? NSDictionary {
             print("Verse dict: \(dataDict)")
         }
-    }
-    
-    func getPassage(bibleId: String, anyId: String) async throws {
-        let passageUrlString = String(format: Urls.Api.passage, bibleId, anyId)
-        print("Passage URL: \(passageUrlString)")
-        let url = URL(string: passageUrlString)
-        let session = URLSession.shared
-        var request = URLRequest(url: url!)
-        request.httpMethod = "GET"
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
-        let (data, _) = try await session.data(for: request)
-        let passage = try JSONDecoder().decode(Passage.self, from: data)
-        self.passage = passage.data
-        self.passageContent = passage.data.content
     }
 }

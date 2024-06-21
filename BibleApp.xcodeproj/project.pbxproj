@@ -39,6 +39,7 @@
 		86F61CA02C2571130022E371 /* BibleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F61C9F2C2571130022E371 /* BibleData.swift */; };
 		86F61CA22C25806D0022E371 /* BookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F61CA12C25806D0022E371 /* BookData.swift */; };
 		86F61CA42C2584C40022E371 /* ChapterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F61CA32C2584C40022E371 /* ChapterData.swift */; };
+		86F61CA62C258BB20022E371 /* PassageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F61CA52C258BB20022E371 /* PassageData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		86F61C9F2C2571130022E371 /* BibleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleData.swift; sourceTree = "<group>"; };
 		86F61CA12C25806D0022E371 /* BookData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookData.swift; sourceTree = "<group>"; };
 		86F61CA32C2584C40022E371 /* ChapterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterData.swift; sourceTree = "<group>"; };
+		86F61CA52C258BB20022E371 /* PassageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassageData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 				86F61C9F2C2571130022E371 /* BibleData.swift */,
 				86F61CA12C25806D0022E371 /* BookData.swift */,
 				86F61CA32C2584C40022E371 /* ChapterData.swift */,
+				86F61CA52C258BB20022E371 /* PassageData.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				8622980E2C2183CD006E9D13 /* BooksView.swift in Sources */,
 				86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */,
 				8622981C2C219C9B006E9D13 /* PassageView.swift in Sources */,
+				86F61CA62C258BB20022E371 /* PassageData.swift in Sources */,
 				86ED4B312C1D2BE100A1FB80 /* BibleAppApp.swift in Sources */,
 				862298142C21940C006E9D13 /* Section.swift in Sources */,
 				862298102C218BEE006E9D13 /* Chapter.swift in Sources */,
