@@ -27,7 +27,6 @@
 		86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65A2C1D874E00A65B29 /* MainView.swift */; };
 		86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65D2C1D901300A65B29 /* SignInView.swift */; };
 		86CDC6612C1D907500A65B29 /* AuthObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC6602C1D907500A65B29 /* AuthObservable.swift */; };
-		86E2EB662C22773C00C58E6F /* SelectableText in Frameworks */ = {isa = PBXBuildFile; productRef = 86E2EB652C22773C00C58E6F /* SelectableText */; };
 		86ED4B312C1D2BE100A1FB80 /* BibleAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED4B302C1D2BE100A1FB80 /* BibleAppApp.swift */; };
 		86ED4B352C1D2BE100A1FB80 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED4B342C1D2BE100A1FB80 /* Item.swift */; };
 		86ED4B372C1D2BE300A1FB80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86ED4B362C1D2BE300A1FB80 /* Assets.xcassets */; };
@@ -100,7 +99,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86E2EB662C22773C00C58E6F /* SelectableText in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +280,6 @@
 			);
 			name = BibleApp;
 			packageProductDependencies = (
-				86E2EB652C22773C00C58E6F /* SelectableText */,
 			);
 			productName = BibleApp;
 			productReference = 86ED4B2D2C1D2BE100A1FB80 /* BibleApp.app */;
@@ -357,7 +354,6 @@
 			);
 			mainGroup = 86ED4B242C1D2BE100A1FB80;
 			packageReferences = (
-				86E2EB642C22773C00C58E6F /* XCRemoteSwiftPackageReference "SelectableText" */,
 			);
 			productRefGroup = 86ED4B2E2C1D2BE100A1FB80 /* Products */;
 			projectDirPath = "";
@@ -756,25 +752,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		86E2EB642C22773C00C58E6F /* XCRemoteSwiftPackageReference "SelectableText" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kevinhermawan/SelectableText";
-			requirement = {
-				kind = exactVersion;
-				version = 1.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		86E2EB652C22773C00C58E6F /* SelectableText */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 86E2EB642C22773C00C58E6F /* XCRemoteSwiftPackageReference "SelectableText" */;
-			productName = SelectableText;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 86ED4B252C1D2BE100A1FB80 /* Project object */;
 }
