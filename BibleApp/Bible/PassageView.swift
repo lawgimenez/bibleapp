@@ -15,13 +15,14 @@ struct PassageView: View {
     @State private var textHeight: CGFloat = 300
     @State private var passage = NSAttributedString(string: "")
     @State private var textStyle = UIFont.TextStyle.body
+    @State private var arrayHighlights = [Highlight]()
     var bibleId: String
     var chapterId: String
     
     var body: some View {
         NavigationStack {
             VStack {
-                TextSelectable(text: $passage, textStyle: $textStyle)
+                TextSelectable(text: $passage, textStyle: $textStyle, arrayHighlights: $arrayHighlights)
             }
             .onChange(of: bibleObservable.passageContent) {
                 let passageData = bibleObservable.passageContent.data(using: .unicode)

@@ -11,11 +11,13 @@ struct TextSelectable: UIViewRepresentable {
     
     @Binding var text: NSAttributedString
     @Binding var textStyle: UIFont.TextStyle
+    @Binding var arrayHighlights: [Highlight]
     var selectedRange: NSRange?
     var onSelectedRangeChanged: ((NSRange?) -> Void)?
     
     func makeUIView(context: Context) -> CustomTextView {
         let textView = CustomTextView()
+        textView.arrayHighlights = arrayHighlights
         textView.isSelectable = true
         textView.isUserInteractionEnabled = true
         textView.isEditable = false
@@ -49,6 +51,8 @@ struct TextSelectable: UIViewRepresentable {
 
 class CustomTextView: UITextView {
     
+    var arrayHighlights: [Highlight] = []
+    
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         if action == #selector(highlightText) {
             return true
@@ -79,13 +83,20 @@ class CustomTextView: UITextView {
     
     @objc func highlightText() {
         if let range = self.selectedTextRange, let selectedText = self.text(in: range) {
-            print("Selected text is \(selectedText)")
+            let mutableString = NSMutableAttributedString.init(string: text)
+            let highlight = Highlight(passage: selectedText, range: selectedRange)
+            arrayHighlights.append(highlight)
             let highlightAttributes: [NSAttributedString.Key: Any] = [
                 .backgroundColor: UIColor.orange,
                 .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
             ]
-            let mutableString = NSMutableAttributedString.init(string: text)
-            mutableString.addAttributes(highlightAttributes, range: selectedRange)
+            let defaultFontAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
+            ]
+            for highlight in arrayHighlights {
+                mutableString.addAttributes(highlightAttributes, range: highlight.getRange())
+            }
+            mutableString.addAttributes(defaultFontAttributes, range: NSRange(location: 0, length: text.count))
             attributedText = mutableString
         }
     }

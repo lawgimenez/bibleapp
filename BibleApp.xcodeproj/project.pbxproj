@@ -22,6 +22,7 @@
 		8622981C2C219C9B006E9D13 /* PassageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622981B2C219C9B006E9D13 /* PassageView.swift */; };
 		86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */; };
 		86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADD2C1EDE08004B81C6 /* HomeView.swift */; };
+		86B9F4882C241D2B0039E81C /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B9F4872C241D2B0039E81C /* Highlight.swift */; };
 		86BBF9152C22893F00718344 /* TextSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBF9142C22893F00718344 /* TextSelectable.swift */; };
 		86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65A2C1D874E00A65B29 /* MainView.swift */; };
 		86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65D2C1D901300A65B29 /* SignInView.swift */; };
@@ -70,6 +71,7 @@
 		8622981B2C219C9B006E9D13 /* PassageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassageView.swift; sourceTree = "<group>"; };
 		86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		86588ADD2C1EDE08004B81C6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		86B9F4872C241D2B0039E81C /* Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlight.swift; sourceTree = "<group>"; };
 		86BBF9142C22893F00718344 /* TextSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectable.swift; sourceTree = "<group>"; };
 		86CDC65A2C1D874E00A65B29 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		86CDC65D2C1D901300A65B29 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				8622980F2C218BEE006E9D13 /* Chapter.swift */,
 				862298132C21940C006E9D13 /* Section.swift */,
 				862298192C219C18006E9D13 /* Passage.swift */,
+				86B9F4872C241D2B0039E81C /* Highlight.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				8622980A2C218226006E9D13 /* Book.swift in Sources */,
 				862298062C217C1C006E9D13 /* BibleObservable.swift in Sources */,
 				86ED4B352C1D2BE100A1FB80 /* Item.swift in Sources */,
+				86B9F4882C241D2B0039E81C /* Highlight.swift in Sources */,
 				862298002C217911006E9D13 /* Urls.swift in Sources */,
 				86E2EB632C2272FF00C58E6F /* TextViewSelectable.swift in Sources */,
 				862298162C2196BA006E9D13 /* VerseView.swift in Sources */,
