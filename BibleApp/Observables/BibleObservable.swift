@@ -7,6 +7,7 @@
 
 import Foundation
 import OSLog
+import SwiftData
 
 private let logger = Logger(subsystem: "com.infinalab", category: "BibleObservable")
 
@@ -20,7 +21,7 @@ class BibleObservable: ObservableObject {
     @Published var passage: Passage.Data?
     @Published var passageContent: String = ""
     
-    func getBibles() async throws {
+    func getBibles(modelContext: ModelContext) async throws {
         let url = URL(string: Urls.Api.bibles)
         let session = URLSession.shared
         var request = URLRequest(url: url!)
@@ -29,6 +30,16 @@ class BibleObservable: ObservableObject {
         request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
         let (data, _) = try await session.data(for: request)
         let bibles = try JSONDecoder().decode(Bible.self, from: data)
+        // Insert data
+        for bible in bibles.data {
+            let bibleData = BibleData(id: bible.id, dblId: bible.dblId, abbreviation: bible.abbreviation, abbreviationLocal: bible.abbreviationLocal, name: bible.name, nameLocal: bible.nameLocal, description: bible.description ?? "", descriptionLocal: bible.descriptionLocal ?? "", type: bible.type)
+            modelContext.insert(bibleData)
+        }
+        do {
+            try modelContext.save()
+        } catch {
+            print("Bible data error: \(error)")
+        }
         arrayBibles = bibles.data
     }
     

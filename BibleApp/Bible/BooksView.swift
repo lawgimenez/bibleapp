@@ -10,7 +10,7 @@ import SwiftUI
 struct BooksView: View {
     
     @EnvironmentObject private var bibleObservable: BibleObservable
-    var bible: Bible.Data
+    var bible: BibleData
     
     var body: some View {
         NavigationStack {

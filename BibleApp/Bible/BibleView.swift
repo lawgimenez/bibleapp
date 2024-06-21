@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct BibleView: View {
     
+    @Environment(\.modelContext) private var modelContext
     @StateObject private var bibleObservable = BibleObservable()
+    @Query private var bibles: [BibleData]
     
     var body: some View {
         NavigationStack {
             VStack {
-                List(bibleObservable.arrayBibles) { bible in
+                List(bibles) { bible in
                     NavigationLink {
                         BooksView(bible: bible)
                             .environmentObject(bibleObservable)
@@ -29,7 +32,7 @@ struct BibleView: View {
         }
         .task {
             do {
-                try await bibleObservable.getBibles()
+                try await bibleObservable.getBibles(modelContext: modelContext)
             } catch {
                 print(error)
             }

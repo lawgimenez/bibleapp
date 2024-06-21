@@ -22,7 +22,7 @@ struct MainView: View {
         }
         .task {
             do {
-                try await bibleObservable.getBibles()
+//                try await bibl eObservable.getBibles(modelContext: <#ModelContext#>)
             } catch {
                 print(error)
             }
