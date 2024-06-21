@@ -27,7 +27,6 @@
 		86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65A2C1D874E00A65B29 /* MainView.swift */; };
 		86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65D2C1D901300A65B29 /* SignInView.swift */; };
 		86CDC6612C1D907500A65B29 /* AuthObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC6602C1D907500A65B29 /* AuthObservable.swift */; };
-		86E2EB632C2272FF00C58E6F /* TextViewSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E2EB622C2272FF00C58E6F /* TextViewSelectable.swift */; };
 		86E2EB662C22773C00C58E6F /* SelectableText in Frameworks */ = {isa = PBXBuildFile; productRef = 86E2EB652C22773C00C58E6F /* SelectableText */; };
 		86ED4B312C1D2BE100A1FB80 /* BibleAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED4B302C1D2BE100A1FB80 /* BibleAppApp.swift */; };
 		86ED4B352C1D2BE100A1FB80 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED4B342C1D2BE100A1FB80 /* Item.swift */; };
@@ -80,7 +79,6 @@
 		86CDC65A2C1D874E00A65B29 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		86CDC65D2C1D901300A65B29 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		86CDC6602C1D907500A65B29 /* AuthObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthObservable.swift; sourceTree = "<group>"; };
-		86E2EB622C2272FF00C58E6F /* TextViewSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewSelectable.swift; sourceTree = "<group>"; };
 		86ED4B2D2C1D2BE100A1FB80 /* BibleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BibleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86ED4B302C1D2BE100A1FB80 /* BibleAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleAppApp.swift; sourceTree = "<group>"; };
 		86ED4B342C1D2BE100A1FB80 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -227,7 +225,6 @@
 				86ED4B342C1D2BE100A1FB80 /* Item.swift */,
 				86ED4B362C1D2BE300A1FB80 /* Assets.xcassets */,
 				86ED4B382C1D2BE300A1FB80 /* Preview Content */,
-				86E2EB622C2272FF00C58E6F /* TextViewSelectable.swift */,
 			);
 			path = BibleApp;
 			sourceTree = "<group>";
@@ -418,7 +415,6 @@
 				86ED4B352C1D2BE100A1FB80 /* Item.swift in Sources */,
 				86B9F4882C241D2B0039E81C /* Highlight.swift in Sources */,
 				862298002C217911006E9D13 /* Urls.swift in Sources */,
-				86E2EB632C2272FF00C58E6F /* TextViewSelectable.swift in Sources */,
 				862298162C2196BA006E9D13 /* VerseView.swift in Sources */,
 				86CDC6612C1D907500A65B29 /* AuthObservable.swift in Sources */,
 				86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */,
