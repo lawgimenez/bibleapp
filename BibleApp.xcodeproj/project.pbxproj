@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		860D54292C26BF0900B5373D /* UIColorValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860D54282C26BF0900B5373D /* UIColorValueTransformer.swift */; };
 		860D542C2C26C7F200B5373D /* HighlightOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860D542B2C26C7F200B5373D /* HighlightOptionView.swift */; };
+		860D542E2C26CF3C00B5373D /* Highlights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860D542D2C26CF3C00B5373D /* Highlights.swift */; };
 		862298002C217911006E9D13 /* Urls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862297FF2C217911006E9D13 /* Urls.swift */; };
 		862298032C217B6E006E9D13 /* Bible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862298022C217B6E006E9D13 /* Bible.swift */; };
 		862298062C217C1C006E9D13 /* BibleObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862298052C217C1C006E9D13 /* BibleObservable.swift */; };
@@ -62,6 +63,7 @@
 /* Begin PBXFileReference section */
 		860D54282C26BF0900B5373D /* UIColorValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorValueTransformer.swift; sourceTree = "<group>"; };
 		860D542B2C26C7F200B5373D /* HighlightOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightOptionView.swift; sourceTree = "<group>"; };
+		860D542D2C26CF3C00B5373D /* Highlights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlights.swift; sourceTree = "<group>"; };
 		862297FF2C217911006E9D13 /* Urls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Urls.swift; sourceTree = "<group>"; };
 		862298022C217B6E006E9D13 /* Bible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bible.swift; sourceTree = "<group>"; };
 		862298052C217C1C006E9D13 /* BibleObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleObservable.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				862298132C21940C006E9D13 /* Section.swift */,
 				862298192C219C18006E9D13 /* Passage.swift */,
 				86B9F4872C241D2B0039E81C /* Highlight.swift */,
+				860D542D2C26CF3C00B5373D /* Highlights.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				8622980C2C218394006E9D13 /* BibleView.swift in Sources */,
 				8622980A2C218226006E9D13 /* Book.swift in Sources */,
 				860D54292C26BF0900B5373D /* UIColorValueTransformer.swift in Sources */,
+				860D542E2C26CF3C00B5373D /* Highlights.swift in Sources */,
 				862298062C217C1C006E9D13 /* BibleObservable.swift in Sources */,
 				86ED4B352C1D2BE100A1FB80 /* Item.swift in Sources */,
 				86B9F4882C241D2B0039E81C /* Highlight.swift in Sources */,

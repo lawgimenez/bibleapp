@@ -11,6 +11,13 @@ import SelectableText
 
 struct PassageView: View {
     
+    @State private var highlightsColor = [
+        Highlights(color: .highlightPink),
+        Highlights(color: .highlightGreen),
+        Highlights(color: .highlightGrayish),
+        Highlights(color: .highlightLightBlue)
+    ]
+    
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var bibleObservable: BibleObservable
     @Query private var passage: [PassageData]
@@ -22,6 +29,9 @@ struct PassageView: View {
     @State private var arrayHighlights = [Highlight]()
     @State private var highlightAdded = false
     @State private var isPresentHighlightOptions = false
+    @State private var selectedColor = Highlights(color: .highlightPink)
+    @State private var addedHighlight = false
+    @State private var highlight: Highlight?
     var bibleId: String
     var chapterId: String
     
@@ -54,16 +64,30 @@ struct PassageView: View {
             .onChange(of: passageAttributed) {
                 passageAttributed = addHighlights(text: passageAttributed.string)
             }
+            .onChange(of: addedHighlight) {
+                if addedHighlight {
+                    if let highlight {
+                        modelContext.insert(highlight)
+                        do {
+                            try modelContext.save()
+                        } catch {
+                            print("Passage highlight data error: \(error)")
+                        }
+                    }
+                    passageAttributed = addHighlights(text: passageAttributed.string)
+                }
+            }
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name("highlightAdded"))) { output in
                 print("Highlight updated")
                 if let highlight = output.userInfo!["data"] as? Highlight {
                     print("Highlight object found: \(highlight)")
+                    self.highlight = highlight
                     isPresentHighlightOptions = true
                 }
                 passageAttributed = addHighlights(text: passageAttributed.string)
             }
             .sheet(isPresented: $isPresentHighlightOptions) {
-                HighlightOptionView()
+                HighlightOptionView(highlightsColor: $highlightsColor, selectedColor: $selectedColor, addedHighlight: $addedHighlight)
                     .presentationDetents([.height(300)])
             }
             .background(Color.red)
@@ -87,13 +111,13 @@ struct PassageView: View {
     }
     
     private func addHighlights(text: String) -> NSAttributedString {
-        let highlightAttributes: [NSAttributedString.Key: Any] = [
-            .backgroundColor: UIColor.orange,
-            .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
-        ]
         let mutableString = NSMutableAttributedString.init(string: text)
         for highlight in highlights {
             print("Highlight is = \(highlight.getRange())")
+            let highlightAttributes: [NSAttributedString.Key: Any] = [
+                .backgroundColor: highlight.uiColor,
+                .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
+            ]
             mutableString.addAttributes(highlightAttributes, range: highlight.getRange())
         }
         return mutableString

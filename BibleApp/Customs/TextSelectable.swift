@@ -104,12 +104,6 @@ class CustomTextView: UITextView {
             let highlight = Highlight(passage: selectedText, location: selectedRange.location, length: selectedRange.length, bibleId: bibleId, chapterId: chapterId, color: .highlightGrayish)
             
             let mutableString = NSMutableAttributedString.init(string: text)
-//            modelContext.insert(highlight)
-//            do {
-//                try modelContext.save()
-//            } catch {
-//                print("Passage highlight data error: \(error)")
-//            }
             
 //            let highlightAttributes: [NSAttributedString.Key: Any] = [
 //                .backgroundColor: UIColor.orange,

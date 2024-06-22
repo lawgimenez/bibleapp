@@ -9,19 +9,9 @@ import SwiftUI
 
 struct HighlightOptionView: View {
     
-    struct HighlightsColor: Identifiable {
-        let id = UUID()
-        let color: Color
-    }
-    
-    let highlightsColor = [
-        HighlightsColor(color: .highlightPink),
-        HighlightsColor(color: .highlightGreen),
-        HighlightsColor(color: .highlightGrayish),
-        HighlightsColor(color: .highlightLightBlue)
-    ]
-    
-    @State private var selectedColor = HighlightsColor(color: .highlightPink)
+    @Binding var highlightsColor: [Highlights]
+    @Binding var selectedColor: Highlights
+    @Binding var addedHighlight: Bool
     
     var body: some View {
         VStack {
@@ -36,6 +26,7 @@ struct HighlightOptionView: View {
                         .frame(maxWidth: 50, maxHeight: 50)
                         .onTapGesture {
                             selectedColor = highlightColor
+                            addedHighlight = true
                         }
                 }
             }
