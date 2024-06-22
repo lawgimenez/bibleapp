@@ -12,6 +12,7 @@ import SwiftData
 struct BibleAppApp: App {
     
     var sharedModelContainer: ModelContainer = {
+        UIColorValueTransformer.register()
         let schema = Schema([
             Item.self,
             BibleData.self,
@@ -34,5 +35,15 @@ struct BibleAppApp: App {
             BibleView()
         }
         .modelContainer(sharedModelContainer)
+    }
+}
+
+extension UIColorValueTransformer {
+    
+    static let name = NSValueTransformerName(rawValue: String(describing: UIColorValueTransformer.self))
+    
+    public static func register() {
+        let transformer = UIColorValueTransformer()
+        ValueTransformer.setValueTransformer(transformer, forName: name)
     }
 }

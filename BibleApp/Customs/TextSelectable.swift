@@ -101,14 +101,16 @@ class CustomTextView: UITextView {
     
     @objc func highlightText() {
         if let range = self.selectedTextRange, let selectedText = self.text(in: range) {
+            let highlight = Highlight(passage: selectedText, location: selectedRange.location, length: selectedRange.length, bibleId: bibleId, chapterId: chapterId, color: .highlightGrayish)
+            
             let mutableString = NSMutableAttributedString.init(string: text)
-            let highlight = Highlight(passage: selectedText, location: selectedRange.location, length: selectedRange.length, bibleId: bibleId, chapterId: chapterId)
-            modelContext.insert(highlight)
-            do {
-                try modelContext.save()
-            } catch {
-                print("Passage highlight data error: \(error)")
-            }
+//            modelContext.insert(highlight)
+//            do {
+//                try modelContext.save()
+//            } catch {
+//                print("Passage highlight data error: \(error)")
+//            }
+            
 //            let highlightAttributes: [NSAttributedString.Key: Any] = [
 //                .backgroundColor: UIColor.orange,
 //                .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
@@ -119,7 +121,10 @@ class CustomTextView: UITextView {
 //            mutableString.addAttributes(highlightAttributes, range: highlight.getRange())
 //            mutableString.addAttributes(defaultFontAttributes, range: NSRange(location: 0, length: text.count))
 //            attributedText = mutableString
-            NotificationCenter.default.post(name: Notification.Name("highlightAdded"), object: nil)
+            let highlightDict = [
+                "data": highlight
+            ]
+            NotificationCenter.default.post(name: Notification.Name("highlightAdded"), object: nil, userInfo: highlightDict)
         }
     }
 }

@@ -53,8 +53,11 @@ struct PassageView: View {
             .onChange(of: passageAttributed) {
                 passageAttributed = addHighlights(text: passageAttributed.string)
             }
-            .onReceive(NotificationCenter.default.publisher(for: Notification.Name("highlightAdded"))) { _ in
+            .onReceive(NotificationCenter.default.publisher(for: Notification.Name("highlightAdded"))) { output in
                 print("Highlight updated")
+                if let userInfo = output.userInfo {
+                    print("Highlight object found: \(userInfo)")
+                }
                 passageAttributed = addHighlights(text: passageAttributed.string)
             }
             .background(Color.red)
