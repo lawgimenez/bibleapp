@@ -26,7 +26,6 @@ struct HighlightOptionView: View {
                         .frame(maxWidth: 50, maxHeight: 50)
                         .onTapGesture {
                             selectedColor = highlightColor
-                            print("Selected color is = \(selectedColor)")
                             addedHighlight = true
                         }
                 }

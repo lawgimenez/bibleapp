@@ -75,6 +75,8 @@ struct PassageView: View {
                         } catch {
                             print("Passage highlight data error: \(error)")
                         }
+                        addedHighlight = false
+                        isPresentHighlightOptions = false
                     }
                     passageAttributed = addHighlights(text: passageAttributed.string)
                 }
