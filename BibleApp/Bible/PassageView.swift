@@ -20,6 +20,7 @@ struct PassageView: View {
     @State private var passageAttributed = NSAttributedString(string: "")
     @State private var textStyle = UIFont.TextStyle.body
     @State private var arrayHighlights = [Highlight]()
+    @State private var highlightAdded = false
     var bibleId: String
     var chapterId: String
     
@@ -50,8 +51,10 @@ struct PassageView: View {
                 }
             }
             .onChange(of: passageAttributed) {
-                print("highlights found: \(highlights.count)")
-                print("PassageView: passageAttributed = \(passageAttributed)")
+                passageAttributed = addHighlights(text: passageAttributed.string)
+            }
+            .onReceive(NotificationCenter.default.publisher(for: Notification.Name("highlightAdded"))) { _ in
+                print("Highlight updated")
                 passageAttributed = addHighlights(text: passageAttributed.string)
             }
             .background(Color.red)
