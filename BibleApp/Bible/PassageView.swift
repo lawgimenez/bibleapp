@@ -14,6 +14,7 @@ struct PassageView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var bibleObservable: BibleObservable
     @Query private var passage: [PassageData]
+    @Query private var highlights: [Highlight]
     @State private var selectedRange: NSRange?
     @State private var textHeight: CGFloat = 300
     @State private var passageAttributed = NSAttributedString(string: "")
@@ -29,6 +30,10 @@ struct PassageView: View {
             $0.bibleId == bibleId && $0.chapterId == chapterId
         }
         _passage = Query(filter: predicate)
+        let highlightPredicate = #Predicate<Highlight> {
+            $0.bibleId == bibleId && $0.chapterId == chapterId
+        }
+        _highlights = Query(filter: highlightPredicate)
     }
     
     var body: some View {
@@ -40,8 +45,14 @@ struct PassageView: View {
                 if let passageData = passage.first {
                     let passageData = passageData.content.data(using: .unicode)
                     let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+//                    passageAttributed = addHighlights(text: attributedPassageData!.string)
                     passageAttributed = attributedPassageData!
                 }
+            }
+            .onChange(of: passageAttributed) {
+                print("highlights found: \(highlights.count)")
+                print("PassageView: passageAttributed = \(passageAttributed)")
+                passageAttributed = addHighlights(text: passageAttributed.string)
             }
             .background(Color.red)
             .navigationTitle("Passage")
@@ -61,6 +72,19 @@ struct PassageView: View {
                 print("Lawx: Passage chapterID: \(chapterId)")
             }
         }
+    }
+    
+    private func addHighlights(text: String) -> NSAttributedString {
+        let highlightAttributes: [NSAttributedString.Key: Any] = [
+            .backgroundColor: UIColor.orange,
+            .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
+        ]
+        let mutableString = NSMutableAttributedString.init(string: text)
+        for highlight in highlights {
+            print("Highlight is = \(highlight.getRange())")
+            mutableString.addAttributes(highlightAttributes, range: highlight.getRange())
+        }
+        return mutableString
     }
 }
 

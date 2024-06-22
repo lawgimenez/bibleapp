@@ -39,6 +39,7 @@ struct TextSelectable: UIViewRepresentable {
     func updateUIView(_ uiView: CustomTextView, context: Context) {
         uiView.attributedText = text
         uiView.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
+        print("updateUIView = \(text)")
     }
     
     func makeCoordinator() -> Coordinator {
@@ -51,13 +52,13 @@ struct TextSelectable: UIViewRepresentable {
         
         init(_ text: NSAttributedString) {
             self.text = text
+            print("Coordinator init() = \(text)")
         }
         
         func textViewDidChange(_ textView: UITextView) {
+            print("Coordinator textViewDidChange \(textView.attributedText)")
             self.text = textView.attributedText
         }
-        
-        
     }
 }
 
@@ -74,7 +75,7 @@ class CustomTextView: UITextView {
         self.chapterId = chapterId
         self.modelContext = modelContext
         super.init(frame: .zero, textContainer: nil)
-        addHighlights()
+        print("CustomTextView init = \(text)")
     }
     
     required init?(coder: NSCoder) {
@@ -107,21 +108,6 @@ class CustomTextView: UITextView {
         actions.insert(copyAction, at: 2)
         actions.insert(shareAction, at: 3)
         return UIMenu(children: actions)
-    }
-    
-    private func addHighlights() {
-        if !text.isEmpty {
-            let highlightAttributes: [NSAttributedString.Key: Any] = [
-                .backgroundColor: UIColor.orange,
-                .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
-            ]
-            let mutableString = NSMutableAttributedString.init(string: text)
-            for highlight in arrayHighlights {
-                print("Highlight is = \(highlight.getRange())")
-                mutableString.addAttributes(highlightAttributes, range: highlight.getRange())
-            }
-            attributedText = mutableString
-        }
     }
     
     @objc func highlightText() {
