@@ -6,52 +6,80 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct TextSelectable: UIViewRepresentable {
     
-    @Binding var text: NSAttributedString
-    @Binding var textStyle: UIFont.TextStyle
-    @Binding var arrayHighlights: [Highlight]
-    var selectedRange: NSRange?
-    var onSelectedRangeChanged: ((NSRange?) -> Void)?
+    var text: NSAttributedString
+    @Environment(\.modelContext) private var modelContext
+    @Query private var arrayHighlights: [Highlight]
+    var bibleId: String
+    var chapterId: String
+    
+    init(text: NSAttributedString, bibleId: String, chapterId: String, modelContext: ModelContext) {
+        self.text = text
+        self.bibleId = bibleId
+        self.chapterId = chapterId
+        let predicate = #Predicate<Highlight> {
+            $0.bibleId == bibleId && $0.chapterId == chapterId
+        }
+        _arrayHighlights = Query(filter: predicate)
+    }
     
     func makeUIView(context: Context) -> CustomTextView {
-        let textView = CustomTextView()
-        textView.arrayHighlights = arrayHighlights
+        let textView = CustomTextView(arrayHighlights: arrayHighlights, bibleId: bibleId, chapterId: chapterId, modelContext: modelContext)
         textView.isSelectable = true
         textView.isUserInteractionEnabled = true
         textView.isEditable = false
-        textView.font = UIFont.preferredFont(forTextStyle: textStyle)
+        textView.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
         textView.delegate = context.coordinator
         return textView
     }
     
     func updateUIView(_ uiView: CustomTextView, context: Context) {
         uiView.attributedText = text
-        uiView.font = UIFont.preferredFont(forTextStyle: textStyle)
+        uiView.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator($text)
+        Coordinator(text)
     }
     
     class Coordinator: NSObject, UITextViewDelegate {
         
-        var text: Binding<NSAttributedString>
+        var text: NSAttributedString
         
-        init(_ text: Binding<NSAttributedString>) {
+        init(_ text: NSAttributedString) {
             self.text = text
         }
         
         func textViewDidChange(_ textView: UITextView) {
-            self.text.wrappedValue = textView.attributedText
+            self.text = textView.attributedText
         }
+        
+        
     }
 }
 
 class CustomTextView: UITextView {
     
     var arrayHighlights: [Highlight] = []
+    var bibleId: String
+    var chapterId: String
+    var modelContext: ModelContext
+    
+    init(arrayHighlights: [Highlight], bibleId: String, chapterId: String, modelContext: ModelContext) {
+        self.arrayHighlights = arrayHighlights
+        self.bibleId = bibleId
+        self.chapterId = chapterId
+        self.modelContext = modelContext
+        super.init(frame: .zero, textContainer: nil)
+        addHighlights()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         if action == #selector(highlightText) {
@@ -81,11 +109,32 @@ class CustomTextView: UITextView {
         return UIMenu(children: actions)
     }
     
+    private func addHighlights() {
+        if !text.isEmpty {
+            let highlightAttributes: [NSAttributedString.Key: Any] = [
+                .backgroundColor: UIColor.orange,
+                .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
+            ]
+            let mutableString = NSMutableAttributedString.init(string: text)
+            for highlight in arrayHighlights {
+                print("Highlight is = \(highlight.getRange())")
+                mutableString.addAttributes(highlightAttributes, range: highlight.getRange())
+            }
+            attributedText = mutableString
+        }
+    }
+    
     @objc func highlightText() {
         if let range = self.selectedTextRange, let selectedText = self.text(in: range) {
             let mutableString = NSMutableAttributedString.init(string: text)
-            let highlight = Highlight(passage: selectedText, range: selectedRange)
-            arrayHighlights.append(highlight)
+            let highlight = Highlight(passage: selectedText, location: selectedRange.location, length: selectedRange.length, bibleId: bibleId, chapterId: chapterId)
+            modelContext.insert(highlight)
+            do {
+                try modelContext.save()
+            } catch {
+                print("Passage highlight data error: \(error)")
+            }
+//            arrayHighlights.append(highlight)
             let highlightAttributes: [NSAttributedString.Key: Any] = [
                 .backgroundColor: UIColor.orange,
                 .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
@@ -93,6 +142,7 @@ class CustomTextView: UITextView {
             let defaultFontAttributes: [NSAttributedString.Key: Any] = [
                 .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
             ]
+            print("Highlights found: \(arrayHighlights.count)")
             for highlight in arrayHighlights {
                 mutableString.addAttributes(highlightAttributes, range: highlight.getRange())
             }

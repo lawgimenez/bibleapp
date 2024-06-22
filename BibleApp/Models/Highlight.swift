@@ -6,18 +6,26 @@
 //
 
 import Foundation
+import SwiftData
 
+@Model
 class Highlight {
     
-    private var passage: String
-    private var range: NSRange
+    let passage: String
+    let location: Int
+    let length: Int
+    var bibleId: String
+    var chapterId: String
     
-    init(passage: String, range: NSRange) {
+    init(passage: String, location: Int, length: Int, bibleId: String, chapterId: String) {
         self.passage = passage
-        self.range = range
+        self.location = location
+        self.length = length
+        self.bibleId = bibleId
+        self.chapterId = chapterId
     }
     
     func getRange() -> NSRange {
-        return range
+        return NSRange(location: location, length: length)
     }
 }

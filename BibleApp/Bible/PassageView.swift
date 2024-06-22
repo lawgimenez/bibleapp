@@ -34,7 +34,7 @@ struct PassageView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                TextSelectable(text: $passageAttributed, textStyle: $textStyle, arrayHighlights: $arrayHighlights)
+                TextSelectable(text: passageAttributed, bibleId: bibleId, chapterId: chapterId, modelContext: modelContext)
             }
             .onChange(of: bibleObservable.passageContent) {
                 if let passageData = passage.first {
