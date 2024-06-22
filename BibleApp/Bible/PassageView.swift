@@ -21,6 +21,7 @@ struct PassageView: View {
     @State private var textStyle = UIFont.TextStyle.body
     @State private var arrayHighlights = [Highlight]()
     @State private var highlightAdded = false
+    @State private var isPresentHighlightOptions = false
     var bibleId: String
     var chapterId: String
     
@@ -55,10 +56,15 @@ struct PassageView: View {
             }
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name("highlightAdded"))) { output in
                 print("Highlight updated")
-                if let userInfo = output.userInfo {
-                    print("Highlight object found: \(userInfo)")
+                if let highlight = output.userInfo!["data"] as? Highlight {
+                    print("Highlight object found: \(highlight)")
+                    isPresentHighlightOptions = true
                 }
                 passageAttributed = addHighlights(text: passageAttributed.string)
+            }
+            .sheet(isPresented: $isPresentHighlightOptions) {
+                HighlightOptionView()
+                    .presentationDetents([.height(300)])
             }
             .background(Color.red)
             .navigationTitle("Passage")
