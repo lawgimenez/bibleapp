@@ -67,6 +67,8 @@ struct PassageView: View {
             .onChange(of: addedHighlight) {
                 if addedHighlight {
                     if let highlight {
+                        // Update highlight color value to one selected by user
+                        highlight.color = selectedColor.color
                         modelContext.insert(highlight)
                         do {
                             try modelContext.save()
