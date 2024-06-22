@@ -31,12 +31,12 @@ struct HighlightOptionView: View {
             Text("Choose color")
             HStack {
                 ForEach(highlightsColor) { highlightColor in
-                    Button {
-                        selectedColor = highlightColor
-                    } label: {
-                        //
-                    }
-                    .background(highlightColor.color)
+                    RoundedRectangle(cornerRadius: 30, style: .continuous)
+                        .fill(highlightColor.color)
+                        .frame(maxWidth: 50, maxHeight: 50)
+                        .onTapGesture {
+                            selectedColor = highlightColor
+                        }
                 }
             }
             Spacer()
