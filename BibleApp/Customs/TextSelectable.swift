@@ -102,19 +102,6 @@ class CustomTextView: UITextView {
     @objc func highlightText() {
         if let range = self.selectedTextRange, let selectedText = self.text(in: range) {
             let highlight = Highlight(passage: selectedText, location: selectedRange.location, length: selectedRange.length, bibleId: bibleId, chapterId: chapterId, color: .highlightGrayish)
-            
-            let mutableString = NSMutableAttributedString.init(string: text)
-            
-//            let highlightAttributes: [NSAttributedString.Key: Any] = [
-//                .backgroundColor: UIColor.orange,
-//                .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
-//            ]
-//            let defaultFontAttributes: [NSAttributedString.Key: Any] = [
-//                .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
-//            ]
-//            mutableString.addAttributes(highlightAttributes, range: highlight.getRange())
-//            mutableString.addAttributes(defaultFontAttributes, range: NSRange(location: 0, length: text.count))
-//            attributedText = mutableString
             let highlightDict = [
                 "data": highlight
             ]
