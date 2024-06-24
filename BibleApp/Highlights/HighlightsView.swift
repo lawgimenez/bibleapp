@@ -19,7 +19,10 @@ struct HighlightsView: View {
                 VStack(alignment: .leading) {
                     Text(highlight.passage)
                     Spacer()
-                    Text(highlight.bibleName)
+                    HStack {
+                        Image(systemName: "book.circle")
+                        Text(highlight.bibleName)
+                    }
                     Text(highlight.chapterName)
                 }
                 .listRowBackground(highlight.color)
