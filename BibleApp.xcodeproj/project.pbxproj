@@ -177,6 +177,27 @@
 			path = Customs;
 			sourceTree = "<group>";
 		};
+		86C2A7C32C28F1DA00A6DADC /* Highlights */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Highlights;
+			sourceTree = "<group>";
+		};
+		86C2A7C42C28F1E200A6DADC /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
+		86C2A7C52C28F1E700A6DADC /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		86CDC6592C1D874200A65B29 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +248,9 @@
 		86ED4B2F2C1D2BE100A1FB80 /* BibleApp */ = {
 			isa = PBXGroup;
 			children = (
+				86C2A7C52C28F1E700A6DADC /* Profile */,
+				86C2A7C42C28F1E200A6DADC /* Notes */,
+				86C2A7C32C28F1DA00A6DADC /* Highlights */,
 				860D542A2C26C7D200B5373D /* Sheets */,
 				86F61C9E2C2571020022E371 /* Database */,
 				86BBF9132C22892600718344 /* Customs */,

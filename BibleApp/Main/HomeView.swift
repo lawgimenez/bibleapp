@@ -8,8 +8,24 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    enum Pages: String {
+        case bible
+        case highlights
+        case notes
+        case profile
+    }
+    
+    @State private var selectedTab: Pages = .bible
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView(selection: $selectedTab) {
+            BibleView()
+                .tabItem {
+                    Label(Pages.bible.rawValue.capitalized, systemImage: "book")
+                }
+                .tag(Pages.bible)
+        }
     }
 }
 
