@@ -27,6 +27,9 @@
 		86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADD2C1EDE08004B81C6 /* HomeView.swift */; };
 		86B9F4882C241D2B0039E81C /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B9F4872C241D2B0039E81C /* Highlight.swift */; };
 		86BBF9152C22893F00718344 /* TextSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBF9142C22893F00718344 /* TextSelectable.swift */; };
+		86C2A7C72C28F2A400A6DADC /* HighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C2A7C62C28F2A400A6DADC /* HighlightsView.swift */; };
+		86C2A7C92C28F2B600A6DADC /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C2A7C82C28F2B600A6DADC /* NotesView.swift */; };
+		86C2A7CB2C28F2BF00A6DADC /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C2A7CA2C28F2BF00A6DADC /* ProfileView.swift */; };
 		86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65A2C1D874E00A65B29 /* MainView.swift */; };
 		86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65D2C1D901300A65B29 /* SignInView.swift */; };
 		86CDC6612C1D907500A65B29 /* AuthObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC6602C1D907500A65B29 /* AuthObservable.swift */; };
@@ -81,6 +84,9 @@
 		86588ADD2C1EDE08004B81C6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		86B9F4872C241D2B0039E81C /* Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlight.swift; sourceTree = "<group>"; };
 		86BBF9142C22893F00718344 /* TextSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectable.swift; sourceTree = "<group>"; };
+		86C2A7C62C28F2A400A6DADC /* HighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsView.swift; sourceTree = "<group>"; };
+		86C2A7C82C28F2B600A6DADC /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
+		86C2A7CA2C28F2BF00A6DADC /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		86CDC65A2C1D874E00A65B29 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		86CDC65D2C1D901300A65B29 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		86CDC6602C1D907500A65B29 /* AuthObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthObservable.swift; sourceTree = "<group>"; };
@@ -180,6 +186,7 @@
 		86C2A7C32C28F1DA00A6DADC /* Highlights */ = {
 			isa = PBXGroup;
 			children = (
+				86C2A7C62C28F2A400A6DADC /* HighlightsView.swift */,
 			);
 			path = Highlights;
 			sourceTree = "<group>";
@@ -187,6 +194,7 @@
 		86C2A7C42C28F1E200A6DADC /* Notes */ = {
 			isa = PBXGroup;
 			children = (
+				86C2A7C82C28F2B600A6DADC /* NotesView.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -194,6 +202,7 @@
 		86C2A7C52C28F1E700A6DADC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				86C2A7CA2C28F2BF00A6DADC /* ProfileView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -445,6 +454,8 @@
 				862298182C2198AC006E9D13 /* ChapterView.swift in Sources */,
 				862298032C217B6E006E9D13 /* Bible.swift in Sources */,
 				86F61CA22C25806D0022E371 /* BookData.swift in Sources */,
+				86C2A7C92C28F2B600A6DADC /* NotesView.swift in Sources */,
+				86C2A7C72C28F2A400A6DADC /* HighlightsView.swift in Sources */,
 				8622981A2C219C18006E9D13 /* Passage.swift in Sources */,
 				8622980C2C218394006E9D13 /* BibleView.swift in Sources */,
 				8622980A2C218226006E9D13 /* Book.swift in Sources */,
@@ -460,6 +471,7 @@
 				8622980E2C2183CD006E9D13 /* BooksView.swift in Sources */,
 				86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */,
 				860D542C2C26C7F200B5373D /* HighlightOptionView.swift in Sources */,
+				86C2A7CB2C28F2BF00A6DADC /* ProfileView.swift in Sources */,
 				8622981C2C219C9B006E9D13 /* PassageView.swift in Sources */,
 				86F61CA62C258BB20022E371 /* PassageData.swift in Sources */,
 				86ED4B312C1D2BE100A1FB80 /* BibleAppApp.swift in Sources */,

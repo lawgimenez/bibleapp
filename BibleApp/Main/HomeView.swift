@@ -25,6 +25,21 @@ struct HomeView: View {
                     Label(Pages.bible.rawValue.capitalized, systemImage: "book")
                 }
                 .tag(Pages.bible)
+            HighlightsView()
+                .tabItem {
+                    Label(Pages.highlights.rawValue.capitalized, systemImage: "highlighter")
+                }
+                .tag(Pages.highlights)
+            NotesView()
+                .tabItem {
+                    Label(Pages.notes.rawValue.capitalized, systemImage: "note")
+                }
+                .tag(Pages.notes)
+            ProfileView()
+                .tabItem {
+                    Label(Pages.profile.rawValue.capitalized, systemImage: "person")
+                }
+                .tag(Pages.profile)
         }
     }
 }
