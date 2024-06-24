@@ -22,6 +22,8 @@ struct PassageView: View {
     @EnvironmentObject private var bibleObservable: BibleObservable
     @Query private var passage: [PassageData]
     @Query private var highlights: [Highlight]
+    @Query private var bibles: [BibleData]
+    @Query private var chapters: [ChapterData]
     @State private var selectedRange: NSRange?
     @State private var textHeight: CGFloat = 300
     @State private var passageAttributed = NSAttributedString(string: "")
@@ -69,6 +71,9 @@ struct PassageView: View {
                     if let highlight {
                         // Update highlight color value to one selected by user
                         highlight.color = selectedColor.color
+                        highlight.bibleName = getBible(bibleId: highlight.bibleId) ?? ""
+                        print("chapter is = \(getChapter(chapterId: highlight.chapterId))")
+                        highlight.chapterName = getChapter(chapterId: highlight.chapterId) ?? ""
                         modelContext.insert(highlight)
                         do {
                             try modelContext.save()
@@ -125,6 +130,36 @@ struct PassageView: View {
             mutableString.addAttributes(highlightAttributes, range: highlight.getRange())
         }
         return mutableString
+    }
+    
+    private func getBible(bibleId: String) -> String? {
+        let biblePredicate = #Predicate<BibleData> {
+            $0.id == bibleId
+        }
+        let fetchDescriptor = FetchDescriptor(predicate: biblePredicate)
+        do {
+            if let bible = try modelContext.fetch(fetchDescriptor).first {
+                return bible.name
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+    private func getChapter(chapterId: String) -> String? {
+        let chapterPredicate = #Predicate<ChapterData> {
+            $0.id == chapterId
+        }
+        let fetchDescriptor = FetchDescriptor(predicate: chapterPredicate)
+        do {
+            if let chapter = try modelContext.fetch(fetchDescriptor).first {
+                return chapter.content
+            }
+        } catch {
+            print(error)
+        }
+        return nil
     }
 }
 

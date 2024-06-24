@@ -17,7 +17,9 @@ class Highlight {
     let location: Int
     let length: Int
     var bibleId: String
+    var bibleName: String
     var chapterId: String
+    var chapterName: String
     @Attribute(.transformable(by: UIColorValueTransformer.self)) var uiColor: UIColor
     var color: Color {
         get {
@@ -28,12 +30,14 @@ class Highlight {
         }
     }
     
-    init(passage: String, location: Int, length: Int, bibleId: String, chapterId: String, color: Color) {
+    init(passage: String, location: Int, length: Int, bibleId: String, bibleName: String, chapterId: String, chapterName: String, color: Color) {
         self.passage = passage
         self.location = location
         self.length = length
         self.bibleId = bibleId
+        self.bibleName = bibleName
         self.chapterId = chapterId
+        self.chapterName = chapterName
         self.uiColor = .init(color)
     }
     
