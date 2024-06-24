@@ -90,7 +90,8 @@ class BibleObservable: ObservableObject {
     }
     
     func getPassage(bibleId: String, anyId: String, modelContext: ModelContext) async throws {
-        let passageUrlString = String(format: Urls.Api.passage, bibleId, anyId)
+        let chapterId = anyId.replacingOccurrences(of: ".intro", with: "", options: .literal)
+        let passageUrlString = String(format: Urls.Api.passage, bibleId, chapterId)
         let url = URL(string: passageUrlString)
         let session = URLSession.shared
         var request = URLRequest(url: url!)
