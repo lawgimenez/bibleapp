@@ -17,8 +17,9 @@ struct HighlightsView: View {
             List(highlights) { highlight in
                 VStack(alignment: .leading) {
                     Text(highlight.passage)
-                    Spacer()
                 }
+                .listRowBackground(highlight.color)
+                .padding()
             }
             .navigationTitle("Highlights")
         }
