@@ -6,10 +6,22 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct HighlightsView: View {
+    
+    @Query private var highlights: [Highlight]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List(highlights) { highlight in
+                VStack(alignment: .leading) {
+                    Text(highlight.passage)
+                    Spacer()
+                }
+            }
+            .navigationTitle("Highlights")
+        }
     }
 }
 
