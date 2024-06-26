@@ -75,11 +75,16 @@ struct SignUpView: View {
     }
     
     private func signUp() async {
-//        do {
-//            try await authObservable.signUp(isEmployer: isEmployer)
-//        } catch {
-//            print(error)
-//        }
+        if !authObservable.email.isEmpty && !authObservable.password.isEmpty {
+            authObservable.isSigningUp = true
+            do {
+                try await authObservable.signUp()
+            } catch {
+                print("Sign up error: \(error)")
+                authObservable.isSigningUp = false
+                authObservable.signUpStatus = .failed
+            }
+        }
     }
 }
 
