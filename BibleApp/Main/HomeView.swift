@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @EnvironmentObject private var authObservable: AuthObservable
+    
     enum Pages: String {
         case bible
         case highlights
@@ -40,6 +42,7 @@ struct HomeView: View {
                     Label(Pages.settings.rawValue.capitalized, systemImage: "gear")
                 }
                 .tag(Pages.settings)
+                .environmentObject(authObservable)
         }
     }
 }
