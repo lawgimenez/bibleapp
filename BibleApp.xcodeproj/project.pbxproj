@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8609D3152C2BFA4F00BC2445 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8609D3142C2BFA4F00BC2445 /* SettingsView.swift */; };
 		860D54292C26BF0900B5373D /* UIColorValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860D54282C26BF0900B5373D /* UIColorValueTransformer.swift */; };
 		860D542C2C26C7F200B5373D /* HighlightOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860D542B2C26C7F200B5373D /* HighlightOptionView.swift */; };
 		860D542E2C26CF3C00B5373D /* Highlights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860D542D2C26CF3C00B5373D /* Highlights.swift */; };
@@ -69,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8609D3142C2BFA4F00BC2445 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		860D54282C26BF0900B5373D /* UIColorValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorValueTransformer.swift; sourceTree = "<group>"; };
 		860D542B2C26C7F200B5373D /* HighlightOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightOptionView.swift; sourceTree = "<group>"; };
 		860D542D2C26CF3C00B5373D /* Highlights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlights.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				86C2A7CA2C28F2BF00A6DADC /* ProfileView.swift */,
+				8609D3142C2BFA4F00BC2445 /* SettingsView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8609D3152C2BFA4F00BC2445 /* SettingsView.swift in Sources */,
 				86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */,
 				86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */,
 				86F61CA02C2571130022E371 /* BibleData.swift in Sources */,

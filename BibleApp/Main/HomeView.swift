@@ -13,7 +13,7 @@ struct HomeView: View {
         case bible
         case highlights
         case notes
-        case profile
+        case settings
     }
     
     @State private var selectedTab: Pages = .bible
@@ -35,11 +35,11 @@ struct HomeView: View {
                     Label(Pages.notes.rawValue.capitalized, systemImage: "note")
                 }
                 .tag(Pages.notes)
-            ProfileView()
+            SettingsView()
                 .tabItem {
-                    Label(Pages.profile.rawValue.capitalized, systemImage: "person")
+                    Label(Pages.settings.rawValue.capitalized, systemImage: "gear")
                 }
-                .tag(Pages.profile)
+                .tag(Pages.settings)
         }
     }
 }

@@ -1,13 +1,13 @@
 //
-//  ProfileView.swift
+//  SettingsView.swift
 //  BibleApp
 //
-//  Created by Lawrence Gimenez on 6/24/24.
+//  Created by Lawrence Gimenez on 6/26/24.
 //
 
 import SwiftUI
 
-struct ProfileView: View {
+struct SettingsView: View {
     
     var body: some View {
         NavigationStack {
@@ -19,5 +19,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView()
+    SettingsView()
 }
