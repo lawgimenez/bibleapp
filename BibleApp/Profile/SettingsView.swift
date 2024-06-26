@@ -45,6 +45,9 @@ struct SettingsView: View {
                                 Text("Cancel")
                             }
                         }
+                        .onTapGesture {
+                            isSignOutAlertShown = true
+                        }
                 }
             }
         }

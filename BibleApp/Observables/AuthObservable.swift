@@ -43,7 +43,6 @@ class AuthObservable: ObservableObject {
     
     func signUp() async throws {
         let session = try await client.auth.signUp(email: email, password: password)
-        print("Sign up session = \(session)")
         if let session = session.session {
             UserDefaults.standard.set(session.user.email, forKey: User.Keys.email.rawValue)
             UserDefaults.standard.set(session.accessToken, forKey: User.Keys.accessToken.rawValue)
