@@ -126,14 +126,14 @@ struct SignInView: View {
     
     private func signIn() async {
         if !authObservable.email.isEmpty && !authObservable.password.isEmpty {
-//            authObservable.isSigningIn = true
-//            do {
-//                try await authObservable.signIn()
-//            } catch {
-//                logger.debug("Sign in error = \(error)")
-//                authObservable.isSigningIn = false
-//                authObservable.status =  .loggedOut
-//            }
+            authObservable.isSigningIn = true
+            do {
+                try await authObservable.signIn()
+            } catch {
+                logger.debug("Sign in error = \(error)")
+                authObservable.isSigningIn = false
+                authObservable.signInStatus = .failed
+            }
             authObservable.email = ""
             authObservable.password = ""
         }
