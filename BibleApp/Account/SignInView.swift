@@ -87,6 +87,7 @@ struct SignInView: View {
                 }
             }
             .frame(height: 45)
+            .background(.buttonAccent)
             .contentShape(Rectangle())
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .padding([.bottom, .top], 10)
@@ -99,7 +100,6 @@ struct SignInView: View {
             .frame(width: 200, height: 40)
             .background(.clear)
             .contentShape(Rectangle())
-            
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .buttonStyle(.plain)
             Spacer()
