@@ -11,6 +11,8 @@ import SwiftData
 @main
 struct BibleAppApp: App {
     
+    @StateObject private var authObservable = AuthObservable()
+    
     var sharedModelContainer: ModelContainer = {
         UIColorValueTransformer.register()
         let schema = Schema([
@@ -32,6 +34,7 @@ struct BibleAppApp: App {
 
     var body: some Scene {
         WindowGroup {
+            
             HomeView()
         }
         .modelContainer(sharedModelContainer)

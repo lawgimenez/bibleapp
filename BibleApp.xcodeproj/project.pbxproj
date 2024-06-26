@@ -30,6 +30,10 @@
 		86C2A7C72C28F2A400A6DADC /* HighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C2A7C62C28F2A400A6DADC /* HighlightsView.swift */; };
 		86C2A7C92C28F2B600A6DADC /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C2A7C82C28F2B600A6DADC /* NotesView.swift */; };
 		86C2A7CB2C28F2BF00A6DADC /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C2A7CA2C28F2BF00A6DADC /* ProfileView.swift */; };
+		86C606C02C2B9D3000CB8CBE /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 86C606BF2C2B9D3000CB8CBE /* Auth */; };
+		86C606C22C2B9D3000CB8CBE /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 86C606C12C2B9D3000CB8CBE /* Functions */; };
+		86C606C52C2B9DD600CB8CBE /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 86C606C42C2B9DD600CB8CBE /* Supabase */; };
+		86C606C72C2B9E6E00CB8CBE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C606C62C2B9E6E00CB8CBE /* User.swift */; };
 		86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65A2C1D874E00A65B29 /* MainView.swift */; };
 		86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65D2C1D901300A65B29 /* SignInView.swift */; };
 		86CDC6612C1D907500A65B29 /* AuthObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC6602C1D907500A65B29 /* AuthObservable.swift */; };
@@ -87,6 +91,7 @@
 		86C2A7C62C28F2A400A6DADC /* HighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsView.swift; sourceTree = "<group>"; };
 		86C2A7C82C28F2B600A6DADC /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		86C2A7CA2C28F2BF00A6DADC /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		86C606C62C2B9E6E00CB8CBE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		86CDC65A2C1D874E00A65B29 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		86CDC65D2C1D901300A65B29 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		86CDC6602C1D907500A65B29 /* AuthObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthObservable.swift; sourceTree = "<group>"; };
@@ -111,6 +116,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86C606C22C2B9D3000CB8CBE /* Functions in Frameworks */,
+				86C606C02C2B9D3000CB8CBE /* Auth in Frameworks */,
+				86C606C52C2B9DD600CB8CBE /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +166,7 @@
 				862298192C219C18006E9D13 /* Passage.swift */,
 				86B9F4872C241D2B0039E81C /* Highlight.swift */,
 				860D542D2C26CF3C00B5373D /* Highlights.swift */,
+				86C606C62C2B9E6E00CB8CBE /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -207,6 +216,13 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		86C606C32C2B9DD600CB8CBE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		86CDC6592C1D874200A65B29 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +257,7 @@
 				86ED4B422C1D2BE300A1FB80 /* BibleAppTests */,
 				86ED4B4C2C1D2BE300A1FB80 /* BibleAppUITests */,
 				86ED4B2E2C1D2BE100A1FB80 /* Products */,
+				86C606C32C2B9DD600CB8CBE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -330,6 +347,9 @@
 			);
 			name = BibleApp;
 			packageProductDependencies = (
+				86C606BF2C2B9D3000CB8CBE /* Auth */,
+				86C606C12C2B9D3000CB8CBE /* Functions */,
+				86C606C42C2B9DD600CB8CBE /* Supabase */,
 			);
 			productName = BibleApp;
 			productReference = 86ED4B2D2C1D2BE100A1FB80 /* BibleApp.app */;
@@ -404,6 +424,7 @@
 			);
 			mainGroup = 86ED4B242C1D2BE100A1FB80;
 			packageReferences = (
+				86C606BE2C2B9D3000CB8CBE /* XCRemoteSwiftPackageReference "supabase-swift" */,
 			);
 			productRefGroup = 86ED4B2E2C1D2BE100A1FB80 /* Products */;
 			projectDirPath = "";
@@ -479,6 +500,7 @@
 				862298102C218BEE006E9D13 /* Chapter.swift in Sources */,
 				862298122C218E62006E9D13 /* SectionView.swift in Sources */,
 				86BBF9152C22893F00718344 /* TextSelectable.swift in Sources */,
+				86C606C72C2B9E6E00CB8CBE /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -808,6 +830,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		86C606BE2C2B9D3000CB8CBE /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = exactVersion;
+				version = 2.13.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		86C606BF2C2B9D3000CB8CBE /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86C606BE2C2B9D3000CB8CBE /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		86C606C12C2B9D3000CB8CBE /* Functions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86C606BE2C2B9D3000CB8CBE /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Functions;
+		};
+		86C606C42C2B9DD600CB8CBE /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86C606BE2C2B9D3000CB8CBE /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 86ED4B252C1D2BE100A1FB80 /* Project object */;
 }
