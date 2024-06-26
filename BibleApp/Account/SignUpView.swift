@@ -50,13 +50,15 @@ struct SignUpView: View {
                     }
                 }
                 .frame(height: 40)
+                .background(.buttonAccent)
                 .contentShape(Rectangle())
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding([.bottom, .top], 10)
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding(50)
+            .padding()
+            .textFieldStyle(CustomTextFieldStyle())
             .buttonStyle(.bordered)
             .contentShape(Rectangle())
         }
