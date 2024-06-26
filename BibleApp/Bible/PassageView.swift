@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftData
-import SelectableText
 
 struct PassageView: View {
     
