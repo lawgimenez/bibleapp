@@ -34,8 +34,12 @@ struct BibleAppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            
-            HomeView()
+            if authObservable.signInStatus == .success {
+                HomeView()
+            } else {
+                SignInView()
+                    .environmentObject(authObservable)
+            }
         }
         .modelContainer(sharedModelContainer)
     }
