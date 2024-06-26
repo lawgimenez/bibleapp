@@ -42,6 +42,7 @@ struct SignInView: View {
                 TextField("Password", text: $authObservable.password)
                     #if os(iOS)
                     .textInputAutocapitalization(.never)
+                    .keyboardType(.emailAddress)
                     #endif
                     .submitLabel(.done)
                     .focused($isFocusedPassword)
@@ -98,11 +99,14 @@ struct SignInView: View {
             .frame(width: 200, height: 40)
             .background(.clear)
             .contentShape(Rectangle())
+            
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .buttonStyle(.plain)
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding()
+        .textFieldStyle(CustomTextFieldStyle())
     }
     
     private var togglePasswordOverlay: some View {

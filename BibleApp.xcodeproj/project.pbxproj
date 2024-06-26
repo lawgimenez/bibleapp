@@ -34,6 +34,7 @@
 		86C606C22C2B9D3000CB8CBE /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 86C606C12C2B9D3000CB8CBE /* Functions */; };
 		86C606C52C2B9DD600CB8CBE /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 86C606C42C2B9DD600CB8CBE /* Supabase */; };
 		86C606C72C2B9E6E00CB8CBE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C606C62C2B9E6E00CB8CBE /* User.swift */; };
+		86C606CA2C2BA59200CB8CBE /* CustomTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C606C92C2BA59200CB8CBE /* CustomTextFieldStyle.swift */; };
 		86CDC65B2C1D874E00A65B29 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65A2C1D874E00A65B29 /* MainView.swift */; };
 		86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC65D2C1D901300A65B29 /* SignInView.swift */; };
 		86CDC6612C1D907500A65B29 /* AuthObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDC6602C1D907500A65B29 /* AuthObservable.swift */; };
@@ -92,6 +93,7 @@
 		86C2A7C82C28F2B600A6DADC /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		86C2A7CA2C28F2BF00A6DADC /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		86C606C62C2B9E6E00CB8CBE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		86C606C92C2BA59200CB8CBE /* CustomTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldStyle.swift; sourceTree = "<group>"; };
 		86CDC65A2C1D874E00A65B29 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		86CDC65D2C1D901300A65B29 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		86CDC6602C1D907500A65B29 /* AuthObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthObservable.swift; sourceTree = "<group>"; };
@@ -223,6 +225,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		86C606C82C2BA58300CB8CBE /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				86C606C92C2BA59200CB8CBE /* CustomTextFieldStyle.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
 		86CDC6592C1D874200A65B29 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +284,7 @@
 		86ED4B2F2C1D2BE100A1FB80 /* BibleApp */ = {
 			isa = PBXGroup;
 			children = (
+				86C606C82C2BA58300CB8CBE /* Styles */,
 				86C2A7C52C28F1E700A6DADC /* Profile */,
 				86C2A7C42C28F1E200A6DADC /* Notes */,
 				86C2A7C32C28F1DA00A6DADC /* Highlights */,
@@ -490,6 +501,7 @@
 				86CDC6612C1D907500A65B29 /* AuthObservable.swift in Sources */,
 				86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */,
 				8622980E2C2183CD006E9D13 /* BooksView.swift in Sources */,
+				86C606CA2C2BA59200CB8CBE /* CustomTextFieldStyle.swift in Sources */,
 				86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */,
 				860D542C2C26C7F200B5373D /* HighlightOptionView.swift in Sources */,
 				86C2A7CB2C28F2BF00A6DADC /* ProfileView.swift in Sources */,
