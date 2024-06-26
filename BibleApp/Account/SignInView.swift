@@ -16,97 +16,102 @@ struct SignInView: View {
     @FocusState private var isFocusedEmail: Bool
     @FocusState private var isFocusedPassword: Bool
     @State private var showPassword = false
-    @State private var showCreateAccountOption = false
+    @State private var isPresentSignUp = false
     
     var body: some View {
-        VStack {
-            Image("")
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 50, height: 30)
-                .padding(.bottom, 50)
-            TextField("Email Address", text: $authObservable.email)
-                #if os(iOS)
-                .textInputAutocapitalization(.never)
-                .keyboardType(.emailAddress)
-                #endif
-                .padding(.bottom, 10)
-                .autocorrectionDisabled(true)
-                .focused($isFocusedEmail)
-                .submitLabel(.next)
-                .onSubmit {
-                    logger.debug("Email return key")
-                    isFocusedEmail = false
-                    isFocusedPassword = true
-                }
-            if showPassword {
-                TextField("Password", text: $authObservable.password)
+        NavigationStack {
+            VStack {
+                Image("")
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 50, height: 30)
+                    .padding(.bottom, 50)
+                TextField("Email Address", text: $authObservable.email)
                     #if os(iOS)
                     .textInputAutocapitalization(.never)
                     .keyboardType(.emailAddress)
                     #endif
-                    .submitLabel(.done)
-                    .focused($isFocusedPassword)
+                    .padding(.bottom, 10)
                     .autocorrectionDisabled(true)
+                    .focused($isFocusedEmail)
+                    .submitLabel(.next)
                     .onSubmit {
-                        Task {
-                            await signIn()
-                        }
+                        logger.debug("Email return key")
+                        isFocusedEmail = false
+                        isFocusedPassword = true
                     }
-                    .overlay(togglePasswordOverlay, alignment: .trailing)
-            } else {
-                SecureField("Password", text: $authObservable.password)
-                    #if os(iOS)
-                    .textInputAutocapitalization(.never)
-                    #endif
-                    .submitLabel(.done)
-                    .focused($isFocusedPassword)
-                    .autocorrectionDisabled(true)
-                    .onSubmit {
-                        Task {
-                            await signIn()
+                if showPassword {
+                    TextField("Password", text: $authObservable.password)
+                        #if os(iOS)
+                        .textInputAutocapitalization(.never)
+                        .keyboardType(.emailAddress)
+                        #endif
+                        .submitLabel(.done)
+                        .focused($isFocusedPassword)
+                        .autocorrectionDisabled(true)
+                        .onSubmit {
+                            Task {
+                                await signIn()
+                            }
                         }
-                    }
-                    .overlay(togglePasswordOverlay, alignment: .trailing)
-            }
-            Button {
-                Task {
-                    await signIn()
-                }
-            } label: {
-                if authObservable.isSigningIn {
-                    ProgressView()
-                        .background(Color(.clear))
-                        .frame(maxWidth: .infinity, maxHeight: 45)
-                        .tint(Color(.white))
+                        .overlay(togglePasswordOverlay, alignment: .trailing)
                 } else {
-                    Text("Sign In")
-                        .foregroundStyle(Color(.white))
-                        .frame(maxWidth: .infinity, maxHeight: 45)
-                        .padding([.top, .bottom], 5)
+                    SecureField("Password", text: $authObservable.password)
+                        #if os(iOS)
+                        .textInputAutocapitalization(.never)
+                        #endif
+                        .submitLabel(.done)
+                        .focused($isFocusedPassword)
+                        .autocorrectionDisabled(true)
+                        .onSubmit {
+                            Task {
+                                await signIn()
+                            }
+                        }
+                        .overlay(togglePasswordOverlay, alignment: .trailing)
+                }
+                Button {
+                    Task {
+                        await signIn()
+                    }
+                } label: {
+                    if authObservable.isSigningIn {
+                        ProgressView()
+                            .background(Color(.clear))
+                            .frame(maxWidth: .infinity, maxHeight: 45)
+                            .tint(Color(.white))
+                    } else {
+                        Text("Sign In")
+                            .foregroundStyle(Color(.white))
+                            .frame(maxWidth: .infinity, maxHeight: 45)
+                            .padding([.top, .bottom], 5)
+                            .dynamicTypeSize(.small)
+                    }
+                }
+                .frame(height: 45)
+                .background(.buttonAccent)
+                .contentShape(Rectangle())
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .padding([.bottom, .top], 10)
+                Button(action: createAccount) {
+                    Text("I don't have an account")
+                        .foregroundStyle(Color(.gray))
+                        .frame(width: 200, height: 40)
                         .dynamicTypeSize(.small)
                 }
+                .frame(width: 200, height: 40)
+                .background(.clear)
+                .contentShape(Rectangle())
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .buttonStyle(.plain)
+                Spacer()
             }
-            .frame(height: 45)
-            .background(.buttonAccent)
-            .contentShape(Rectangle())
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .padding([.bottom, .top], 10)
-            Button(action: createAccount) {
-                Text("I don't have an account")
-                    .foregroundStyle(Color(.gray))
-                    .frame(width: 200, height: 40)
-                    .dynamicTypeSize(.small)
+            .navigationDestination(isPresented: $isPresentSignUp) {
+                SignUpView()
             }
-            .frame(width: 200, height: 40)
-            .background(.clear)
-            .contentShape(Rectangle())
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .buttonStyle(.plain)
-            Spacer()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding()
+            .textFieldStyle(CustomTextFieldStyle())
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding()
-        .textFieldStyle(CustomTextFieldStyle())
     }
     
     private var togglePasswordOverlay: some View {
@@ -137,7 +142,7 @@ struct SignInView: View {
     private func createAccount() {
         let logger = Logger()
         logger.debug("Create Account")
-        showCreateAccountOption.toggle()
+        isPresentSignUp.toggle()
     }
 }
 
