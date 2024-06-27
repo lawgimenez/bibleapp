@@ -13,6 +13,18 @@ import SwiftUI
 @Model
 class Highlight {
     
+    enum Key: String {
+        case passage
+        case color
+        case length
+        case location
+        case bibleId = "bible_id"
+        case bibleName = "bible_name"
+        case chapterId = "chapter_id"
+        case chapterName = "chapter_name"
+        case userId = "user_id"
+    }
+    
     let passage: String
     let location: Int
     let length: Int
