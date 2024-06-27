@@ -51,11 +51,8 @@ class AuthObservable: ObservableObject {
             UserDefaults.standard.set(session.accessToken, forKey: User.Key.accessToken.rawValue)
             UserDefaults.standard.set(session.refreshToken, forKey: User.Key.refreshToken.rawValue)
             let user = try await client.auth.session.user
-            logger.debug("User ID: \(user.id)")
-            logger.debug("User email: \(user.email!)")
             let userEncodable = UserEncodable(email: email, uuid: user.id.uuidString)
             let userResponse = try await client.from("User").insert(userEncodable).execute()
-            print("User data responseE: \(userResponse)")
             signUpStatus = .success
         } else {
             signUpStatus = .failed
