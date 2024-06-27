@@ -7,7 +7,8 @@
 
 struct User {
     
-    enum Keys: String {
+    enum Key: String {
+        case uuid
         case email = "email"
         case accessToken = "accessToken"
         case refreshToken = "refreshToken"

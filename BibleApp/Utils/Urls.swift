@@ -20,6 +20,7 @@ class Urls {
         static let sections = "\(baseAPI)/bibles/%@/books/%@/sections"
         static let verse = "\(baseAPI)/bibles/%@/verses/%@"
         static let passage = "\(baseAPI)/bibles/%@/passages/%@?content-type=html&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false&use-org-id=false"
-        static let highlight = "\(supabaseBaseApi)\(restVersion)/Highlight"
+        static let highlight = "\(supabaseBaseApi)\(restVersion)Highlight"
+        static let user = "\(supabaseBaseApi)\(restVersion)User"
     }
 }

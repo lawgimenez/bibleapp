@@ -7,6 +7,10 @@
 
 import Foundation
 import Supabase
+import OSLog
+
+private let logger = Logger(subsystem: "com.infinalab", category: "Auth")
+private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
 
 @MainActor
 class AuthObservable: ObservableObject {
@@ -24,10 +28,9 @@ class AuthObservable: ObservableObject {
     @Published var isSigningUp = false
     @Published var email = ""
     @Published var password = ""
-    private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
     
     init() {
-        if UserDefaults.standard.string(forKey: User.Keys.accessToken.rawValue) != nil {
+        if UserDefaults.standard.string(forKey: User.Key.accessToken.rawValue) != nil {
             signInStatus = .success
         }
     }
@@ -35,18 +38,24 @@ class AuthObservable: ObservableObject {
     func signIn() async throws {
         let session = try await client.auth.signIn(email: email, password: password)
         print("Sign in session = \(session)")
-        UserDefaults.standard.set(session.user.email, forKey: User.Keys.email.rawValue)
-        UserDefaults.standard.set(session.accessToken, forKey: User.Keys.accessToken.rawValue)
-        UserDefaults.standard.set(session.refreshToken, forKey: User.Keys.refreshToken.rawValue)
+        UserDefaults.standard.set(session.user.email, forKey: User.Key.email.rawValue)
+        UserDefaults.standard.set(session.accessToken, forKey: User.Key.accessToken.rawValue)
+        UserDefaults.standard.set(session.refreshToken, forKey: User.Key.refreshToken.rawValue)
         signInStatus = .success
     }
     
     func signUp() async throws {
         let session = try await client.auth.signUp(email: email, password: password)
         if let session = session.session {
-            UserDefaults.standard.set(session.user.email, forKey: User.Keys.email.rawValue)
-            UserDefaults.standard.set(session.accessToken, forKey: User.Keys.accessToken.rawValue)
-            UserDefaults.standard.set(session.refreshToken, forKey: User.Keys.refreshToken.rawValue)
+            UserDefaults.standard.set(session.user.email, forKey: User.Key.email.rawValue)
+            UserDefaults.standard.set(session.accessToken, forKey: User.Key.accessToken.rawValue)
+            UserDefaults.standard.set(session.refreshToken, forKey: User.Key.refreshToken.rawValue)
+            let user = try await client.auth.session.user
+            logger.debug("User ID: \(user.id)")
+            logger.debug("User email: \(user.email!)")
+            let userEncodable = UserEncodable(email: email, uuid: user.id.uuidString)
+            let userResponse = try await client.from("User").insert(userEncodable).execute()
+            print("User data responseE: \(userResponse)")
             signUpStatus = .success
         } else {
             signUpStatus = .failed

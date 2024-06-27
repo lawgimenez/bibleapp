@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import Supabase
 
 class HighlightObservable: ObservableObject {
+    
+    private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
     
     enum Status {
         case inProgress
