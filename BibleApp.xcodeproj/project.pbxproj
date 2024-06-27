@@ -24,6 +24,7 @@
 		8622981C2C219C9B006E9D13 /* PassageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622981B2C219C9B006E9D13 /* PassageView.swift */; };
 		86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */; };
 		86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADD2C1EDE08004B81C6 /* HomeView.swift */; };
+		86ADBDCF2C2D6251008E5D92 /* HighlightObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADBDCE2C2D6251008E5D92 /* HighlightObservable.swift */; };
 		86B9F4882C241D2B0039E81C /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B9F4872C241D2B0039E81C /* Highlight.swift */; };
 		86BBF9152C22893F00718344 /* TextSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBF9142C22893F00718344 /* TextSelectable.swift */; };
 		86C2A7C72C28F2A400A6DADC /* HighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C2A7C62C28F2A400A6DADC /* HighlightsView.swift */; };
@@ -85,6 +86,7 @@
 		8622981B2C219C9B006E9D13 /* PassageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassageView.swift; sourceTree = "<group>"; };
 		86588ADB2C1EDDD7004B81C6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		86588ADD2C1EDE08004B81C6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		86ADBDCE2C2D6251008E5D92 /* HighlightObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightObservable.swift; sourceTree = "<group>"; };
 		86B9F4872C241D2B0039E81C /* Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlight.swift; sourceTree = "<group>"; };
 		86BBF9142C22893F00718344 /* TextSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectable.swift; sourceTree = "<group>"; };
 		86C2A7C62C28F2A400A6DADC /* HighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsView.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			children = (
 				86CDC6602C1D907500A65B29 /* AuthObservable.swift */,
 				862298052C217C1C006E9D13 /* BibleObservable.swift */,
+				86ADBDCE2C2D6251008E5D92 /* HighlightObservable.swift */,
 			);
 			path = Observables;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				860D542E2C26CF3C00B5373D /* Highlights.swift in Sources */,
 				862298062C217C1C006E9D13 /* BibleObservable.swift in Sources */,
 				86ED4B352C1D2BE100A1FB80 /* Item.swift in Sources */,
+				86ADBDCF2C2D6251008E5D92 /* HighlightObservable.swift in Sources */,
 				86B9F4882C241D2B0039E81C /* Highlight.swift in Sources */,
 				862298002C217911006E9D13 /* Urls.swift in Sources */,
 				862298162C2196BA006E9D13 /* VerseView.swift in Sources */,

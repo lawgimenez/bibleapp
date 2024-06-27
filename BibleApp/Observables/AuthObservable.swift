@@ -24,7 +24,7 @@ class AuthObservable: ObservableObject {
     @Published var isSigningUp = false
     @Published var email = ""
     @Published var password = ""
-    private let client = SupabaseClient(supabaseURL: URL(string: "https://cllzdzrasqbvrdxiiirl.supabase.co")!, supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNsbHpkenJhc3FidnJkeGlpaXJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTg2MTA5OTUsImV4cCI6MjAzNDE4Njk5NX0.3Fi2y_kqTDU0Q2U6hvifYyt14n1O02iYCf9sIqjJV_I")
+    private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
     
     init() {
         if UserDefaults.standard.string(forKey: User.Keys.accessToken.rawValue) != nil {
