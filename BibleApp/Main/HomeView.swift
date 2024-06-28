@@ -49,7 +49,8 @@ struct HomeView: View {
         }
         .task {
             do {
-                let users: [UserDecodable] = try await client.from("User").select().like("uuid", pattern: "3a45bee6-f7ee-41a1-a98a-cb5d6d05217a").execute().value
+                print("uuid = \(UserDefaults.standard.string(forKey: User.Key.uuid.rawValue))")
+                let users: [UserDecodable] = try await client.from("User").select().like("uuid", pattern: UserDefaults.standard.string(forKey: User.Key.uuid.rawValue)).execute().value
                 if let user = users.first {
                     UserDefaults.standard.set(user.id, forKey: User.Key.id.rawValue)
                     UserDefaults.standard.set(user.uuid, forKey: User.Key.uuid.rawValue)

@@ -41,6 +41,7 @@ class AuthObservable: ObservableObject {
         UserDefaults.standard.set(session.user.email, forKey: User.Key.email.rawValue)
         UserDefaults.standard.set(session.accessToken, forKey: User.Key.accessToken.rawValue)
         UserDefaults.standard.set(session.refreshToken, forKey: User.Key.refreshToken.rawValue)
+        UserDefaults.standard.set(session.user.id.uuidString, forKey: User.Key.uuid.rawValue)
         signInStatus = .success
     }
     
