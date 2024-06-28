@@ -76,7 +76,7 @@ struct PassageView: View {
                         highlight.bibleName = getBible(bibleId: highlight.bibleId) ?? ""
                         highlight.chapterName = getChapter(chapterId: highlight.chapterId) ?? ""
                         // Construct highlight encodable
-                        let highlightEncodable = HighlighEncodable(passage: highlight.passage, color: highlight.color.description, length: highlight.length, location: highlight.location, bibleId: highlight.bibleId, bibleName: highlight.bibleName, chapterId: highlight.chapterId, chapterName: highlight.chapterName, userId: UserDefaults.standard.integer(forKey: User.Key.id.rawValue))
+                        let highlightEncodable = HighlighEncodable(passage: highlight.passage, color: highlight.uiColor.hexString, length: highlight.length, location: highlight.location, bibleId: highlight.bibleId, bibleName: highlight.bibleName, chapterId: highlight.chapterId, chapterName: highlight.chapterName, userId: UserDefaults.standard.integer(forKey: User.Key.id.rawValue))
                         // Save to API
                         saveHighlightToApi(highlightEncodable: highlightEncodable)
                         do {
@@ -185,3 +185,28 @@ struct PassageView: View {
 //#Preview {
 //    PassageView()
 //}
+
+extension UIColor {
+    
+    var hexString: String {
+        let cgColorInRGB = cgColor.converted(to: CGColorSpace(name: CGColorSpace.sRGB)!, intent: .defaultIntent, options: nil)!
+        let colorRef = cgColorInRGB.components
+        let r = colorRef?[0] ?? 0
+        let g = colorRef?[1] ?? 0
+        let b = ((colorRef?.count ?? 0) > 2 ? colorRef?[2] : g) ?? 0
+        let a = cgColor.alpha
+
+        var color = String(
+            format: "#%02lX%02lX%02lX",
+            lroundf(Float(r * 255)),
+            lroundf(Float(g * 255)),
+            lroundf(Float(b * 255))
+        )
+
+        if a < 1 {
+            color += String(format: "%02lX", lroundf(Float(a * 255)))
+        }
+
+        return color
+    }
+}
