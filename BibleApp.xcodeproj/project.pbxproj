@@ -30,6 +30,7 @@
 		86ADBDCF2C2D6251008E5D92 /* HighlightObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADBDCE2C2D6251008E5D92 /* HighlightObservable.swift */; };
 		86B9F4882C241D2B0039E81C /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B9F4872C241D2B0039E81C /* Highlight.swift */; };
 		86BBF9152C22893F00718344 /* TextSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBF9142C22893F00718344 /* TextSelectable.swift */; };
+		86C214E72C2EB013006CEC3C /* HighlightDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C214E62C2EB013006CEC3C /* HighlightDecodable.swift */; };
 		86C2A7C72C28F2A400A6DADC /* HighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C2A7C62C28F2A400A6DADC /* HighlightsView.swift */; };
 		86C2A7C92C28F2B600A6DADC /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C2A7C82C28F2B600A6DADC /* NotesView.swift */; };
 		86C2A7CB2C28F2BF00A6DADC /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C2A7CA2C28F2BF00A6DADC /* ProfileView.swift */; };
@@ -95,6 +96,7 @@
 		86ADBDCE2C2D6251008E5D92 /* HighlightObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightObservable.swift; sourceTree = "<group>"; };
 		86B9F4872C241D2B0039E81C /* Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlight.swift; sourceTree = "<group>"; };
 		86BBF9142C22893F00718344 /* TextSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectable.swift; sourceTree = "<group>"; };
+		86C214E62C2EB013006CEC3C /* HighlightDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightDecodable.swift; sourceTree = "<group>"; };
 		86C2A7C62C28F2A400A6DADC /* HighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsView.swift; sourceTree = "<group>"; };
 		86C2A7C82C28F2B600A6DADC /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		86C2A7CA2C28F2BF00A6DADC /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				86615E732C2D96A00052553C /* UserEncodable.swift */,
 				86215C6C2C2E5B8700614CCC /* UserDecodable.swift */,
 				86215C6E2C2E5D7400614CCC /* HighlighEncodable.swift */,
+				86C214E62C2EB013006CEC3C /* HighlightDecodable.swift */,
 			);
 			path = Codables;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 				86615E742C2D96A00052553C /* UserEncodable.swift in Sources */,
 				860D54292C26BF0900B5373D /* UIColorValueTransformer.swift in Sources */,
 				860D542E2C26CF3C00B5373D /* Highlights.swift in Sources */,
+				86C214E72C2EB013006CEC3C /* HighlightDecodable.swift in Sources */,
 				862298062C217C1C006E9D13 /* BibleObservable.swift in Sources */,
 				86ED4B352C1D2BE100A1FB80 /* Item.swift in Sources */,
 				86ADBDCF2C2D6251008E5D92 /* HighlightObservable.swift in Sources */,

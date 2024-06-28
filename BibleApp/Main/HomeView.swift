@@ -12,7 +12,9 @@ private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseAp
 
 struct HomeView: View {
     
+    @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var authObservable: AuthObservable
+    @StateObject private var highlightObservable = HighlightObservable()
     
     enum Pages: String {
         case bible
@@ -47,14 +49,17 @@ struct HomeView: View {
                 .tag(Pages.settings)
                 .environmentObject(authObservable)
         }
+        .onAppear {
+            highlightObservable.setModelContext(modelContext)
+        }
         .task {
             do {
-                print("uuid = \(UserDefaults.standard.string(forKey: User.Key.uuid.rawValue))")
-                let users: [UserDecodable] = try await client.from("User").select().like("uuid", pattern: UserDefaults.standard.string(forKey: User.Key.uuid.rawValue)).execute().value
+                let users: [UserDecodable] = try await client.from("User").select().eq("uuid", value: UserDefaults.standard.string(forKey: User.Key.uuid.rawValue)).execute().value
                 if let user = users.first {
                     UserDefaults.standard.set(user.id, forKey: User.Key.id.rawValue)
                     UserDefaults.standard.set(user.uuid, forKey: User.Key.uuid.rawValue)
                     print("Home: user found = \(user)")
+                    try await highlightObservable.getHighlights(userUuid: user.uuid)
                 }
             } catch {
                 print("Homeview error: \(error)")
