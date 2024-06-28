@@ -7,6 +7,9 @@
 
 import SwiftUI
 import SwiftData
+import Supabase
+
+private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
 
 struct PassageView: View {
     
@@ -71,10 +74,14 @@ struct PassageView: View {
                         // Update highlight color value to one selected by user
                         highlight.color = selectedColor.color
                         highlight.bibleName = getBible(bibleId: highlight.bibleId) ?? ""
-                        print("chapter is = \(getChapter(chapterId: highlight.chapterId))")
                         highlight.chapterName = getChapter(chapterId: highlight.chapterId) ?? ""
-                        modelContext.insert(highlight)
+                        // Construct highlight encodable
+                        let highlightEncodable = HighlighEncodable(passage: highlight.passage, color: highlight.color.description, length: highlight.length, location: highlight.location, bibleId: highlight.bibleId, bibleName: highlight.bibleName, chapterId: highlight.chapterId, chapterName: highlight.chapterName, userId: UserDefaults.standard.integer(forKey: User.Key.id.rawValue))
+                        // Save to API
+                        saveHighlightToApi(highlightEncodable: highlightEncodable)
                         do {
+                            // Save to database
+                            modelContext.insert(highlight)
                             try modelContext.save()
                         } catch {
                             print("Passage highlight data error: \(error)")
@@ -121,7 +128,7 @@ struct PassageView: View {
     private func addHighlights(text: String) -> NSAttributedString {
         let mutableString = NSMutableAttributedString.init(string: text)
         for highlight in highlights {
-            print("Highlight is = \(highlight.getRange())")
+            
             let highlightAttributes: [NSAttributedString.Key: Any] = [
                 .backgroundColor: highlight.uiColor,
                 .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
@@ -159,6 +166,19 @@ struct PassageView: View {
             print(error)
         }
         return nil
+    }
+    
+    private func saveHighlightToApi(highlightEncodable: HighlighEncodable) {
+        print("saveHighlightToApi")
+        // Save to API
+        Task {
+            do {
+                let highlightResponse = try await client.from("Highlight").insert(highlightEncodable).execute()
+                print("Highlight responsee: \(highlightResponse)")
+            } catch {
+                print("API Error: \(error)")
+            }
+        }
     }
 }
 
