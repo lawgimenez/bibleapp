@@ -17,6 +17,11 @@ struct SettingsView: View {
         NavigationStack {
             List {
                 Section(header: Text("Account")) {
+                    if let email = UserDefaults.standard.string(forKey: User.Key.email.rawValue) {
+                        Text("Signed in as \(email)")
+                    }
+                }
+                Section(header: Text("Options")) {
                     Text("Sign Out")
                         .alert("Sign Out", isPresented: $isSignOutAlertShown) {
                             Button(role: .destructive) {
