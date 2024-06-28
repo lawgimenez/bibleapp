@@ -43,6 +43,7 @@ class AuthObservable: ObservableObject {
         UserDefaults.standard.set(session.refreshToken, forKey: User.Key.refreshToken.rawValue)
         UserDefaults.standard.set(session.user.id.uuidString, forKey: User.Key.uuid.rawValue)
         signInStatus = .success
+        isSigningIn = false
     }
     
     func signUp() async throws {
