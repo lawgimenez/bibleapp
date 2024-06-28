@@ -51,12 +51,13 @@ class AuthObservable: ObservableObject {
             UserDefaults.standard.set(session.user.email, forKey: User.Key.email.rawValue)
             UserDefaults.standard.set(session.accessToken, forKey: User.Key.accessToken.rawValue)
             UserDefaults.standard.set(session.refreshToken, forKey: User.Key.refreshToken.rawValue)
+            UserDefaults.standard.set(session.user.id.uuidString, forKey: User.Key.uuid.rawValue)
             let user = try await client.auth.session.user
             let userEncodable = UserEncodable(email: email, uuid: user.id.uuidString)
-            let userResponse = try await client.from("User").insert(userEncodable).execute()
+            let userResponse = try await client.from("User").insert(userEncodable).select().single().execute()
             if userResponse.status == 201 {
                 signUpStatus = .success
-                print("User found = \(user)")
+                print("User sign up found = \(user)")
             } else {
                 signUpStatus = .failed
             }
