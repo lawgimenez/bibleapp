@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import Supabase
+
+private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
 
 struct HomeView: View {
     
@@ -43,6 +46,18 @@ struct HomeView: View {
                 }
                 .tag(Pages.settings)
                 .environmentObject(authObservable)
+        }
+        .task {
+            do {
+                let users: [UserDecodable] = try await client.from("User").select().like("uuid", pattern: "3a45bee6-f7ee-41a1-a98a-cb5d6d05217a").execute().value
+                if let user = users.first {
+                    UserDefaults.standard.set(user.id, forKey: User.Key.id.rawValue)
+                    UserDefaults.standard.set(user.uuid, forKey: User.Key.uuid.rawValue)
+                    print("Home: user found = \(user)")
+                }
+            } catch {
+                print("Homeview error: \(error)")
+            }
         }
     }
 }

@@ -53,7 +53,15 @@ class AuthObservable: ObservableObject {
             let user = try await client.auth.session.user
             let userEncodable = UserEncodable(email: email, uuid: user.id.uuidString)
             let userResponse = try await client.from("User").insert(userEncodable).execute()
-            signUpStatus = .success
+            if userResponse.status == 201 {
+                signUpStatus = .success
+                print("User found = \(user)")
+            } else {
+                signUpStatus = .failed
+            }
+            print("User sign up status: \(userResponse.status)")
+            print("User response: \(userResponse)")
+            print("User response data: \(userResponse.data)")
         } else {
             signUpStatus = .failed
         }
