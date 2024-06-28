@@ -34,7 +34,7 @@ struct BibleAppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if authObservable.signInStatus == .success {
+            if authObservable.signInStatus == .success || authObservable.signUpStatus == .success {
                 HomeView()
                     .environmentObject(authObservable)
             } else {

@@ -107,6 +107,12 @@ struct SignInView: View {
             }
             .navigationDestination(isPresented: $isPresentSignUp) {
                 SignUpView()
+                    .environmentObject(authObservable)
+            }
+            .onChange(of: authObservable.signUpStatus) {
+                if authObservable.signUpStatus == .success {
+                    isPresentSignUp = false
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding()
