@@ -54,11 +54,11 @@ class HighlightObservable: ObservableObject {
         print("Get highlights with \(userUuid)")
         let highlights: [HighlightDecodable] = try await client.from("Highlight").select().eq(HighlightDecodable.CodingKeys.userUuid.rawValue, value: userUuid).execute().value
         print("Highlights found: \(highlights)")
-//        for highlight in highlights {
-//            let highlight = Highlight(passage: highlight.passage, location: highlight.location, length: highlight.length, bibleId: highlight.bibleId, bibleName: highlight.bibleName, chapterId: highlight.chapterId, chapterName: highlight.chapterName, color: Color(UIColor(hex: highlight.color)!))
-//            // Save to database
-//            modelContext?.insert(highlight)
-//            try modelContext?.save()
-//        }
+        for highlight in highlights {
+            let highlight = Highlight(passage: highlight.passage, location: highlight.location, length: highlight.length, bibleId: highlight.bibleId, bibleName: highlight.bibleName, chapterId: highlight.chapterId, chapterName: highlight.chapterName, color: Color(uiColor: UIColor(hexString: highlight.color)))
+            // Save to database
+            modelContext?.insert(highlight)
+            try modelContext?.save()
+        }
     }
 }
