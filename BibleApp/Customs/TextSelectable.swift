@@ -101,7 +101,7 @@ class CustomTextView: UITextView {
     
     @objc func highlightText() {
         if let range = self.selectedTextRange, let selectedText = self.text(in: range) {
-            let highlight = Highlight(passage: selectedText, location: selectedRange.location, length: selectedRange.length, bibleId: bibleId, bibleName: "", chapterId: chapterId, chapterName: "", color: .highlightGrayish)
+            let highlight = Highlight(id: 0, passage: selectedText, location: selectedRange.location, length: selectedRange.length, bibleId: bibleId, bibleName: "", chapterId: chapterId, chapterName: "", color: .highlightGrayish)
             print("highlightText = \(highlight)")
             let highlightDict = [
                 "data": highlight

@@ -25,6 +25,7 @@ class Highlight {
         case userId = "user_id"
     }
     
+    @Attribute(.unique) let id: Int
     let passage: String
     let location: Int
     let length: Int
@@ -42,7 +43,8 @@ class Highlight {
         }
     }
     
-    init(passage: String, location: Int, length: Int, bibleId: String, bibleName: String, chapterId: String, chapterName: String, color: Color) {
+    init(id: Int, passage: String, location: Int, length: Int, bibleId: String, bibleName: String, chapterId: String, chapterName: String, color: Color) {
+        self.id = id
         self.passage = passage
         self.location = location
         self.length = length

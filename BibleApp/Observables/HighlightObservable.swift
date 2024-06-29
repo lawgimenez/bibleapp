@@ -53,9 +53,9 @@ class HighlightObservable: ObservableObject {
     func getHighlights(userUuid: String) async throws {
         print("Get highlights with \(userUuid)")
         let highlights: [HighlightDecodable] = try await client.from("Highlight").select().eq(HighlightDecodable.CodingKeys.userUuid.rawValue, value: userUuid).execute().value
-        print("Highlights found: \(highlights)")
+        print("Highlights found: \(highlights.count)")
         for highlight in highlights {
-            let highlight = Highlight(passage: highlight.passage, location: highlight.location, length: highlight.length, bibleId: highlight.bibleId, bibleName: highlight.bibleName, chapterId: highlight.chapterId, chapterName: highlight.chapterName, color: Color(uiColor: UIColor(hexString: highlight.color)))
+            let highlight = Highlight(id: highlight.id, passage: highlight.passage, location: highlight.location, length: highlight.length, bibleId: highlight.bibleId, bibleName: highlight.bibleName, chapterId: highlight.chapterId, chapterName: highlight.chapterName, color: Color(uiColor: UIColor(hexString: highlight.color)))
             // Save to database
             modelContext?.insert(highlight)
             try modelContext?.save()

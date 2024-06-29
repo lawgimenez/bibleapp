@@ -15,7 +15,6 @@ struct HighlightsView: View {
     var body: some View {
         NavigationStack {
             List(highlights) { highlight in
-                let _ = print("highlight \(highlight.bibleName)")
                 VStack(alignment: .leading) {
                     Text(highlight.passage)
                     Spacer()
