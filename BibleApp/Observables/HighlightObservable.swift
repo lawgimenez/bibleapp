@@ -51,14 +51,17 @@ class HighlightObservable: ObservableObject {
     }
     
     func getHighlights(userUuid: String) async throws {
-        print("Get highlights with \(userUuid)")
         let highlights: [HighlightDecodable] = try await client.from("Highlight").select().eq(HighlightDecodable.CodingKeys.userUuid.rawValue, value: userUuid).execute().value
-        print("Highlights found: \(highlights.count)")
         for highlight in highlights {
             let highlight = Highlight(id: highlight.id, passage: highlight.passage, location: highlight.location, length: highlight.length, bibleId: highlight.bibleId, bibleName: highlight.bibleName, chapterId: highlight.chapterId, chapterName: highlight.chapterName, color: Color(uiColor: UIColor(hexString: highlight.color)))
             // Save to database
             modelContext?.insert(highlight)
             try modelContext?.save()
         }
+    }
+    
+    func deleteHighlight(highlight: Highlight) async throws {
+        let deleteResponse = try await client.from("Highlight").delete().eq("id", value: highlight.id).execute()
+        modelContext?.delete(highlight)
     }
 }
