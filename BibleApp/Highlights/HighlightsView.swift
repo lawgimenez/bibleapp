@@ -15,17 +15,8 @@ struct HighlightsView: View {
     var body: some View {
         NavigationStack {
             List(highlights) { highlight in
-                VStack(alignment: .leading) {
-                    Text(highlight.passage)
-                    Spacer()
-                    HStack {
-                        Image(systemName: "book.circle")
-                        Text(highlight.bibleName)
-                    }
-                    Text(highlight.chapterName)
-                }
-                .listRowBackground(highlight.color)
-                .padding()
+                HighlightsRowView(highlight: highlight)
+                    .listRowBackground(highlight.color)
             }
             .navigationTitle("Highlights")
         }
