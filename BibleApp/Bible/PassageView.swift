@@ -55,7 +55,7 @@ struct PassageView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                TextSelectable(text: passageAttributed, bibleId: bibleId, chapterId: chapterId, modelContext: modelContext)
+                TextSelectable(text: passageAttributed, bibleId: bibleId, chapterId: chapterId)
             }
             .onChange(of: bibleObservable.passageContent) {
                 if let passageData = passage.first {

@@ -11,18 +11,17 @@ import SwiftData
 struct TextSelectable: UIViewRepresentable {
     
     var text: NSAttributedString
-    @Environment(\.modelContext) private var modelContext
     var bibleId: String
     var chapterId: String
     
-    init(text: NSAttributedString, bibleId: String, chapterId: String, modelContext: ModelContext) {
+    init(text: NSAttributedString, bibleId: String, chapterId: String) {
         self.text = text
         self.bibleId = bibleId
         self.chapterId = chapterId
     }
     
     func makeUIView(context: Context) -> CustomTextView {
-        let textView = CustomTextView(bibleId: bibleId, chapterId: chapterId, modelContext: modelContext)
+        let textView = CustomTextView(bibleId: bibleId, chapterId: chapterId)
         textView.isSelectable = true
         textView.isUserInteractionEnabled = true
         textView.isEditable = false
@@ -58,12 +57,10 @@ class CustomTextView: UITextView {
     
     var bibleId: String
     var chapterId: String
-    var modelContext: ModelContext
     
-    init(bibleId: String, chapterId: String, modelContext: ModelContext) {
+    init(bibleId: String, chapterId: String) {
         self.bibleId = bibleId
         self.chapterId = chapterId
-        self.modelContext = modelContext
         super.init(frame: .zero, textContainer: nil)
     }
     
