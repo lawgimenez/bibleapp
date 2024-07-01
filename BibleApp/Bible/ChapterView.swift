@@ -12,7 +12,7 @@ struct ChapterView: View {
     
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var bibleObservable: BibleObservable
-    @Query private var chapters: [ChapterData]
+    @Query(sort: \ChapterData.id) private var chapters: [ChapterData]
     var bibleId: String
     var bookId: String
     
