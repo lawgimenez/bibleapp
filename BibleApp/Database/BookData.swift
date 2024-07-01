@@ -11,7 +11,7 @@ import SwiftData
 class BookData {
     
     @Attribute(.unique) let id: String
-    let bibleId: String
+    var bibleId: String
     let abbreviation: String
     let name: String
     let nameLong: String

@@ -12,7 +12,7 @@ struct ChapterView: View {
     
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var bibleObservable: BibleObservable
-    @Query(sort: \ChapterData.id) private var chapters: [ChapterData]
+    @State private var chapters = [ChapterData]()
     var bibleId: String
     var bookId: String
     
@@ -34,7 +34,24 @@ struct ChapterView: View {
                 } catch {
                     print(error)
                 }
+                if let chapters = getChapters(bibleId: bibleId, bookId: bookId) {
+                    self.chapters = chapters
+                }
             }
+        }
+    }
+    
+    private func getChapters(bibleId: String, bookId: String) -> [ChapterData]? {
+        let predicate = #Predicate<ChapterData> {
+            $0.bibleId == bibleId && $0.bookId == bookId
+        }
+        let fetchDescriptor = FetchDescriptor(predicate: predicate, sortBy: [SortDescriptor(\.number)])
+        do {
+            let chapters = try modelContext.fetch(fetchDescriptor)
+            return chapters
+        } catch {
+            print("Books fetch error: \(error)")
+            return nil
         }
     }
 }
