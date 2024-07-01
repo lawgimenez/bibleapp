@@ -12,7 +12,7 @@ struct BooksView: View {
     
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var bibleObservable: BibleObservable
-    @Query private var books: [BookData]
+    @Query(sort: \BookData.name) private var books: [BookData]
     var bible: BibleData
     
     var body: some View {
