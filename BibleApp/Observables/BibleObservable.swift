@@ -13,13 +13,13 @@ private let logger = Logger(subsystem: "com.infinalab", category: "BibleObservab
 
 @MainActor
 class BibleObservable: ObservableObject {
-    
+
     @Published var arrayBibles = [Bible.Data]()
     @Published var arrayBooks = [Book.Data]()
     @Published var arrayChapters = [Chapter.Data]()
     @Published var passage: Passage.Data?
     @Published var passageContent: String = ""
-    
+
     func getBibles(modelContext: ModelContext) async throws {
         let url = URL(string: Urls.Api.bibles)
         let session = URLSession.shared
@@ -41,7 +41,7 @@ class BibleObservable: ObservableObject {
         }
         arrayBibles = bibles.data
     }
-    
+
     func getBooks(bibleId: String, modelContext: ModelContext) async throws {
         let booksUrlString = String(format: Urls.Api.books, bibleId)
         let url = URL(string: booksUrlString)
@@ -64,7 +64,7 @@ class BibleObservable: ObservableObject {
         }
         arrayBooks = books.data
     }
-    
+
     func getChapter(bibleId: String, bookId: String, modelContext: ModelContext) async throws {
         let chaptersUrlString = String(format: Urls.Api.chapters, bibleId, bookId)
         let url = URL(string: chaptersUrlString)
@@ -87,7 +87,7 @@ class BibleObservable: ObservableObject {
         }
         arrayChapters = chapters.data
     }
-    
+
     func getPassage(bibleId: String, anyId: String, modelContext: ModelContext) async throws {
         let chapterId = anyId.replacingOccurrences(of: ".intro", with: "", options: .literal)
         let passageUrlString = String(format: Urls.Api.passage, bibleId, chapterId)
@@ -110,7 +110,7 @@ class BibleObservable: ObservableObject {
         self.passage = passage
         self.passageContent = passage.content
     }
-    
+
     func getVerse(bibleId: String, verseId: String) async throws {
         let verseUrlString = String(format: Urls.Api.verse, bibleId, verseId)
         let url = URL(string: verseUrlString)

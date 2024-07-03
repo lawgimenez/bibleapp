@@ -6,7 +6,7 @@
 //
 
 struct User {
-    
+
     enum Key: String {
         case id
         case uuid
@@ -14,10 +14,9 @@ struct User {
         case accessToken = "accessToken"
         case refreshToken = "refreshToken"
     }
-    
+
     var email: String
     var accessToken: String
     var refreshToken: String
-    
-    
+
 }

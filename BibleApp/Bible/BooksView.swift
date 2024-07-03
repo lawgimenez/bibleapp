@@ -9,12 +9,12 @@ import SwiftUI
 import SwiftData
 
 struct BooksView: View {
-    
+
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var bibleObservable: BibleObservable
     @State private var books = [BookData]()
     var bible: BibleData
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -40,7 +40,7 @@ struct BooksView: View {
             .navigationTitle(bible.name)
         }
     }
-    
+
     private func getBooks(bibleId: String) -> [BookData]? {
         let predicate = #Predicate<BookData> {
             $0.bibleId == bibleId
@@ -56,6 +56,6 @@ struct BooksView: View {
     }
 }
 
-//#Preview {
+// #Preview {
 //    BooksView()
-//}
+// }

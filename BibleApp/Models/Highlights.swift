@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Highlights: Identifiable {
-    
+
     let id = UUID()
     let color: Color
 }

@@ -12,17 +12,17 @@ import SwiftUI
 import SwiftData
 
 class HighlightObservable: ObservableObject {
-    
+
     private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
     private var modelContext: ModelContext?
-    
+
     enum Status {
         case inProgress
         case none
     }
-    
+
     @Published var addHighlightStatus: Status = .none
-    
+
 //    func addHighlight(highlight: Highlight) async throws {
 //        // JSON body missing User ID
 //        let json = [
@@ -44,11 +44,11 @@ class HighlightObservable: ObservableObject {
 //        request.setValue("Bearer \(Urls.supabaseApiKey)", forHTTPHeaderField: "Authorization")
 //        request.setValue(Urls.supabaseApiKey, forHTTPHeaderField: "apikey")
 //    }
-    
+
     func setModelContext(_ modelContext: ModelContext) {
         self.modelContext = modelContext
     }
-    
+
     func getHighlights(userUuid: String) async throws {
         let highlights: [HighlightDecodable] = try await client.from("Highlight").select().eq(HighlightDecodable.CodingKeys.userUuid.rawValue, value: userUuid).execute().value
         for highlight in highlights {
@@ -58,7 +58,7 @@ class HighlightObservable: ObservableObject {
             try modelContext?.save()
         }
     }
-    
+
     func deleteHighlight(highlight: Highlight) async throws {
         try await client.from("Highlight").delete().eq("id", value: highlight.id).execute()
         modelContext?.delete(highlight)

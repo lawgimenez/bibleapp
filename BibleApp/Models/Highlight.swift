@@ -12,7 +12,7 @@ import SwiftUI
 
 @Model
 class Highlight {
-    
+
     enum Key: String {
         case passage
         case color
@@ -24,7 +24,7 @@ class Highlight {
         case chapterName = "chapter_name"
         case userId = "user_id"
     }
-    
+
     @Attribute(.unique) let id: Int
     let passage: String
     let location: Int
@@ -42,7 +42,7 @@ class Highlight {
             uiColor = .init(newValue)
         }
     }
-    
+
     init(id: Int, passage: String, location: Int, length: Int, bibleId: String, bibleName: String, chapterId: String, chapterName: String, color: Color) {
         self.id = id
         self.passage = passage
@@ -54,7 +54,7 @@ class Highlight {
         self.chapterName = chapterName
         self.uiColor = .init(color)
     }
-    
+
     func getRange() -> NSRange {
         return NSRange(location: location, length: length)
     }

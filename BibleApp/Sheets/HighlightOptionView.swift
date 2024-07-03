@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct HighlightOptionView: View {
-    
+
     @Binding var highlightsColor: [Highlights]
     @Binding var selectedColor: Highlights
     @Binding var addedHighlight: Bool
-    
+
     var body: some View {
         VStack {
             Text("Highlight Options")
@@ -36,6 +36,6 @@ struct HighlightOptionView: View {
     }
 }
 
-//#Preview {
+// #Preview {
 //    HighlightOptionView()
-//}
+// }

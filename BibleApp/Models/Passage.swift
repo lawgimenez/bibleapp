@@ -6,11 +6,11 @@
 //
 
 struct Passage: Decodable {
-    
+
     var data: Data
-    
+
     struct Data: Decodable, Identifiable {
-        
+
         var id: String
         var orgId: String
         var bibleId: String

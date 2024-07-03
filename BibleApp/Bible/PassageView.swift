@@ -12,14 +12,14 @@ import Supabase
 private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
 
 struct PassageView: View {
-    
+
     @State private var highlightsColor = [
         Highlights(color: .highlightPink),
         Highlights(color: .highlightGreen),
         Highlights(color: .highlightGrayish),
         Highlights(color: .highlightLightBlue)
     ]
-    
+
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var bibleObservable: BibleObservable
     @Query private var passage: [PassageData]
@@ -38,7 +38,7 @@ struct PassageView: View {
     @State private var highlight: Highlight?
     var bibleId: String
     var chapterId: String
-    
+
     init(bibleId: String, chapterId: String) {
         self.bibleId = bibleId
         self.chapterId = chapterId
@@ -51,7 +51,7 @@ struct PassageView: View {
         }
         _highlights = Query(filter: highlightPredicate)
     }
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -119,7 +119,7 @@ struct PassageView: View {
             }
         }
     }
-    
+
     private func addHighlights(text: String) -> NSAttributedString {
         let mutableString = NSMutableAttributedString.init(string: text)
         for highlight in highlights {
@@ -131,7 +131,7 @@ struct PassageView: View {
         }
         return mutableString
     }
-    
+
     private func getBible(bibleId: String) -> String? {
         let biblePredicate = #Predicate<BibleData> {
             $0.id == bibleId
@@ -146,7 +146,7 @@ struct PassageView: View {
         }
         return nil
     }
-    
+
     private func getChapter(chapterId: String) -> String? {
         let chapterPredicate = #Predicate<ChapterData> {
             $0.id == chapterId
@@ -161,7 +161,7 @@ struct PassageView: View {
         }
         return nil
     }
-    
+
     private func saveHighlightToApi(highlightEncodable: HighlighEncodable) {
         // Save to API
         Task {
@@ -175,7 +175,7 @@ struct PassageView: View {
 }
 
 extension UIColor {
-    
+
     var hexString: String {
         let cgColorInRGB = cgColor.converted(to: CGColorSpace(name: CGColorSpace.sRGB)!, intent: .defaultIntent, options: nil)!
         let colorRef = cgColorInRGB.components
@@ -197,7 +197,7 @@ extension UIColor {
 
         return color
     }
-    
+
     convenience init(hexString: String) {
             let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
             var int = UInt64()

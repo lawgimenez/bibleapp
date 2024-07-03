@@ -8,7 +8,7 @@
 import Foundation
 
 struct UserEncodable: Encodable {
-    
+
     let email: String
     let uuid: String
 }

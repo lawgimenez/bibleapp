@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct VerseView: View {
-    
+
     @EnvironmentObject private var bibleObservable: BibleObservable
     var bibleId: String
     var verseId: String
-    
+
     var body: some View {
         NavigationStack {
             VStack {
-                
+
             }
             .task {
                 do {
@@ -29,6 +29,6 @@ struct VerseView: View {
     }
 }
 
-//#Preview {
+// #Preview {
 //    VerseView()
-//}
+// }

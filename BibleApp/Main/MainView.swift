@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
-    
+
     @StateObject private var bibleObservable = BibleObservable()
-    
+
     var body: some View {
         NavigationStack {
             VStack {

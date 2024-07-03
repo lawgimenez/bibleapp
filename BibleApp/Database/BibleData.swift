@@ -9,7 +9,7 @@ import SwiftData
 
 @Model
 class BibleData {
-    
+
     @Attribute(.unique) let id: String
     let dblId: String
     let abbreviation: String
@@ -19,7 +19,7 @@ class BibleData {
     let desc: String
     let descriptionLocal: String
     let type: String
-    
+
     init(id: String, dblId: String, abbreviation: String, abbreviationLocal: String, name: String, nameLocal: String, description: String, descriptionLocal: String, type: String) {
         self.id = id
         self.dblId = dblId

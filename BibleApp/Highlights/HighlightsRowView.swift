@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct HighlightsRowView: View {
-    
+
     var highlight: Highlight
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             Text(highlight.passage)
@@ -24,6 +24,6 @@ struct HighlightsRowView: View {
     }
 }
 
-//#Preview {
+// #Preview {
 //    HighlightsRowView()
-//}
+// }

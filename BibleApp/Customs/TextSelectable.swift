@@ -9,17 +9,11 @@ import SwiftUI
 import SwiftData
 
 struct TextSelectable: UIViewRepresentable {
-    
+
     var text: NSAttributedString
     var bibleId: String
     var chapterId: String
-    
-    init(text: NSAttributedString, bibleId: String, chapterId: String) {
-        self.text = text
-        self.bibleId = bibleId
-        self.chapterId = chapterId
-    }
-    
+
     func makeUIView(context: Context) -> CustomTextView {
         let textView = CustomTextView(bibleId: bibleId, chapterId: chapterId)
         textView.isSelectable = true
@@ -29,24 +23,24 @@ struct TextSelectable: UIViewRepresentable {
         textView.delegate = context.coordinator
         return textView
     }
-    
+
     func updateUIView(_ uiView: CustomTextView, context: Context) {
         uiView.attributedText = text
         uiView.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
     }
-    
+
     func makeCoordinator() -> Coordinator {
         Coordinator(text)
     }
-    
+
     class Coordinator: NSObject, UITextViewDelegate {
-        
+
         var text: NSAttributedString
-        
+
         init(_ text: NSAttributedString) {
             self.text = text
         }
-        
+
         func textViewDidChange(_ textView: UITextView) {
             self.text = textView.attributedText
         }
@@ -54,39 +48,39 @@ struct TextSelectable: UIViewRepresentable {
 }
 
 class CustomTextView: UITextView {
-    
+
     var bibleId: String
     var chapterId: String
-    
+
     init(bibleId: String, chapterId: String) {
         self.bibleId = bibleId
         self.chapterId = chapterId
         super.init(frame: .zero, textContainer: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         if action == #selector(highlightText) {
             return true
         }
         return false
     }
-    
+
     override func editMenu(for textRange: UITextRange, suggestedActions: [UIMenuElement]) -> UIMenu? {
-        let highlightTextAction = UIAction(title: "Highlight Passage") { action in
+        let highlightTextAction = UIAction(title: "Highlight Passage") { _ in
             self.highlightText()
         }
-        let addNotesAction = UIAction(title: "Add Notes") { action in
-            
+        let addNotesAction = UIAction(title: "Add Notes") { _ in
+
         }
-        let copyAction = UIAction(title: "Copy") { action in
-            
+        let copyAction = UIAction(title: "Copy") { _ in
+
         }
-        let shareAction = UIAction(title: "Share") { action in
-            
+        let shareAction = UIAction(title: "Share") { _ in
+
         }
         var actions = suggestedActions
         actions.insert(highlightTextAction, at: 0)
@@ -95,7 +89,7 @@ class CustomTextView: UITextView {
         actions.insert(shareAction, at: 3)
         return UIMenu(children: actions)
     }
-    
+
     @objc func highlightText() {
         if let range = self.selectedTextRange, let selectedText = self.text(in: range) {
             let highlight = Highlight(id: 0, passage: selectedText, location: selectedRange.location, length: selectedRange.length, bibleId: bibleId, bibleName: "", chapterId: chapterId, chapterName: "", color: .highlightGrayish)

@@ -9,11 +9,11 @@ import SwiftUI
 import SwiftData
 
 struct BibleView: View {
-    
+
     @Environment(\.modelContext) private var modelContext
     @StateObject private var bibleObservable = BibleObservable()
     @Query(sort: \BibleData.name) private var bibles: [BibleData]
-    
+
     var body: some View {
         NavigationStack {
             VStack {

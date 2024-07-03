@@ -10,9 +10,9 @@ import SwiftData
 
 @main
 struct BibleAppApp: App {
-    
+
     @StateObject private var authObservable = AuthObservable()
-    
+
     var sharedModelContainer: ModelContainer = {
         UIColorValueTransformer.register()
         let schema = Schema([
@@ -47,9 +47,9 @@ struct BibleAppApp: App {
 }
 
 extension UIColorValueTransformer {
-    
+
     static let name = NSValueTransformerName(rawValue: String(describing: UIColorValueTransformer.self))
-    
+
     public static func register() {
         let transformer = UIColorValueTransformer()
         ValueTransformer.setValueTransformer(transformer, forName: name)

@@ -11,13 +11,13 @@ import OSLog
 private let logger = Logger(subsystem: "com.infinalab", category: "Sign In")
 
 struct SignInView: View {
-    
+
     @EnvironmentObject private var authObservable: AuthObservable
     @FocusState private var isFocusedEmail: Bool
     @FocusState private var isFocusedPassword: Bool
     @State private var showPassword = false
     @State private var isPresentSignUp = false
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -119,7 +119,7 @@ struct SignInView: View {
             .textFieldStyle(CustomTextFieldStyle())
         }
     }
-    
+
     private var togglePasswordOverlay: some View {
         Image(systemName: showPassword ? "eye" : "eye.slash")
             .frame(width: 40, height: 40)
@@ -129,7 +129,7 @@ struct SignInView: View {
                 showPassword.toggle()
             }
     }
-    
+
     private func signIn() async {
         if !authObservable.email.isEmpty && !authObservable.password.isEmpty {
             authObservable.isSigningIn = true
@@ -144,7 +144,7 @@ struct SignInView: View {
             authObservable.password = ""
         }
     }
-    
+
     private func createAccount() {
         let logger = Logger()
         logger.debug("Create Account")

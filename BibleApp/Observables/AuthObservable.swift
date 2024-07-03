@@ -14,27 +14,27 @@ private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseAp
 
 @MainActor
 class AuthObservable: ObservableObject {
-    
+
     enum Status {
         case splash
         case success
         case loggedOut
         case failed
     }
-    
+
     @Published var signUpStatus: Status = .loggedOut
     @Published var signInStatus: Status = .loggedOut
     @Published var isSigningIn = false
     @Published var isSigningUp = false
     @Published var email = ""
     @Published var password = ""
-    
+
     init() {
         if UserDefaults.standard.string(forKey: User.Key.accessToken.rawValue) != nil {
             signInStatus = .success
         }
     }
-    
+
     func signIn() async throws {
         let session = try await client.auth.signIn(email: email, password: password)
         UserDefaults.standard.set(session.user.email, forKey: User.Key.email.rawValue)
@@ -44,7 +44,7 @@ class AuthObservable: ObservableObject {
         signInStatus = .success
         isSigningIn = false
     }
-    
+
     func signUp() async throws {
         let session = try await client.auth.signUp(email: email, password: password)
         if let session = session.session {

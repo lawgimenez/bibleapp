@@ -6,11 +6,11 @@
 //
 
 struct Chapter: Decodable {
-    
+
     var data: [Data]
-    
+
     struct Data: Decodable, Identifiable {
-        
+
         var id: String
         var bibleId: String
         var number: String
@@ -20,9 +20,9 @@ struct Chapter: Decodable {
         var verseCount: Int?
         var next: Verse?
         var previous: Verse?
-        
+
         struct Verse: Decodable, Identifiable {
-            
+
             var id: String
             var bookId: String
             var number: String

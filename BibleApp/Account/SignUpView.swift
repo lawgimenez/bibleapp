@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct SignUpView: View {
-    
+
     @EnvironmentObject private var authObservable: AuthObservable
     @State private var showPassword = false
-    
+
     var body: some View {
         VStack {
             TextField("Email Address", text: $authObservable.email)
@@ -59,7 +59,7 @@ struct SignUpView: View {
         .buttonStyle(.bordered)
         .contentShape(Rectangle())
     }
-    
+
     private var togglePasswordOverlay: some View {
         Image(systemName: showPassword ? "eye" : "eye.slash")
             .frame(width: 40, height: 40)
@@ -69,7 +69,7 @@ struct SignUpView: View {
                 showPassword.toggle()
             }
     }
-    
+
     private func signUp() async {
         if !authObservable.email.isEmpty && !authObservable.password.isEmpty {
             authObservable.isSigningUp = true
@@ -84,6 +84,6 @@ struct SignUpView: View {
     }
 }
 
-//#Preview {
+// #Preview {
 //    SignUpView()
-//}
+// }

@@ -9,7 +9,7 @@ import SwiftData
 
 @Model
 class ChapterData {
-    
+
     @Attribute(.unique) let id: String
     let bibleId: String
     let number: String
@@ -17,7 +17,7 @@ class ChapterData {
     let content: String
     let reference: String
     let verseCount: Int
-    
+
     init(id: String, bibleId: String, number: String, bookId: String, content: String, reference: String, verseCount: Int) {
         self.id = id
         self.bibleId = bibleId

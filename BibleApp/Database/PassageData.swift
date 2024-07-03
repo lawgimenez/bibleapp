@@ -9,7 +9,7 @@ import SwiftData
 
 @Model
 class PassageData {
-    
+
     @Attribute(.unique) let id: String
     let orgId: String
     let bibleId: String
@@ -18,7 +18,7 @@ class PassageData {
     let reference: String
     let content: String
     let copyright: String
-    
+
     init(id: String, orgId: String, bibleId: String, bookId: String, chapterId: String, reference: String, content: String, copyright: String) {
         self.id = id
         self.orgId = orgId

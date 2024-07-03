@@ -11,20 +11,20 @@ import Supabase
 private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
 
 struct HomeView: View {
-    
+
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var authObservable: AuthObservable
     @StateObject private var highlightObservable = HighlightObservable()
-    
+
     enum Pages: String {
         case bible
         case highlights
         case notes
         case settings
     }
-    
+
     @State private var selectedTab: Pages = .bible
-    
+
     var body: some View {
         TabView(selection: $selectedTab) {
             BibleView()

@@ -8,7 +8,7 @@
 import Foundation
 
 struct HighlighEncodable: Encodable {
-    
+
     let passage: String
     let color: String
     let length: Int
@@ -18,7 +18,7 @@ struct HighlighEncodable: Encodable {
     let chapterId: String
     let chapterName: String
     let userUuid: String
-    
+
     enum CodingKeys: String, CodingKey {
         case passage
         case color

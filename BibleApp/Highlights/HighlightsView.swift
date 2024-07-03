@@ -9,11 +9,11 @@ import SwiftUI
 import SwiftData
 
 struct HighlightsView: View {
-    
+
     @Query private var highlights: [Highlight]
     @Environment(\.modelContext) private var modelContext
     @StateObject private var highlightObservable = HighlightObservable()
-    
+
     var body: some View {
         NavigationStack {
             List(highlights) { highlight in

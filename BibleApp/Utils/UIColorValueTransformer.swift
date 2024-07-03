@@ -10,15 +10,15 @@ import UIKit
 
 @objc(UIColorValueTransformer)
 class UIColorValueTransformer: ValueTransformer {
-    
+
     override public class func transformedValueClass() -> AnyClass {
         return UIColor.self
     }
-    
+
     override public class func allowsReverseTransformation() -> Bool {
         return true
     }
-    
+
     override public func transformedValue(_ value: Any?) -> Any? {
         guard let color = value as? UIColor else {
             return nil
@@ -31,7 +31,7 @@ class UIColorValueTransformer: ValueTransformer {
             return nil
         }
     }
-    
+
     override public func reverseTransformedValue(_ value: Any?) -> Any? {
         guard let data = value as? NSData else {
             return nil
@@ -44,5 +44,5 @@ class UIColorValueTransformer: ValueTransformer {
             return nil
         }
     }
-    
+
 }

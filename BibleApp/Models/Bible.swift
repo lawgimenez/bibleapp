@@ -6,11 +6,11 @@
 //
 
 struct Bible: Decodable {
-    
+
     var data: [Data]
-    
+
     struct Data: Decodable, Identifiable {
-        
+
         var id: String
         var dblId: String
         var abbreviation: String
@@ -21,5 +21,5 @@ struct Bible: Decodable {
         var descriptionLocal: String?
         var type: String
     }
-    
+
 }

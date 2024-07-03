@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SettingsView: View {
-    
+
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var authObservable: AuthObservable
     @State private var isSignOutAlertShown = false
-    
+
     var body: some View {
         NavigationStack {
             List {
