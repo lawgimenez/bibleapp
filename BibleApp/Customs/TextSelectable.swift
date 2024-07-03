@@ -74,7 +74,7 @@ class CustomTextView: UITextView {
             self.highlightText()
         }
         let addNotesAction = UIAction(title: "Add Notes") { _ in
-
+            self.addNotes()
         }
         let copyAction = UIAction(title: "Copy") { _ in
 
@@ -97,6 +97,16 @@ class CustomTextView: UITextView {
                 "data": highlight
             ]
             NotificationCenter.default.post(name: Notification.Name("highlightAdded"), object: nil, userInfo: highlightDict)
+        }
+    }
+    
+    @objc func addNotes() {
+        if let range = self.selectedTextRange, let selectedText = self.text(in: range) {
+            let note = Note(id: 0, passage: selectedText, location: selectedRange.location, length: selectedRange.length, bibleId: bibleId, bibleName: "", chapterId: chapterId, chapterName: "", uiColor: .highlightPink)
+            let noteDict = [
+                "data": note
+            ]
+            NotificationCenter.default.post(name: Notification.Name("addNotes"), object: nil, userInfo: noteDict)
         }
     }
 }

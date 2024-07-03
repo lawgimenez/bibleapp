@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86053BA72C34E24000BD35F5 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86053BA62C34E24000BD35F5 /* Note.swift */; };
 		8609D3152C2BFA4F00BC2445 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8609D3142C2BFA4F00BC2445 /* SettingsView.swift */; };
 		860D54292C26BF0900B5373D /* UIColorValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860D54282C26BF0900B5373D /* UIColorValueTransformer.swift */; };
 		860D542C2C26C7F200B5373D /* HighlightOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860D542B2C26C7F200B5373D /* HighlightOptionView.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		86053BA62C34E24000BD35F5 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		8609D3142C2BFA4F00BC2445 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		860D54282C26BF0900B5373D /* UIColorValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorValueTransformer.swift; sourceTree = "<group>"; };
 		860D542B2C26C7F200B5373D /* HighlightOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightOptionView.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				86B9F4872C241D2B0039E81C /* Highlight.swift */,
 				860D542D2C26CF3C00B5373D /* Highlights.swift */,
 				86C606C62C2B9E6E00CB8CBE /* User.swift */,
+				86053BA62C34E24000BD35F5 /* Note.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				86C2A7CB2C28F2BF00A6DADC /* ProfileView.swift in Sources */,
 				8622981C2C219C9B006E9D13 /* PassageView.swift in Sources */,
 				86F61CA62C258BB20022E371 /* PassageData.swift in Sources */,
+				86053BA72C34E24000BD35F5 /* Note.swift in Sources */,
 				86ED4B312C1D2BE100A1FB80 /* BibleAppApp.swift in Sources */,
 				862298102C218BEE006E9D13 /* Chapter.swift in Sources */,
 				86BBF9152C22893F00718344 /* TextSelectable.swift in Sources */,

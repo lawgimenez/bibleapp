@@ -98,6 +98,9 @@ struct PassageView: View {
                 }
                 passageAttributed = addHighlights(text: passageAttributed.string)
             }
+            .onReceive(NotificationCenter.default.publisher(for: Notification.Name("highlightAdded"))) { output in
+                
+            }
             .sheet(isPresented: $isPresentHighlightOptions) {
                 HighlightOptionView(highlightsColor: $highlightsColor, selectedColor: $selectedColor, addedHighlight: $addedHighlight)
                     .presentationDetents([.height(300)])
