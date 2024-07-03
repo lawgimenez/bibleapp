@@ -58,7 +58,6 @@ struct HomeView: View {
                 if let user = users.first {
                     UserDefaults.standard.set(user.id, forKey: User.Key.id.rawValue)
                     UserDefaults.standard.set(user.uuid, forKey: User.Key.uuid.rawValue)
-                    print("Home: user found = \(user)")
                     try await highlightObservable.getHighlights(userUuid: user.uuid)
                 }
             } catch {

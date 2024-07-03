@@ -37,7 +37,6 @@ class AuthObservable: ObservableObject {
     
     func signIn() async throws {
         let session = try await client.auth.signIn(email: email, password: password)
-        print("Sign in session = \(session)")
         UserDefaults.standard.set(session.user.email, forKey: User.Key.email.rawValue)
         UserDefaults.standard.set(session.accessToken, forKey: User.Key.accessToken.rawValue)
         UserDefaults.standard.set(session.refreshToken, forKey: User.Key.refreshToken.rawValue)
@@ -58,13 +57,9 @@ class AuthObservable: ObservableObject {
             let userResponse = try await client.from("User").insert(userEncodable).select().single().execute()
             if userResponse.status == 201 {
                 signUpStatus = .success
-                print("User sign up found = \(user)")
             } else {
                 signUpStatus = .failed
             }
-            print("User sign up status: \(userResponse.status)")
-            print("User response: \(userResponse)")
-            print("User response data: \(userResponse.data)")
         } else {
             signUpStatus = .failed
         }

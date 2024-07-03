@@ -98,7 +98,6 @@ class BibleObservable: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
         let (data, urlResponse) = try await session.data(for: request)
-        print("Passage URL response: \(urlResponse)")
         let passage = try JSONDecoder().decode(Passage.self, from: data).data
         // Insert data
         let passageData = PassageData(id: passage.id, orgId: passage.orgId, bibleId: passage.bibleId, bookId: passage.bookId, chapterId: anyId, reference: passage.reference, content: passage.content, copyright: passage.copyright)
@@ -121,8 +120,5 @@ class BibleObservable: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(Urls.apiKey, forHTTPHeaderField: "api-key")
         let (data, _) = try await session.data(for: request)
-        if let json = try? JSONSerialization.jsonObject(with: data, options: []), let dataDict = json as? NSDictionary {
-            print("Verse dict: \(dataDict)")
-        }
     }
 }

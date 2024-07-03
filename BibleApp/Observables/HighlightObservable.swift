@@ -46,7 +46,6 @@ class HighlightObservable: ObservableObject {
 //    }
     
     func setModelContext(_ modelContext: ModelContext) {
-        print("Set model context")
         self.modelContext = modelContext
     }
     
@@ -61,7 +60,7 @@ class HighlightObservable: ObservableObject {
     }
     
     func deleteHighlight(highlight: Highlight) async throws {
-        let deleteResponse = try await client.from("Highlight").delete().eq("id", value: highlight.id).execute()
+        try await client.from("Highlight").delete().eq("id", value: highlight.id).execute()
         modelContext?.delete(highlight)
     }
 }

@@ -61,7 +61,6 @@ struct PassageView: View {
                 if let passageData = passage.first {
                     let passageData = passageData.content.data(using: .unicode)
                     let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
-//                    passageAttributed = addHighlights(text: attributedPassageData!.string)
                     passageAttributed = attributedPassageData!
                 }
             }
@@ -117,8 +116,6 @@ struct PassageView: View {
                     let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
                     passageAttributed = attributedPassageData!
                 }
-                print("Lawx: Passage bookID: \(bibleId)")
-                print("Lawx: Passage chapterID: \(chapterId)")
             }
         }
     }
@@ -166,22 +163,16 @@ struct PassageView: View {
     }
     
     private func saveHighlightToApi(highlightEncodable: HighlighEncodable) {
-        print("saveHighlightToApi")
         // Save to API
         Task {
             do {
-                let highlightResponse = try await client.from("Highlight").insert(highlightEncodable).execute()
-                print("Highlight responsee: \(highlightResponse)")
+                try await client.from("Highlight").insert(highlightEncodable).execute()
             } catch {
                 print("API Error: \(error)")
             }
         }
     }
 }
-
-//#Preview {
-//    PassageView()
-//}
 
 extension UIColor {
     
