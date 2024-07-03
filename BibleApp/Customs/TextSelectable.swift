@@ -65,6 +65,8 @@ class CustomTextView: UITextView {
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         if action == #selector(highlightText) {
             return true
+        } else if action == #selector(addNotes) {
+            return true
         }
         return false
     }

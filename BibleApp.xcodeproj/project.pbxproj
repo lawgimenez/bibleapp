@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		86053BA72C34E24000BD35F5 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86053BA62C34E24000BD35F5 /* Note.swift */; };
+		86053BA92C34E40400BD35F5 /* AddNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86053BA82C34E40400BD35F5 /* AddNotesView.swift */; };
 		8609D3152C2BFA4F00BC2445 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8609D3142C2BFA4F00BC2445 /* SettingsView.swift */; };
 		860D54292C26BF0900B5373D /* UIColorValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860D54282C26BF0900B5373D /* UIColorValueTransformer.swift */; };
 		860D542C2C26C7F200B5373D /* HighlightOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860D542B2C26C7F200B5373D /* HighlightOptionView.swift */; };
@@ -76,6 +77,7 @@
 
 /* Begin PBXFileReference section */
 		86053BA62C34E24000BD35F5 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		86053BA82C34E40400BD35F5 /* AddNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotesView.swift; sourceTree = "<group>"; };
 		8609D3142C2BFA4F00BC2445 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		860D54282C26BF0900B5373D /* UIColorValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorValueTransformer.swift; sourceTree = "<group>"; };
 		860D542B2C26C7F200B5373D /* HighlightOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightOptionView.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				860D542B2C26C7F200B5373D /* HighlightOptionView.swift */,
+				86053BA82C34E40400BD35F5 /* AddNotesView.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				86B9F4882C241D2B0039E81C /* Highlight.swift in Sources */,
 				862298002C217911006E9D13 /* Urls.swift in Sources */,
 				862298162C2196BA006E9D13 /* VerseView.swift in Sources */,
+				86053BA92C34E40400BD35F5 /* AddNotesView.swift in Sources */,
 				86CDC6612C1D907500A65B29 /* AuthObservable.swift in Sources */,
 				86CDC65E2C1D901300A65B29 /* SignInView.swift in Sources */,
 				8622980E2C2183CD006E9D13 /* BooksView.swift in Sources */,

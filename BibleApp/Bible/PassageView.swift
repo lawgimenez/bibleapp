@@ -33,9 +33,11 @@ struct PassageView: View {
     @State private var arrayHighlights = [Highlight]()
     @State private var highlightAdded = false
     @State private var isPresentHighlightOptions = false
+    @State private var isPresentAddNotesOptions = false
     @State private var selectedColor = Highlights(color: .highlightPink)
     @State private var addedHighlight = false
     @State private var highlight: Highlight?
+    @State private var note: Note?
     var bibleId: String
     var chapterId: String
 
@@ -99,11 +101,19 @@ struct PassageView: View {
                 passageAttributed = addHighlights(text: passageAttributed.string)
             }
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name("highlightAdded"))) { output in
-                
+                if let note = output.userInfo!["data"] as? Note {
+                    self.note = note
+                    isPresentAddNotesOptions = true
+                }
             }
             .sheet(isPresented: $isPresentHighlightOptions) {
                 HighlightOptionView(highlightsColor: $highlightsColor, selectedColor: $selectedColor, addedHighlight: $addedHighlight)
                     .presentationDetents([.height(300)])
+            }
+            .sheet(isPresented: $isPresentAddNotesOptions) {
+                if let note {
+                    AddNotesView(note: note)
+                }
             }
             .background(Color.red)
             .navigationTitle("Passage")
