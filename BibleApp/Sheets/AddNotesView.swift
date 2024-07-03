@@ -7,6 +7,9 @@
 
 import SwiftUI
 import MarkdownUI
+import Supabase
+
+private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
 
 struct AddNotesView: View {
     
@@ -38,7 +41,7 @@ struct AddNotesView: View {
                 let savePlacement: ToolbarItemPlacement = .topBarTrailing
                 ToolbarItem(placement: savePlacement) {
                     Button {
-//                        dismiss()
+                        saveNote()
                     } label: {
                         Text("Save")
                             .frame(maxWidth: .infinity)
@@ -47,6 +50,19 @@ struct AddNotesView: View {
             }
             .padding()
             .navigationTitle("Add Notes")
+        }
+    }
+    
+    private func saveNote() {
+        Task {
+            // Construct note model
+            let noteEncodable = NoteCodable(passage: note.passage, userNote: $userNote.wrappedValue, color: note.uiColor.hexString, length: note.length, location: note.location, bibleId: note.bibleId, bibleName: note.bibleName, chapterId: note.chapterId, chapterName: note.chapterName, userUuid: UserDefaults.standard.string(forKey: User.Key.uuid.rawValue)!)
+            do {
+                let response = try await client.from("Note").insert(noteEncodable).execute()
+                print("Add note response: \(response)")
+            } catch {
+                print("Save note error: \(error)")
+            }
         }
     }
 }
