@@ -30,6 +30,7 @@
 		86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADD2C1EDE08004B81C6 /* HomeView.swift */; };
 		86615E742C2D96A00052553C /* UserEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86615E732C2D96A00052553C /* UserEncodable.swift */; };
 		86658B602C3141E000063D82 /* HighlightsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86658B5F2C3141E000063D82 /* HighlightsRowView.swift */; };
+		866CE64B2C3547A70017BFC9 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 866CE64A2C3547A70017BFC9 /* MarkdownUI */; };
 		86ADBDCF2C2D6251008E5D92 /* HighlightObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADBDCE2C2D6251008E5D92 /* HighlightObservable.swift */; };
 		86B9F4882C241D2B0039E81C /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B9F4872C241D2B0039E81C /* Highlight.swift */; };
 		86BBF9152C22893F00718344 /* TextSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBF9142C22893F00718344 /* TextSelectable.swift */; };
@@ -135,6 +136,7 @@
 				86C606C22C2B9D3000CB8CBE /* Functions in Frameworks */,
 				86C606C02C2B9D3000CB8CBE /* Auth in Frameworks */,
 				86C606C52C2B9DD600CB8CBE /* Supabase in Frameworks */,
+				866CE64B2C3547A70017BFC9 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +392,7 @@
 				86C606BF2C2B9D3000CB8CBE /* Auth */,
 				86C606C12C2B9D3000CB8CBE /* Functions */,
 				86C606C42C2B9DD600CB8CBE /* Supabase */,
+				866CE64A2C3547A70017BFC9 /* MarkdownUI */,
 			);
 			productName = BibleApp;
 			productReference = 86ED4B2D2C1D2BE100A1FB80 /* BibleApp.app */;
@@ -465,6 +468,7 @@
 			mainGroup = 86ED4B242C1D2BE100A1FB80;
 			packageReferences = (
 				86C606BE2C2B9D3000CB8CBE /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				866CE6492C3547A70017BFC9 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
 			productRefGroup = 86ED4B2E2C1D2BE100A1FB80 /* Products */;
 			projectDirPath = "";
@@ -880,6 +884,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		866CE6492C3547A70017BFC9 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lawgimenez/swift-markdown-ui.git";
+			requirement = {
+				kind = exactVersion;
+				version = 2.3.1;
+			};
+		};
 		86C606BE2C2B9D3000CB8CBE /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/supabase/supabase-swift";
@@ -891,6 +903,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		866CE64A2C3547A70017BFC9 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 866CE6492C3547A70017BFC9 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
 		86C606BF2C2B9D3000CB8CBE /* Auth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 86C606BE2C2B9D3000CB8CBE /* XCRemoteSwiftPackageReference "supabase-swift" */;

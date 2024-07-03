@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MarkdownUI
 
 struct AddNotesView: View {
     
@@ -14,7 +15,8 @@ struct AddNotesView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Text("> \(note.passage)")
+                Markdown("> \(note.passage)")
+                    .markdownTheme(.gitHub)
                 Spacer()
             }
             .padding()
