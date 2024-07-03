@@ -108,7 +108,7 @@ class CustomTextView: UITextView {
             let noteDict = [
                 "data": note
             ]
-            NotificationCenter.default.post(name: Notification.Name("addNotes"), object: nil, userInfo: noteDict)
+            NotificationCenter.default.post(name: Notification.Name("addNote"), object: nil, userInfo: noteDict)
         }
     }
 }

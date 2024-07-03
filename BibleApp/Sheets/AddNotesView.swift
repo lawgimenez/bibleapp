@@ -14,7 +14,7 @@ struct AddNotesView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Text("\"\(note.passage)\"")
+                Text(">\(note.passage)")
             }
             .navigationTitle("Add Notes")
         }

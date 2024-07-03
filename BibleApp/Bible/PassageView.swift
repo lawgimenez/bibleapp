@@ -100,7 +100,7 @@ struct PassageView: View {
                 }
                 passageAttributed = addHighlights(text: passageAttributed.string)
             }
-            .onReceive(NotificationCenter.default.publisher(for: Notification.Name("highlightAdded"))) { output in
+            .onReceive(NotificationCenter.default.publisher(for: Notification.Name("addNote"))) { output in
                 if let note = output.userInfo!["data"] as? Note {
                     self.note = note
                     isPresentAddNotesOptions = true
