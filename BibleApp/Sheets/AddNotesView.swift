@@ -11,6 +11,7 @@ import MarkdownUI
 struct AddNotesView: View {
     
     @Environment(\.dismiss) private var dismiss
+    @State private var userNote = ""
     var note: Note
     
     var body: some View {
@@ -19,6 +20,9 @@ struct AddNotesView: View {
                 Markdown("> \(note.passage)")
                     .markdownTheme(.gitHub)
                 Divider()
+                TextField("Add your notes here...", text: $userNote, axis: .vertical)
+                    .autocorrectionDisabled(true)
+                    .padding()
                 Spacer()
             }
             .toolbar {
