@@ -14,6 +14,7 @@ class Note {
     
     @Attribute(.unique) let id: Int
     let passage: String
+    let userNote: String
     let location: Int
     let length: Int
     var bibleId: String
@@ -30,9 +31,10 @@ class Note {
         }
     }
     
-    init(id: Int, passage: String, location: Int, length: Int, bibleId: String, bibleName: String, chapterId: String, chapterName: String, uiColor: UIColor) {
+    init(id: Int, passage: String, userNote: String = "", location: Int, length: Int, bibleId: String, bibleName: String, chapterId: String, chapterName: String, uiColor: UIColor) {
         self.id = id
         self.passage = passage
+        self.userNote = userNote
         self.location = location
         self.length = length
         self.bibleId = bibleId
