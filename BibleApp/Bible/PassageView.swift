@@ -102,17 +102,25 @@ struct PassageView: View {
             }
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name("addNote"))) { output in
                 if let note = output.userInfo!["data"] as? Note {
+                    print("Note received: \(note)")
                     self.note = note
-                    isPresentAddNotesOptions = true
                 }
             }
             .sheet(isPresented: $isPresentHighlightOptions) {
                 HighlightOptionView(highlightsColor: $highlightsColor, selectedColor: $selectedColor, addedHighlight: $addedHighlight)
                     .presentationDetents([.height(300)])
             }
+            .onChange(of: note) {
+                if note != nil {
+                    isPresentAddNotesOptions = true
+                }
+            }
             .sheet(isPresented: $isPresentAddNotesOptions) {
                 if let note {
+                    let _ = print("Notes present")
                     AddNotesView(note: note)
+                } else {
+                    let _ = print("No notes")
                 }
             }
             .background(Color.red)
