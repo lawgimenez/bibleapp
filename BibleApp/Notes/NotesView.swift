@@ -6,10 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct NotesView: View {
+    
+    @Query private var notes: [Note]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List(notes) { note in
+                NotesRowView(note: note)
+                    .listRowBackground(note.color)
+            }
+            .navigationTitle("Notes")
+        }
     }
 }
 
