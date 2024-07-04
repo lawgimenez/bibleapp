@@ -15,6 +15,7 @@ struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var authObservable: AuthObservable
     @StateObject private var highlightObservable = HighlightObservable()
+    @StateObject private var noteObservable = NoteObservable()
 
     enum Pages: String {
         case bible
@@ -51,6 +52,7 @@ struct HomeView: View {
         }
         .onAppear {
             highlightObservable.setModelContext(modelContext)
+            noteObservable.setModelContext(modelContext)
         }
         .task {
             do {
@@ -59,6 +61,7 @@ struct HomeView: View {
                     UserDefaults.standard.set(user.id, forKey: User.Key.id.rawValue)
                     UserDefaults.standard.set(user.uuid, forKey: User.Key.uuid.rawValue)
                     try await highlightObservable.getHighlights(userUuid: user.uuid)
+                    try await noteObservable.getNotes(userUuid: user.uuid)
                 }
             } catch {
                 print("Homeview error: \(error)")
