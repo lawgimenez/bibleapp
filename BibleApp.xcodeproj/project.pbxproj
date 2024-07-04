@@ -30,8 +30,10 @@
 		86588ADE2C1EDE08004B81C6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86588ADD2C1EDE08004B81C6 /* HomeView.swift */; };
 		86615E742C2D96A00052553C /* UserEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86615E732C2D96A00052553C /* UserEncodable.swift */; };
 		86658B602C3141E000063D82 /* HighlightsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86658B5F2C3141E000063D82 /* HighlightsRowView.swift */; };
+		866C04972C366C3E00434C40 /* NoteObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866C04962C366C3E00434C40 /* NoteObservable.swift */; };
+		866C04992C366CBA00434C40 /* NoteDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866C04982C366CBA00434C40 /* NoteDecodable.swift */; };
 		866CE64B2C3547A70017BFC9 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 866CE64A2C3547A70017BFC9 /* MarkdownUI */; };
-		866CE64D2C3556260017BFC9 /* NoteCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866CE64C2C3556260017BFC9 /* NoteCodable.swift */; };
+		866CE64D2C3556260017BFC9 /* NoteEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866CE64C2C3556260017BFC9 /* NoteEncodable.swift */; };
 		86ADBDCF2C2D6251008E5D92 /* HighlightObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADBDCE2C2D6251008E5D92 /* HighlightObservable.swift */; };
 		86B9F4882C241D2B0039E81C /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B9F4872C241D2B0039E81C /* Highlight.swift */; };
 		86BBF9152C22893F00718344 /* TextSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBF9142C22893F00718344 /* TextSelectable.swift */; };
@@ -101,7 +103,9 @@
 		86588ADD2C1EDE08004B81C6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		86615E732C2D96A00052553C /* UserEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEncodable.swift; sourceTree = "<group>"; };
 		86658B5F2C3141E000063D82 /* HighlightsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsRowView.swift; sourceTree = "<group>"; };
-		866CE64C2C3556260017BFC9 /* NoteCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCodable.swift; sourceTree = "<group>"; };
+		866C04962C366C3E00434C40 /* NoteObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteObservable.swift; sourceTree = "<group>"; };
+		866C04982C366CBA00434C40 /* NoteDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDecodable.swift; sourceTree = "<group>"; };
+		866CE64C2C3556260017BFC9 /* NoteEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEncodable.swift; sourceTree = "<group>"; };
 		86ADBDCE2C2D6251008E5D92 /* HighlightObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightObservable.swift; sourceTree = "<group>"; };
 		86B9F4872C241D2B0039E81C /* Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlight.swift; sourceTree = "<group>"; };
 		86BBF9142C22893F00718344 /* TextSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectable.swift; sourceTree = "<group>"; };
@@ -211,7 +215,8 @@
 				86215C6C2C2E5B8700614CCC /* UserDecodable.swift */,
 				86215C6E2C2E5D7400614CCC /* HighlighEncodable.swift */,
 				86C214E62C2EB013006CEC3C /* HighlightDecodable.swift */,
-				866CE64C2C3556260017BFC9 /* NoteCodable.swift */,
+				866CE64C2C3556260017BFC9 /* NoteEncodable.swift */,
+				866C04982C366CBA00434C40 /* NoteDecodable.swift */,
 			);
 			path = Codables;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				86CDC6602C1D907500A65B29 /* AuthObservable.swift */,
 				862298052C217C1C006E9D13 /* BibleObservable.swift */,
 				86ADBDCE2C2D6251008E5D92 /* HighlightObservable.swift */,
+				866C04962C366C3E00434C40 /* NoteObservable.swift */,
 			);
 			path = Observables;
 			sourceTree = "<group>";
@@ -537,6 +543,8 @@
 				86C214E72C2EB013006CEC3C /* HighlightDecodable.swift in Sources */,
 				862298062C217C1C006E9D13 /* BibleObservable.swift in Sources */,
 				86ED4B352C1D2BE100A1FB80 /* Item.swift in Sources */,
+				866C04972C366C3E00434C40 /* NoteObservable.swift in Sources */,
+				866C04992C366CBA00434C40 /* NoteDecodable.swift in Sources */,
 				86ADBDCF2C2D6251008E5D92 /* HighlightObservable.swift in Sources */,
 				86B9F4882C241D2B0039E81C /* Highlight.swift in Sources */,
 				862298002C217911006E9D13 /* Urls.swift in Sources */,
@@ -549,7 +557,7 @@
 				86588ADC2C1EDDD7004B81C6 /* SignUpView.swift in Sources */,
 				860D542C2C26C7F200B5373D /* HighlightOptionView.swift in Sources */,
 				86C2A7CB2C28F2BF00A6DADC /* ProfileView.swift in Sources */,
-				866CE64D2C3556260017BFC9 /* NoteCodable.swift in Sources */,
+				866CE64D2C3556260017BFC9 /* NoteEncodable.swift in Sources */,
 				8622981C2C219C9B006E9D13 /* PassageView.swift in Sources */,
 				86F61CA62C258BB20022E371 /* PassageData.swift in Sources */,
 				86053BA72C34E24000BD35F5 /* Note.swift in Sources */,

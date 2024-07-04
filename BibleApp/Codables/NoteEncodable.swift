@@ -1,5 +1,5 @@
 //
-//  NoteCodable.swift
+//  NoteEncodable.swift
 //  BibleApp
 //
 //  Created by Lawrence Gimenez on 7/3/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NoteCodable: Encodable {
+struct NoteEncodable: Encodable {
     
     let passage: String
     let userNote: String

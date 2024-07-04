@@ -22,6 +22,7 @@ struct PassageView: View {
 
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var bibleObservable: BibleObservable
+    @StateObject private var noteObservable = NoteObservable()
     @Query private var passage: [PassageData]
     @Query private var highlights: [Highlight]
     @Query private var bibles: [BibleData]

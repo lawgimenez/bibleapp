@@ -31,7 +31,7 @@ class Note {
         }
     }
     
-    init(id: Int, passage: String, userNote: String = "", location: Int, length: Int, bibleId: String, bibleName: String, chapterId: String, chapterName: String, uiColor: UIColor) {
+    init(id: Int, passage: String, userNote: String = "", location: Int, length: Int, bibleId: String, bibleName: String, chapterId: String, chapterName: String, color: Color) {
         self.id = id
         self.passage = passage
         self.userNote = userNote
@@ -41,7 +41,7 @@ class Note {
         self.bibleName = bibleName
         self.chapterId = chapterId
         self.chapterName = chapterName
-        self.uiColor = uiColor
+        self.uiColor = .init(color)
     }
     
 }
