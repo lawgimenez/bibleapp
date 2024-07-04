@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import UniformTypeIdentifiers
 
 struct TextSelectable: UIViewRepresentable {
 
@@ -67,6 +68,8 @@ class CustomTextView: UITextView {
             return true
         } else if action == #selector(addNotes) {
             return true
+        } else if action == #selector(copyToClipboard) {
+            return true
         }
         return false
     }
@@ -79,7 +82,7 @@ class CustomTextView: UITextView {
             self.addNotes()
         }
         let copyAction = UIAction(title: "Copy") { _ in
-
+            self.copyToClipboard()
         }
         let shareAction = UIAction(title: "Share") { _ in
 
@@ -109,6 +112,12 @@ class CustomTextView: UITextView {
                 "data": note
             ]
             NotificationCenter.default.post(name: Notification.Name("addNote"), object: nil, userInfo: noteDict)
+        }
+    }
+    
+    @objc func copyToClipboard() {
+        if let range = self.selectedTextRange, let selectedText = self.text(in: range) {
+            UIPasteboard.general.setValue(selectedText, forPasteboardType: UTType.plainText.identifier)
         }
     }
 }
