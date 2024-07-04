@@ -118,7 +118,7 @@ struct PassageView: View {
             .sheet(isPresented: $isPresentAddNotesOptions) {
                 if let note {
                     let _ = print("Notes present")
-                    AddNotesView(note: note)
+                    AddNotesView(isPresentAddNotesOptions: $isPresentAddNotesOptions, note: note)
                 } else {
                     let _ = print("No notes")
                 }

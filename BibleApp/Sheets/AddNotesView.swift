@@ -15,6 +15,7 @@ struct AddNotesView: View {
     
     @Environment(\.dismiss) private var dismiss
     @State private var userNote = ""
+    @Binding var isPresentAddNotesOptions: Bool
     var note: Note
     
     var body: some View {
@@ -60,6 +61,7 @@ struct AddNotesView: View {
             do {
                 let response = try await client.from("Note").insert(noteEncodable).execute()
                 print("Add note response: \(response)")
+                isPresentAddNotesOptions = false
             } catch {
                 print("Save note error: \(error)")
             }
