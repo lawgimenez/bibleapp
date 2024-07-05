@@ -112,13 +112,15 @@ struct PassageView: View {
                     .presentationDetents([.height(300)])
             }
             .onChange(of: note) {
-                if note != nil {
+                if let note {
+//                    note.color = selectedColor.color
+                    note.bibleName = getBible(bibleId: note.bibleId) ?? ""
+                    note.chapterName = getChapter(chapterId: note.chapterId) ?? ""
                     isPresentAddNotesOptions = true
                 }
             }
             .sheet(isPresented: $isPresentAddNotesOptions) {
                 if let note {
-                    let _ = print("Notes present")
                     AddNotesView(isPresentAddNotesOptions: $isPresentAddNotesOptions, note: note)
                 } else {
                     let _ = print("No notes")
