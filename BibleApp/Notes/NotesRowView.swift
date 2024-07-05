@@ -20,7 +20,6 @@ struct NotesRowView: View {
             }
             .markdownTheme(.gitHub)
             Spacer()
-            Text(note.passage)
             HStack {
                 Image(systemName: "book.circle")
                 Text(note.bibleName)
