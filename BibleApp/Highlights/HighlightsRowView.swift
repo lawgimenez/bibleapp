@@ -21,6 +21,7 @@ struct HighlightsRowView: View {
             }
             Text(highlight.chapterName)
         }
+        .padding()
     }
 }
 

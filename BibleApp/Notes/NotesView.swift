@@ -16,7 +16,6 @@ struct NotesView: View {
         NavigationStack {
             List(notes) { note in
                 NotesRowView(note: note)
-                    .listRowBackground(note.color)
             }
             .navigationTitle("Notes")
         }

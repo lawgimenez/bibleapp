@@ -6,20 +6,35 @@
 //
 
 import SwiftUI
+import MarkdownUI
 
 struct NotesRowView: View {
     
     var note: Note
+    @State private var passage = ""
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(note.passage)
+            Markdown {
+                "> \(passage)"
+            }
+            .markdownTheme(.gitHub)
             Spacer()
+            Text(note.passage)
             HStack {
                 Image(systemName: "book.circle")
                 Text(note.bibleName)
             }
         }
+        .onAppear {
+            passage = formatQuote(passage: note.passage)
+        }
+        .padding()
+    }
+    
+    private func formatQuote(passage: String) -> String {
+        let formattedQuote = passage.replacingOccurrences(of: "\n\n", with: " \n\n> ")
+        return formattedQuote
     }
 }
 
