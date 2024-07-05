@@ -30,4 +30,9 @@ class NoteObservable: ObservableObject {
             try modelContext?.save()
         }
     }
+    
+    func deleteNote(note: Note) async throws {
+        try await client.from("Note").delete().eq("id", value: note.id).execute()
+        modelContext?.delete(note)
+    }
 }
