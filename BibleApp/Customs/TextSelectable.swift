@@ -107,7 +107,7 @@ class CustomTextView: UITextView {
     
     @objc func addNotes() {
         if let range = self.selectedTextRange, let selectedText = self.text(in: range) {
-            let note = Note(id: 0, passage: selectedText, location: selectedRange.location, length: selectedRange.length, bibleId: bibleId, bibleName: "", chapterId: chapterId, chapterName: "", color: .highlightGrayish)
+            let note = Note(id: 0, passage: selectedText, userNote: "", location: selectedRange.location, length: selectedRange.length, bibleId: bibleId, bibleName: "", chapterId: chapterId, chapterName: "", color: .highlightGrayish)
             let noteDict = [
                 "data": note
             ]

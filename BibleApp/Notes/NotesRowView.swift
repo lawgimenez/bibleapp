@@ -19,6 +19,8 @@ struct NotesRowView: View {
                 "> \(passage)"
             }
             .markdownTheme(.gitHub)
+            Divider()
+            Text(note.userNote)
             Spacer()
             HStack {
                 Image(systemName: "book.circle")
@@ -27,6 +29,7 @@ struct NotesRowView: View {
         }
         .onAppear {
             passage = formatQuote(passage: note.passage)
+            print("User note: \(note.userNote)")
         }
         .padding()
     }

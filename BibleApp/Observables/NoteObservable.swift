@@ -24,7 +24,7 @@ class NoteObservable: ObservableObject {
         let notes: [NoteDecodable] = try await client.from("Note").select().eq(NoteDecodable.CodingKeys.userUuid.rawValue, value: userUuid).execute().value
         print("Notes found: \(notes.count)")
         for note in notes {
-            let note = Note(id: note.id, passage: note.passage, location: note.location, length: note.length, bibleId: note.bibleId, bibleName: note.bibleName, chapterId: note.chapterId, chapterName: note.chapterName, color: Color(uiColor: UIColor(hexString: note.color)))
+            let note = Note(id: note.id, passage: note.passage, userNote: note.userNote, location: note.location, length: note.length, bibleId: note.bibleId, bibleName: note.bibleName, chapterId: note.chapterId, chapterName: note.chapterName, color: Color(uiColor: UIColor(hexString: note.color)))
             // Save to database
             modelContext?.insert(note)
             try modelContext?.save()

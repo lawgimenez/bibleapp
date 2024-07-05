@@ -31,7 +31,7 @@ class Note {
         }
     }
     
-    init(id: Int, passage: String, userNote: String = "", location: Int, length: Int, bibleId: String, bibleName: String, chapterId: String, chapterName: String, color: Color) {
+    init(id: Int, passage: String, userNote: String, location: Int, length: Int, bibleId: String, bibleName: String, chapterId: String, chapterName: String, color: Color) {
         self.id = id
         self.passage = passage
         self.userNote = userNote
