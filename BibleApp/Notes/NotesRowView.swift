@@ -21,11 +21,12 @@ struct NotesRowView: View {
             .markdownTheme(.gitHub)
             Divider()
             Text(note.userNote)
-            Spacer()
+                .padding()
             HStack {
                 Image(systemName: "book.circle")
                 Text(note.bibleName)
             }
+            Spacer()
         }
         .onAppear {
             passage = formatQuote(passage: note.passage)
