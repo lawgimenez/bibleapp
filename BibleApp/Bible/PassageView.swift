@@ -25,6 +25,7 @@ struct PassageView: View {
     @StateObject private var noteObservable = NoteObservable()
     @Query private var passage: [PassageData]
     @Query private var highlights: [Highlight]
+    @Query private var notes: [Note]
     @Query private var bibles: [BibleData]
     @Query private var chapters: [ChapterData]
     @State private var selectedRange: NSRange?
@@ -53,6 +54,10 @@ struct PassageView: View {
             $0.bibleId == bibleId && $0.chapterId == chapterId
         }
         _highlights = Query(filter: highlightPredicate)
+        let notePredicate = #Predicate<Note> {
+            $0.bibleId == bibleId && $0.chapterId == chapterId
+        }
+        _notes = Query(filter: notePredicate)
     }
 
     var body: some View {
@@ -69,6 +74,7 @@ struct PassageView: View {
             }
             .onChange(of: passageAttributed) {
                 passageAttributed = addHighlights(text: passageAttributed.string)
+                passageAttributed = addNotes(text: passageAttributed.string)
             }
             .onChange(of: addedHighlight) {
                 if addedHighlight {
@@ -147,11 +153,38 @@ struct PassageView: View {
     private func addHighlights(text: String) -> NSAttributedString {
         let mutableString = NSMutableAttributedString.init(string: text)
         for highlight in highlights {
+            // Add highlights
             let highlightAttributes: [NSAttributedString.Key: Any] = [
                 .backgroundColor: highlight.uiColor,
                 .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
             ]
             mutableString.addAttributes(highlightAttributes, range: highlight.getRange())
+        }
+        return mutableString
+    }
+    
+    private func addNotes(text: String) -> NSAttributedString {
+        let mutableString = NSMutableAttributedString.init(string: text)
+        let attributedString = NSAttributedString(string: text)
+        print("Notes found: \(notes.count)")
+        for note in notes {
+            // Create note image attachment
+            let noteAttachment = NSTextAttachment()
+            noteAttachment.image = UIImage(systemName: "note.text")
+            let noteAttributedString = NSAttributedString(attachment: noteAttachment)
+            // Get the highlight range
+            let noteText = attributedString.attributedSubstring(from: note.getRange())
+            let noteMutable = NSMutableAttributedString(attributedString: noteText)
+            noteMutable.append(noteAttributedString)
+            print("Note mutable = \(noteMutable)")
+            mutableString.replaceCharacters(in: note.getRange(), with: noteMutable)
+            // Add highlights
+            let highlightAttributes: [NSAttributedString.Key: Any] = [
+                .backgroundColor: note.uiColor,
+                .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body),
+                .attachment: noteAttachment
+            ]
+            mutableString.addAttributes(highlightAttributes, range: note.getRange())
         }
         return mutableString
     }

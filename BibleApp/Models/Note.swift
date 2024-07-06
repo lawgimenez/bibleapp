@@ -44,4 +44,8 @@ class Note {
         self.uiColor = .init(color)
     }
     
+    func getRange() -> NSRange {
+        return NSRange(location: location, length: length)
+    }
+    
 }
