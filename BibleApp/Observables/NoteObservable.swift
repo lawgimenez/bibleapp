@@ -13,8 +13,16 @@ import SwiftData
 
 class NoteObservable: ObservableObject {
     
+    enum AddNoteStatus {
+        case none
+        case inProgress
+        case success
+        case failed
+    }
+    
     private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
     private var modelContext: ModelContext?
+    @Published var addNoteStatus: AddNoteStatus = .none
     
     func setModelContext(_ modelContext: ModelContext) {
         self.modelContext = modelContext
@@ -28,6 +36,16 @@ class NoteObservable: ObservableObject {
             // Save to database
             modelContext?.insert(note)
             try modelContext?.save()
+        }
+    }
+    
+    func saveNote(noteEncodable: NoteEncodable) async throws {
+        let response = try await client.from("Note").insert(noteEncodable).execute()
+        print("Add note response: \(response)")
+        if response.status == 201 {
+            addNoteStatus = .success
+        } else {
+            addNoteStatus = .failed
         }
     }
     

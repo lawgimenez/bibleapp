@@ -25,7 +25,7 @@ struct PassageView: View {
     @StateObject private var noteObservable = NoteObservable()
     @Query private var passage: [PassageData]
     @Query private var highlights: [Highlight]
-    @Query private var notes: [Note]
+    @State private var notes = [Note]()
     @Query private var bibles: [BibleData]
     @Query private var chapters: [ChapterData]
     @State private var selectedRange: NSRange?
@@ -54,10 +54,6 @@ struct PassageView: View {
             $0.bibleId == bibleId && $0.chapterId == chapterId
         }
         _highlights = Query(filter: highlightPredicate)
-        let notePredicate = #Predicate<Note> {
-            $0.bibleId == bibleId && $0.chapterId == chapterId
-        }
-        _notes = Query(filter: notePredicate)
     }
 
     var body: some View {
@@ -70,6 +66,13 @@ struct PassageView: View {
                     let passageData = passageData.content.data(using: .unicode)
                     let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
                     passageAttributed = attributedPassageData!
+                }
+            }
+            .onChange(of: noteObservable.addNoteStatus) {
+                if noteObservable.addNoteStatus == .success {
+                    if let notesFound = getNotesFromDatabase(modelContext: modelContext) {
+                        notes = notesFound
+                    }
                 }
             }
             .onChange(of: passageAttributed) {
@@ -127,6 +130,7 @@ struct PassageView: View {
             .sheet(isPresented: $isPresentAddNotesOptions) {
                 if let note {
                     AddNotesView(isPresentAddNotesOptions: $isPresentAddNotesOptions, note: note)
+                        .environmentObject(noteObservable)
                 } else {
                     let _ = print("No notes")
                 }
@@ -144,6 +148,9 @@ struct PassageView: View {
                     let passageData = passageData.content.data(using: .unicode)
                     let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
                     passageAttributed = attributedPassageData!
+                }
+                if let notesFound = getNotesFromDatabase(modelContext: modelContext) {
+                    notes = notesFound
                 }
             }
         }
@@ -221,6 +228,20 @@ struct PassageView: View {
             } catch {
                 print("API Error: \(error)")
             }
+        }
+    }
+    
+    private func getNotesFromDatabase(modelContext: ModelContext) -> [Note]? {
+        let notePredicate = #Predicate<Note> {
+            $0.bibleId == bibleId && $0.chapterId == chapterId
+        }
+        let fetchDescriptor = FetchDescriptor(predicate: notePredicate)
+        do {
+            let notes = try modelContext.fetch(fetchDescriptor)
+            return notes
+        } catch {
+            print("Books fetch error: \(error)")
+            return nil
         }
     }
 }

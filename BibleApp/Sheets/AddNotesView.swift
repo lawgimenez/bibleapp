@@ -14,6 +14,7 @@ private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseAp
 struct AddNotesView: View {
     
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var noteObservable: NoteObservable
     @State private var userNote = ""
     @Binding var isPresentAddNotesOptions: Bool
     var note: Note
@@ -49,6 +50,9 @@ struct AddNotesView: View {
                     }
                 }
             }
+            .onChange(of: noteObservable.addNoteStatus) {
+                isPresentAddNotesOptions = false
+            }
             .padding()
             .navigationTitle("Add Notes")
         }
@@ -59,9 +63,7 @@ struct AddNotesView: View {
             // Construct note model
             let noteEncodable = NoteEncodable(passage: note.passage, userNote: $userNote.wrappedValue, color: note.uiColor.hexString, length: note.length, location: note.location, bibleId: note.bibleId, bibleName: note.bibleName, chapterId: note.chapterId, chapterName: note.chapterName, userUuid: UserDefaults.standard.string(forKey: User.Key.uuid.rawValue)!)
             do {
-                let response = try await client.from("Note").insert(noteEncodable).execute()
-                print("Add note response: \(response)")
-                isPresentAddNotesOptions = false
+                try await noteObservable.saveNote(noteEncodable: noteEncodable)
             } catch {
                 print("Save note error: \(error)")
             }
