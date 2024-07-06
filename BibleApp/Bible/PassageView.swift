@@ -73,8 +73,7 @@ struct PassageView: View {
                 }
             }
             .onChange(of: passageAttributed) {
-                passageAttributed = addHighlights(text: passageAttributed.string)
-                passageAttributed = addNotes(text: passageAttributed.string)
+                passageAttributed = addNotesAndHighlights(text: passageAttributed.string)
             }
             .onChange(of: addedHighlight) {
                 if addedHighlight {
@@ -97,7 +96,7 @@ struct PassageView: View {
                         addedHighlight = false
                         isPresentHighlightOptions = false
                     }
-                    passageAttributed = addHighlights(text: passageAttributed.string)
+                    passageAttributed = addNotesAndHighlights(text: passageAttributed.string)
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name("highlightAdded"))) { output in
@@ -105,7 +104,7 @@ struct PassageView: View {
                     self.highlight = highlight
                     isPresentHighlightOptions = true
                 }
-                passageAttributed = addHighlights(text: passageAttributed.string)
+                passageAttributed = addNotesAndHighlights(text: passageAttributed.string)
             }
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name("addNote"))) { output in
                 if let note = output.userInfo!["data"] as? Note {
@@ -149,21 +148,8 @@ struct PassageView: View {
             }
         }
     }
-
-    private func addHighlights(text: String) -> NSAttributedString {
-        let mutableString = NSMutableAttributedString.init(string: text)
-        for highlight in highlights {
-            // Add highlights
-            let highlightAttributes: [NSAttributedString.Key: Any] = [
-                .backgroundColor: highlight.uiColor,
-                .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
-            ]
-            mutableString.addAttributes(highlightAttributes, range: highlight.getRange())
-        }
-        return mutableString
-    }
     
-    private func addNotes(text: String) -> NSAttributedString {
+    private func addNotesAndHighlights(text: String) -> NSAttributedString {
         let mutableString = NSMutableAttributedString.init(string: text)
         let attributedString = NSAttributedString(string: text)
         print("Notes found: \(notes.count)")
@@ -178,13 +164,21 @@ struct PassageView: View {
             noteMutable.append(noteAttributedString)
             print("Note mutable = \(noteMutable)")
             mutableString.replaceCharacters(in: note.getRange(), with: noteMutable)
-            // Add highlights
+            // Add highlights for notes
             let highlightAttributes: [NSAttributedString.Key: Any] = [
-                .backgroundColor: note.uiColor,
+                .backgroundColor: UIColor(Color(.highlightPink)),
                 .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body),
                 .attachment: noteAttachment
             ]
             mutableString.addAttributes(highlightAttributes, range: note.getRange())
+        }
+        for highlight in highlights {
+            // Add highlights
+            let highlightAttributes: [NSAttributedString.Key: Any] = [
+                .backgroundColor: highlight.uiColor,
+                .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
+            ]
+            mutableString.addAttributes(highlightAttributes, range: highlight.getRange())
         }
         return mutableString
     }
