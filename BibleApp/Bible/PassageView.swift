@@ -65,7 +65,7 @@ struct PassageView: View {
                 if let passageData = passage.first {
                     let passageData = passageData.content.data(using: .unicode)
                     let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
-                    passageAttributed = attributedPassageData!
+                    passageAttributed = addNotesAndHighlights(text: attributedPassageData!.string)
                 }
             }
             .onChange(of: noteObservable.addNoteStatus) {
@@ -74,9 +74,6 @@ struct PassageView: View {
                         notes = notesFound
                     }
                 }
-            }
-            .onChange(of: passageAttributed) {
-                passageAttributed = addNotesAndHighlights(text: passageAttributed.string)
             }
             .onChange(of: addedHighlight) {
                 if addedHighlight {
@@ -144,11 +141,6 @@ struct PassageView: View {
                 } catch {
                     print(error)
                 }
-                if let passageData = passage.first {
-                    let passageData = passageData.content.data(using: .unicode)
-                    let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
-                    passageAttributed = attributedPassageData!
-                }
                 if let notesFound = getNotesFromDatabase(modelContext: modelContext) {
                     notes = notesFound
                 }
@@ -157,7 +149,7 @@ struct PassageView: View {
     }
     
     private func addNotesAndHighlights(text: String) -> NSAttributedString {
-        let mutableString = NSMutableAttributedString.init(string: text)
+        var mutableString = NSMutableAttributedString.init(string: text)
         let attributedString = NSAttributedString(string: text)
         print("Notes found: \(notes.count)")
         for note in notes {
@@ -165,11 +157,14 @@ struct PassageView: View {
             let noteAttachment = NSTextAttachment()
             noteAttachment.image = UIImage(systemName: "note.text")
             let noteAttributedString = NSAttributedString(attachment: noteAttachment)
+            print("Note attributed string length: \(noteAttachment)")
             // Get the highlight range
             let noteText = attributedString.attributedSubstring(from: note.getRange())
             let noteMutable = NSMutableAttributedString(attributedString: noteText)
             noteMutable.append(noteAttributedString)
             print("Note mutable = \(noteMutable)")
+            let trimmed = mutableString.string.trimmingCharacters(in: .whitespaces)
+            mutableString = NSMutableAttributedString(string: trimmed)
             mutableString.replaceCharacters(in: note.getRange(), with: noteMutable)
             // Add highlights for notes
             let highlightAttributes: [NSAttributedString.Key: Any] = [
