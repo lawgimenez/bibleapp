@@ -25,7 +25,7 @@ struct PassageView: View {
     @StateObject private var noteObservable = NoteObservable()
     @StateObject private var highlightObservable = HighlightObservable()
     @Query private var passage: [PassageData]
-    @Query private var highlights: [Highlight]
+    @State private var highlights = [Highlight]()
     @State private var notes = [Note]()
     @Query private var bibles: [BibleData]
     @Query private var chapters: [ChapterData]
@@ -51,10 +51,6 @@ struct PassageView: View {
             $0.bibleId == bibleId && $0.chapterId == chapterId
         }
         _passage = Query(filter: predicate)
-        let highlightPredicate = #Predicate<Highlight> {
-            $0.bibleId == bibleId && $0.chapterId == chapterId
-        }
-        _highlights = Query(filter: highlightPredicate)
     }
 
     var body: some View {
@@ -116,6 +112,7 @@ struct PassageView: View {
                 if let highlight = output.userInfo!["data"] as? Highlight {
                     Task {
                         do {
+                            print("PassageView: onReceive delete highlight")
                             try await highlightObservable.deleteHighlight(highlight: highlight)
                         } catch {
                             print("Highlight delete error: \(error)")
@@ -158,6 +155,8 @@ struct PassageView: View {
             .navigationTitle("Passage")
             .padding(18)
             .task {
+                noteObservable.setModelContext(modelContext)
+                highlightObservable.setModelContext(modelContext)
                 do {
                     try await bibleObservable.getPassage(bibleId: bibleId, anyId: chapterId, modelContext: modelContext)
                 } catch {
@@ -165,6 +164,9 @@ struct PassageView: View {
                 }
                 if let notesFound = getNotesFromDatabase(modelContext: modelContext) {
                     notes = notesFound
+                }
+                if let highlightsFound = getHighlightsFromDatabase(modelContext: modelContext) {
+                    highlights = highlightsFound
                 }
             }
         }
@@ -258,6 +260,20 @@ struct PassageView: View {
         do {
             let notes = try modelContext.fetch(fetchDescriptor)
             return notes
+        } catch {
+            print("Books fetch error: \(error)")
+            return nil
+        }
+    }
+    
+    private func getHighlightsFromDatabase(modelContext: ModelContext) -> [Highlight]? {
+        let highlightPredicate = #Predicate<Highlight> {
+            $0.bibleId == bibleId && $0.chapterId == chapterId
+        }
+        let fetchDescriptor = FetchDescriptor(predicate: highlightPredicate)
+        do {
+            let highlights = try modelContext.fetch(fetchDescriptor)
+            return highlights
         } catch {
             print("Books fetch error: \(error)")
             return nil

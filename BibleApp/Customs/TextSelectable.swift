@@ -71,7 +71,7 @@ struct TextSelectable: UIViewRepresentable {
             if characterIndex < textView.textStorage.length {
 //                print("TextSelectable tap valid, index = \(characterIndex)")
 //                print("TextSelectable tap length: \(textView.textStorage.length)")
-                let attributeValue = textView.attributedText.attribute(.backgroundColor, at: characterIndex, effectiveRange: nil) as? String
+//                let attributeValue = textView.attributedText.attribute(.backgroundColor, at: characterIndex, effectiveRange: nil) as? String
                 let attributes = textView.attributedText.attributes(at: characterIndex, effectiveRange: nil)
                 if let backgroundColor = attributes[.backgroundColor] as? UIColor {
                     // Determine is this is a highlight or note
@@ -91,7 +91,6 @@ struct TextSelectable: UIViewRepresentable {
             }
         }
     }
-    
 }
 
 class CustomTextView: UITextView {
