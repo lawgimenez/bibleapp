@@ -156,7 +156,7 @@ struct PassageView: View {
             // Create note image attachment
             let noteAttachment = NSTextAttachment()
             noteAttachment.image = UIImage(systemName: "note.text")
-            let noteAttributedString = NSAttributedString(attachment: noteAttachment)
+            let noteAttributedString = NSMutableAttributedString(attachment: noteAttachment)
             print("Note attributed string length: \(noteAttachment)")
             // Get the highlight range
             let noteText = attributedString.attributedSubstring(from: note.getRange())

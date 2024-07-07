@@ -43,9 +43,46 @@ struct TextSelectable: UIViewRepresentable {
         }
 
         func textViewDidChange(_ textView: UITextView) {
+            print("TextSelectable: textViewDidChange")
             self.text = textView.attributedText
         }
+        
+        func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+            print("TextSelectable textViewShouldBeginEditing")
+            return false
+        }
+        
+        func textViewDidChangeSelection(_ textView: UITextView) {
+            print("TextSelectable textViewDidChangeSelection")
+            textView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(textTapped(_:))))
+        }
+        
+        @objc private func textTapped(_ sender: UITapGestureRecognizer) {
+            print("TextSelectable: textTapped called")
+            let textView = sender.view as! UITextView
+            let layoutManger = textView.layoutManager
+            // Location of the tap
+            var location = sender.location(in: textView)
+            location.x -= textView.textContainerInset.left
+            location.y -= textView.textContainerInset.top
+            // Character index at tap location
+            let characterIndex = layoutManger.characterIndex(for: location, in: textView.textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+            // If index is valid
+            if characterIndex < textView.textStorage.length {
+//                print("TextSelectable tap valid, index = \(characterIndex)")
+//                print("TextSelectable tap length: \(textView.textStorage.length)")
+                let attributeValue = textView.attributedText.attribute(.backgroundColor, at: characterIndex, effectiveRange: nil) as? String
+                let attributes = textView.attributedText.attributes(at: characterIndex, effectiveRange: nil)
+                let backgroundColor = attributes[.backgroundColor] as? UIColor
+                if let backgroundColor {
+                    print("Highlights or notes found")
+                } else {
+                    print("No highlights found")
+                }
+            }
+        }
     }
+    
 }
 
 class CustomTextView: UITextView {
