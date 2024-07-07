@@ -73,9 +73,15 @@ struct TextSelectable: UIViewRepresentable {
 //                print("TextSelectable tap length: \(textView.textStorage.length)")
                 let attributeValue = textView.attributedText.attribute(.backgroundColor, at: characterIndex, effectiveRange: nil) as? String
                 let attributes = textView.attributedText.attributes(at: characterIndex, effectiveRange: nil)
-                let backgroundColor = attributes[.backgroundColor] as? UIColor
-                if let backgroundColor {
-                    print("Highlights or notes found")
+                if let backgroundColor = attributes[.backgroundColor] as? UIColor {
+                    // Determine is this is a highlight or note
+                    if let highlight = attributes[.highlight] as? Highlight {
+                        textView.noteToDelete(note: nil)
+                        textView.highlightToDelete(highlight: highlight)
+                    } else if let note = attributes[.note] as? Note {
+                        textView.highlightToDelete(highlight: nil)
+                        textView.noteToDelete(note: note)
+                    }
                     textView.setIsDestructive(isDestructive: true)
                 } else {
                     print("No highlights found")
@@ -93,6 +99,8 @@ class CustomTextView: UITextView {
     var bibleId: String
     var chapterId: String
     private var isDestructive = false
+    private var highlight: Highlight? = nil
+    private var note: Note? = nil
 
     init(bibleId: String, chapterId: String) {
         self.bibleId = bibleId
@@ -125,15 +133,19 @@ class CustomTextView: UITextView {
 
     override func editMenu(for textRange: UITextRange, suggestedActions: [UIMenuElement]) -> UIMenu? {
         if isDestructive {
-            let deleteHighlightTextAction = UIAction(title: "Delete Highlight") { _ in
-                self.deleteHighlightText()
-            }
-            let deleteNotesAction = UIAction(title: "Delete Notes") { _ in
-                self.deleteNotes()
-            }
             var actions = suggestedActions
-            actions.insert(deleteHighlightTextAction, at: 0)
-            actions.insert(deleteNotesAction, at: 1)
+            if let highlight {
+                let deleteHighlightTextAction = UIAction(title: "Delete Highlight") { _ in
+                    self.deleteHighlightText()
+                }
+                actions.insert(deleteHighlightTextAction, at: 0)
+            }
+            if let note {
+                let deleteNotesAction = UIAction(title: "Delete Notes") { _ in
+                    self.deleteNotes()
+                }
+                actions.insert(deleteNotesAction, at: 0)
+            }
             return UIMenu(children: actions)
         } else {
             let highlightTextAction = UIAction(title: "Highlight Passage") { _ in
@@ -193,5 +205,13 @@ class CustomTextView: UITextView {
     func setIsDestructive(isDestructive: Bool) {
         print("Is destructive: \(isDestructive)")
         self.isDestructive = isDestructive
+    }
+    
+    func highlightToDelete(highlight: Highlight?) {
+        self.highlight = highlight
+    }
+    
+    func noteToDelete(note: Note?) {
+        self.note = note
     }
 }

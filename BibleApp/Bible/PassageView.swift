@@ -108,7 +108,6 @@ struct PassageView: View {
             }
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name("addNote"))) { output in
                 if let note = output.userInfo!["data"] as? Note {
-                    print("Note received: \(note)")
                     self.note = note
                 }
             }
@@ -170,7 +169,8 @@ struct PassageView: View {
             let highlightNoteAttributes: [NSAttributedString.Key: Any] = [
                 .backgroundColor: UIColor(Color(.highlightPink)),
                 .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body),
-                .attachment: noteAttachment
+                .attachment: noteAttachment,
+                .note: note
             ]
             mutableString.addAttributes(highlightNoteAttributes, range: note.getRange())
         }
@@ -178,7 +178,8 @@ struct PassageView: View {
             // Add highlights
             let highlightAttributes: [NSAttributedString.Key: Any] = [
                 .backgroundColor: highlight.uiColor,
-                .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
+                .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body),
+                .highlight: highlight
             ]
             mutableString.addAttributes(highlightAttributes, range: highlight.getRange())
         }
@@ -282,4 +283,10 @@ extension UIColor {
         }
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
+}
+
+extension NSAttributedString.Key {
+    
+    static let note: NSAttributedString.Key = .init("note")
+    static let highlight: NSAttributedString.Key = .init("highlight")
 }
