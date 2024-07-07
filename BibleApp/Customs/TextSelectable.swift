@@ -59,7 +59,7 @@ struct TextSelectable: UIViewRepresentable {
         
         @objc private func textTapped(_ sender: UITapGestureRecognizer) {
             print("TextSelectable: textTapped called")
-            let textView = sender.view as! UITextView
+            let textView = sender.view as! CustomTextView
             let layoutManger = textView.layoutManager
             // Location of the tap
             var location = sender.location(in: textView)
@@ -76,9 +76,12 @@ struct TextSelectable: UIViewRepresentable {
                 let backgroundColor = attributes[.backgroundColor] as? UIColor
                 if let backgroundColor {
                     print("Highlights or notes found")
+                    textView.setIsDestructive(isDestructive: true)
                 } else {
                     print("No highlights found")
+                    textView.setIsDestructive(isDestructive: false)
                 }
+                textView.layoutIfNeeded()
             }
         }
     }
@@ -89,6 +92,7 @@ class CustomTextView: UITextView {
 
     var bibleId: String
     var chapterId: String
+    private var isDestructive = false
 
     init(bibleId: String, chapterId: String) {
         self.bibleId = bibleId
@@ -101,38 +105,59 @@ class CustomTextView: UITextView {
     }
 
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        if action == #selector(highlightText) {
-            return true
-        } else if action == #selector(addNotes) {
-            return true
-        } else if action == #selector(copyToClipboard) {
-            return true
+        if isDestructive {
+            if action == #selector(deleteHighlightText) {
+                return true
+            } else if action == #selector(deleteNotes) {
+                return true
+            }
+        } else {
+            if action == #selector(highlightText) {
+                return true
+            } else if action == #selector(addNotes) {
+                return true
+            } else if action == #selector(copyToClipboard) {
+                return true
+            }
         }
         return false
     }
 
     override func editMenu(for textRange: UITextRange, suggestedActions: [UIMenuElement]) -> UIMenu? {
-        let highlightTextAction = UIAction(title: "Highlight Passage") { _ in
-            self.highlightText()
-        }
-        let addNotesAction = UIAction(title: "Add Notes") { _ in
-            self.addNotes()
-        }
-        let copyAction = UIAction(title: "Copy") { _ in
-            self.copyToClipboard()
-        }
-        let shareAction = UIAction(title: "Share") { _ in
+        if isDestructive {
+            let deleteHighlightTextAction = UIAction(title: "Delete Highlight") { _ in
+                self.deleteHighlightText()
+            }
+            let deleteNotesAction = UIAction(title: "Delete Notes") { _ in
+                self.deleteNotes()
+            }
+            var actions = suggestedActions
+            actions.insert(deleteHighlightTextAction, at: 0)
+            actions.insert(deleteNotesAction, at: 1)
+            return UIMenu(children: actions)
+        } else {
+            let highlightTextAction = UIAction(title: "Highlight Passage") { _ in
+                self.highlightText()
+            }
+            let addNotesAction = UIAction(title: "Add Notes") { _ in
+                self.addNotes()
+            }
+            let copyAction = UIAction(title: "Copy") { _ in
+                self.copyToClipboard()
+            }
+            let shareAction = UIAction(title: "Share") { _ in
 
+            }
+            var actions = suggestedActions
+            actions.insert(highlightTextAction, at: 0)
+            actions.insert(addNotesAction, at: 1)
+            actions.insert(copyAction, at: 2)
+            actions.insert(shareAction, at: 3)
+            return UIMenu(children: actions)
         }
-        var actions = suggestedActions
-        actions.insert(highlightTextAction, at: 0)
-        actions.insert(addNotesAction, at: 1)
-        actions.insert(copyAction, at: 2)
-        actions.insert(shareAction, at: 3)
-        return UIMenu(children: actions)
     }
 
-    @objc func highlightText() {
+    @objc private func highlightText() {
         if let range = self.selectedTextRange, let selectedText = self.text(in: range) {
             let highlight = Highlight(id: 0, passage: selectedText, location: selectedRange.location, length: selectedRange.length, bibleId: bibleId, bibleName: "", chapterId: chapterId, chapterName: "", color: .highlightGrayish)
             let highlightDict = [
@@ -142,7 +167,14 @@ class CustomTextView: UITextView {
         }
     }
     
-    @objc func addNotes() {
+    @objc private func deleteHighlightText() {
+    }
+    
+    @objc private func deleteNotes() {
+        
+    }
+    
+    @objc private func addNotes() {
         if let range = self.selectedTextRange, let selectedText = self.text(in: range) {
             let note = Note(id: 0, passage: selectedText, userNote: "", location: selectedRange.location, length: selectedRange.length, bibleId: bibleId, bibleName: "", chapterId: chapterId, chapterName: "", color: .highlightGrayish)
             let noteDict = [
@@ -152,9 +184,14 @@ class CustomTextView: UITextView {
         }
     }
     
-    @objc func copyToClipboard() {
+    @objc private func copyToClipboard() {
         if let range = self.selectedTextRange, let selectedText = self.text(in: range) {
             UIPasteboard.general.setValue(selectedText, forPasteboardType: UTType.plainText.identifier)
         }
+    }
+    
+    func setIsDestructive(isDestructive: Bool) {
+        print("Is destructive: \(isDestructive)")
+        self.isDestructive = isDestructive
     }
 }
