@@ -23,6 +23,7 @@ struct PassageView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var bibleObservable: BibleObservable
     @StateObject private var noteObservable = NoteObservable()
+    @StateObject private var highlightObservable = HighlightObservable()
     @Query private var passage: [PassageData]
     @Query private var highlights: [Highlight]
     @State private var notes = [Note]()
@@ -109,6 +110,28 @@ struct PassageView: View {
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name("addNote"))) { output in
                 if let note = output.userInfo!["data"] as? Note {
                     self.note = note
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: Notification.Name("deleteHighlight"))) { output in
+                if let highlight = output.userInfo!["data"] as? Highlight {
+                    Task {
+                        do {
+                            try await highlightObservable.deleteHighlight(highlight: highlight)
+                        } catch {
+                            print("Highlight delete error: \(error)")
+                        }
+                    }
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: Notification.Name("deleteNote"))) { output in
+                if let note = output.userInfo!["data"] as? Note {
+                    Task {
+                        do {
+                            try await noteObservable.deleteNote(note: note)
+                        } catch {
+                            print("Note delete error: \(error)")
+                        }
+                    }
                 }
             }
             .sheet(isPresented: $isPresentHighlightOptions) {

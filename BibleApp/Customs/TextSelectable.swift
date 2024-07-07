@@ -180,10 +180,21 @@ class CustomTextView: UITextView {
     }
     
     @objc private func deleteHighlightText() {
+        if let highlight {
+            let highlightDict = [
+                "data": highlight
+            ]
+            NotificationCenter.default.post(name: Notification.Name("deleteHighlight"), object: nil, userInfo: highlightDict)
+        }
     }
     
     @objc private func deleteNotes() {
-        
+        if let note {
+            let highlightDict = [
+                "data": note
+            ]
+            NotificationCenter.default.post(name: Notification.Name("deleteNote"), object: nil, userInfo: highlightDict)
+        }
     }
     
     @objc private func addNotes() {
