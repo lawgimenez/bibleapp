@@ -59,11 +59,7 @@ struct PassageView: View {
                 TextSelectable(text: passageAttributed, bibleId: bibleId, chapterId: chapterId)
             }
             .onChange(of: bibleObservable.passageContent) {
-                if let passageData = passage.first {
-                    let passageData = passageData.content.data(using: .unicode)
-                    let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
-                    passageAttributed = addNotesAndHighlights(text: attributedPassageData!.string)
-                }
+                getPassage()
             }
             .onChange(of: noteObservable.addNoteStatus) {
                 if noteObservable.addNoteStatus == .success {
@@ -112,8 +108,12 @@ struct PassageView: View {
                 if let highlight = output.userInfo!["data"] as? Highlight {
                     Task {
                         do {
-                            print("PassageView: onReceive delete highlight")
                             try await highlightObservable.deleteHighlight(highlight: highlight)
+                            highlights.removeAll()
+                            if let highlightsFound = getHighlightsFromDatabase(modelContext: modelContext) {
+                                highlights = highlightsFound
+                            }
+                            getPassage()
                         } catch {
                             print("Highlight delete error: \(error)")
                         }
@@ -125,6 +125,11 @@ struct PassageView: View {
                     Task {
                         do {
                             try await noteObservable.deleteNote(note: note)
+                            notes.removeAll()
+                            if let notesFound = getNotesFromDatabase(modelContext: modelContext) {
+                                notes = notesFound
+                            }
+                            getPassage()
                         } catch {
                             print("Note delete error: \(error)")
                         }
@@ -169,6 +174,22 @@ struct PassageView: View {
                     highlights = highlightsFound
                 }
             }
+        }
+    }
+    
+    private func getPassage() {
+        if let passageData = passage.first {
+            let passageData = passageData.content.data(using: .unicode)
+            let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+            passageAttributed = addNotesAndHighlights(text: attributedPassageData!.string)
+        }
+    }
+    
+    private func getPassageNoHighlights() {
+        if let passageData = passage.first {
+            let passageData = passageData.content.data(using: .unicode)
+            let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+            passageAttributed = attributedPassageData!
         }
     }
     
