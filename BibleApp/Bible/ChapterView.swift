@@ -38,6 +38,7 @@ struct ChapterView: View {
                     self.chapters = chapters
                 }
             }
+            .navigationTitle("Chapters")
         }
     }
 

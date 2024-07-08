@@ -58,9 +58,6 @@ struct PassageView: View {
             VStack {
                 TextSelectable(text: passageAttributed, bibleId: bibleId, chapterId: chapterId)
             }
-            .onChange(of: bibleObservable.passageContent) {
-                getPassage()
-            }
             .onChange(of: noteObservable.addNoteStatus) {
                 if noteObservable.addNoteStatus == .success {
                     if let notesFound = getNotesFromDatabase(modelContext: modelContext) {
@@ -173,6 +170,7 @@ struct PassageView: View {
                 if let highlightsFound = getHighlightsFromDatabase(modelContext: modelContext) {
                     highlights = highlightsFound
                 }
+                getPassage()
             }
         }
     }
