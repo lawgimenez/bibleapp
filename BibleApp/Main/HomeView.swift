@@ -11,12 +11,7 @@ import Supabase
 private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
 
 struct HomeView: View {
-
-    @Environment(\.modelContext) private var modelContext
-    @EnvironmentObject private var authObservable: AuthObservable
-    @StateObject private var highlightObservable = HighlightObservable()
-    @StateObject private var noteObservable = NoteObservable()
-
+    
     enum Pages: String {
         case bible
         case highlights
@@ -24,6 +19,10 @@ struct HomeView: View {
         case settings
     }
 
+    @Environment(\.modelContext) private var modelContext
+    @EnvironmentObject private var authObservable: AuthObservable
+    @StateObject private var highlightObservable = HighlightObservable()
+    @StateObject private var noteObservable = NoteObservable()
     @State private var selectedTab: Pages = .bible
 
     var body: some View {
