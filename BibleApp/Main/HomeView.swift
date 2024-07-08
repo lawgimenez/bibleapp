@@ -30,22 +30,26 @@ struct HomeView: View {
         TabView(selection: $selectedTab) {
             BibleView()
                 .tabItem {
-                    Label(Pages.bible.rawValue.capitalized, systemImage: "book")
+                    Label(Pages.bible.rawValue.capitalized, systemImage: selectedTab.rawValue == Pages.bible.rawValue ? "book.fill" : "book")
+                        .environment(\.symbolVariants, .none)
                 }
                 .tag(Pages.bible)
             HighlightsView()
                 .tabItem {
-                    Label(Pages.highlights.rawValue.capitalized, systemImage: "highlighter")
+                    Label(Pages.highlights.rawValue.capitalized, systemImage: selectedTab.rawValue == Pages.highlights.rawValue ? "pencil.tip.crop.circle.fill" : "pencil.tip.crop.circle")
+                        .environment(\.symbolVariants, .none)
                 }
                 .tag(Pages.highlights)
             NotesView()
                 .tabItem {
-                    Label(Pages.notes.rawValue.capitalized, systemImage: "note")
+                    Label(Pages.notes.rawValue.capitalized, systemImage: selectedTab.rawValue == Pages.notes.rawValue ? "note.text" : "note")
+                        .environment(\.symbolVariants, .none)
                 }
                 .tag(Pages.notes)
             SettingsView()
                 .tabItem {
-                    Label(Pages.settings.rawValue.capitalized, systemImage: "gear")
+                    Label(Pages.settings.rawValue.capitalized, systemImage: selectedTab.rawValue == Pages.settings.rawValue ? "gear.circle.fill" : "gear.circle")
+                        .environment(\.symbolVariants, .none)
                 }
                 .tag(Pages.settings)
                 .environmentObject(authObservable)
