@@ -198,7 +198,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		862298072C21813B006E9D13 /* Bible */ = {
+		862298072C21813B006E9D13 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				8622980B2C218394006E9D13 /* BibleView.swift */,
@@ -207,7 +207,7 @@
 				862298172C2198AC006E9D13 /* ChapterView.swift */,
 				8622981B2C219C9B006E9D13 /* PassageView.swift */,
 			);
-			path = Bible;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		86615E722C2D96960052553C /* Codables */ = {
@@ -334,7 +334,7 @@
 				860D542A2C26C7D200B5373D /* Sheets */,
 				86F61C9E2C2571020022E371 /* Database */,
 				86BBF9132C22892600718344 /* Customs */,
-				862298072C21813B006E9D13 /* Bible */,
+				862298072C21813B006E9D13 /* Views */,
 				862298012C217B4E006E9D13 /* Models */,
 				862297FE2C217900006E9D13 /* Utils */,
 				86CDC65F2C1D906200A65B29 /* Observables */,

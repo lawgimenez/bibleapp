@@ -28,6 +28,7 @@ struct BibleView: View {
                     }
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Bibles")
         }
         .task {
