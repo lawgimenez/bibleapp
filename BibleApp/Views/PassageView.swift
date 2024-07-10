@@ -86,9 +86,6 @@ struct PassageView: View {
                         addedHighlight = false
                         isPresentHighlightOptions = false
                     }
-                    if let highlightsFromDatabase = getHighlightsFromDatabase(modelContext: modelContext) {
-                        highlights = highlightsFromDatabase
-                    }
                     passageAttributed = addNotesAndHighlights(text: passageAttributed.string)
                 }
             }
@@ -195,6 +192,12 @@ struct PassageView: View {
     }
     
     private func addNotesAndHighlights(text: String) -> NSAttributedString {
+        if let highlightsFromDatabase = getHighlightsFromDatabase(modelContext: modelContext) {
+            highlights = highlightsFromDatabase
+        }
+        if let notesFromDatabase = getNotesFromDatabase(modelContext: modelContext) {
+            notes = notesFromDatabase
+        }
         var mutableString = NSMutableAttributedString.init(string: text)
         let attributedString = NSAttributedString(string: text)
         print("Notes found: \(notes.count)")
