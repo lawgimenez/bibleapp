@@ -34,9 +34,9 @@ struct PassageView: View {
     @State private var passageAttributed = NSAttributedString(string: "")
     @State private var textStyle = UIFont.TextStyle.body
     @State private var arrayHighlights = [Highlight]()
-    @State private var highlightAdded = false
     @State private var isPresentHighlightOptions = false
     @State private var isPresentAddNotesOptions = false
+    @State private var addedNote = false
     @State private var selectedColor = Highlights(color: .highlightPink)
     @State private var addedHighlight = false
     @State private var highlight: Highlight?
@@ -87,6 +87,12 @@ struct PassageView: View {
                         isPresentHighlightOptions = false
                     }
                     passageAttributed = addNotesAndHighlights(text: passageAttributed.string)
+                }
+            }
+            .onChange(of: addedNote) {
+                if addedNote {
+                    passageAttributed = addNotesAndHighlights(text: passageAttributed.string)
+                    addedNote = false
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name("highlightAdded"))) { output in
@@ -147,7 +153,7 @@ struct PassageView: View {
             }
             .sheet(isPresented: $isPresentAddNotesOptions) {
                 if let note {
-                    AddNotesView(isPresentAddNotesOptions: $isPresentAddNotesOptions, note: note)
+                    AddNotesView(isPresentAddNotesOptions: $isPresentAddNotesOptions, addedNote: $addedNote, note: note)
                         .environmentObject(noteObservable)
                 } else {
                     let _ = print("No notes")

@@ -13,10 +13,12 @@ private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseAp
 
 struct AddNotesView: View {
     
+    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var noteObservable: NoteObservable
     @State private var userNote = ""
     @Binding var isPresentAddNotesOptions: Bool
+    @Binding var addedNote: Bool
     var note: Note
     
     var body: some View {
@@ -43,7 +45,9 @@ struct AddNotesView: View {
                 let savePlacement: ToolbarItemPlacement = .topBarTrailing
                 ToolbarItem(placement: savePlacement) {
                     Button {
-                        saveNote()
+                        if !userNote.isEmpty {
+                            saveNote()
+                        }
                     } label: {
                         Text("Save")
                             .frame(maxWidth: .infinity)
@@ -64,6 +68,9 @@ struct AddNotesView: View {
             let noteEncodable = NoteEncodable(passage: note.passage, userNote: $userNote.wrappedValue, color: note.uiColor.hexString, length: note.length, location: note.location, bibleId: note.bibleId, bibleName: note.bibleName, chapterId: note.chapterId, chapterName: note.chapterName, userUuid: UserDefaults.standard.string(forKey: User.Key.uuid.rawValue)!)
             do {
                 try await noteObservable.saveNote(noteEncodable: noteEncodable)
+                modelContext.insert(note)
+                try modelContext.save()
+                addedNote = true
             } catch {
                 print("Save note error: \(error)")
             }
