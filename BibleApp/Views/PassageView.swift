@@ -86,6 +86,9 @@ struct PassageView: View {
                         addedHighlight = false
                         isPresentHighlightOptions = false
                     }
+                    if let highlightsFromDatabase = getHighlightsFromDatabase(modelContext: modelContext) {
+                        highlights = highlightsFromDatabase
+                    }
                     passageAttributed = addNotesAndHighlights(text: passageAttributed.string)
                 }
             }
