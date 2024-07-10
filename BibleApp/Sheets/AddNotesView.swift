@@ -17,6 +17,7 @@ struct AddNotesView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var noteObservable: NoteObservable
     @State private var userNote = ""
+    @State private var passage = ""
     @Binding var isPresentAddNotesOptions: Bool
     @Binding var addedNote: Bool
     var note: Note
@@ -24,7 +25,7 @@ struct AddNotesView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Markdown("> \(note.passage)")
+                Markdown("> \(passage)")
                     .markdownTheme(.gitHub)
                 Divider()
                 TextField("Add your notes here...", text: $userNote, axis: .vertical)
@@ -54,8 +55,18 @@ struct AddNotesView: View {
                     }
                 }
             }
+            .onAppear {
+                passage = note.passage
+            }
             .onChange(of: noteObservable.addNoteStatus) {
-                isPresentAddNotesOptions = false
+                if noteObservable.addNoteStatus == .success {
+                    Task {
+                        modelContext.insert(note)
+                        try modelContext.save()
+                    }
+                    addedNote = true
+                    isPresentAddNotesOptions = false
+                }
             }
             .padding()
             .navigationTitle("Add Notes")
@@ -68,9 +79,7 @@ struct AddNotesView: View {
             let noteEncodable = NoteEncodable(passage: note.passage, userNote: $userNote.wrappedValue, color: note.uiColor.hexString, length: note.length, location: note.location, bibleId: note.bibleId, bibleName: note.bibleName, chapterId: note.chapterId, chapterName: note.chapterName, userUuid: UserDefaults.standard.string(forKey: User.Key.uuid.rawValue)!)
             do {
                 try await noteObservable.saveNote(noteEncodable: noteEncodable)
-                modelContext.insert(note)
-                try modelContext.save()
-                addedNote = true
+                
             } catch {
                 print("Save note error: \(error)")
             }
