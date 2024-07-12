@@ -64,6 +64,7 @@ struct AddNotesView: View {
                         modelContext.insert(note)
                         try modelContext.save()
                     }
+                    noteObservable.addNoteStatus = .none
                     addedNote = true
                     isPresentAddNotesOptions = false
                 }

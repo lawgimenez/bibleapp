@@ -91,6 +91,7 @@ struct PassageView: View {
             }
             .onChange(of: addedNote) {
                 if addedNote {
+                    print("addedNote = \(addedNote)")
                     passageAttributed = addNotesAndHighlights(text: passageAttributed.string)
                     addedNote = false
                 }
@@ -170,6 +171,9 @@ struct PassageView: View {
                 } catch {
                     print(error)
                 }
+                
+            }
+            .onAppear {
                 if let notesFound = getNotesFromDatabase(modelContext: modelContext) {
                     notes = notesFound
                 }
@@ -198,6 +202,7 @@ struct PassageView: View {
     }
     
     private func addNotesAndHighlights(text: String) -> NSAttributedString {
+        print("addNotesAndHighlights()")
         if let highlightsFromDatabase = getHighlightsFromDatabase(modelContext: modelContext) {
             highlights = highlightsFromDatabase
         }
@@ -206,26 +211,24 @@ struct PassageView: View {
         }
         var mutableString = NSMutableAttributedString.init(string: text)
         let attributedString = NSAttributedString(string: text)
-        print("Notes found: \(notes.count)")
         for note in notes {
             // Create note image attachment
-            let noteAttachment = NSTextAttachment()
-            noteAttachment.image = UIImage(systemName: "note.text")
-            let noteAttributedString = NSMutableAttributedString(attachment: noteAttachment)
-            print("Note attributed string length: \(noteAttachment)")
-            // Get the highlight range
-            let noteText = attributedString.attributedSubstring(from: note.getRange())
-            let noteMutable = NSMutableAttributedString(attributedString: noteText)
-            noteMutable.append(noteAttributedString)
-            print("Note mutable = \(noteMutable)")
-            let trimmed = mutableString.string.trimmingCharacters(in: .whitespaces)
-            mutableString = NSMutableAttributedString(string: trimmed)
-            mutableString.replaceCharacters(in: note.getRange(), with: noteMutable)
+//            let noteAttachment = NSTextAttachment()
+//            noteAttachment.image = UIImage(systemName: "note.text")
+//            let noteAttributedString = NSMutableAttributedString(attachment: noteAttachment)
+//            // Get the highlight range
+//            let noteText = attributedString.attributedSubstring(from: note.getRange())
+//            let noteMutable = NSMutableAttributedString(attributedString: noteText)
+//            noteMutable.append(noteAttributedString)
+//            print("Note mutable = \(noteMutable)")
+//            let trimmed = mutableString.string.trimmingCharacters(in: .whitespaces)
+//            mutableString = NSMutableAttributedString(string: trimmed)
+//            mutableString.replaceCharacters(in: note.getRange(), with: noteMutable)
             // Add highlights for notes
             let highlightNoteAttributes: [NSAttributedString.Key: Any] = [
                 .backgroundColor: UIColor(Color(.highlightPink)),
                 .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body),
-                .attachment: noteAttachment,
+//                .attachment: noteAttachment,
                 .note: note
             ]
             mutableString.addAttributes(highlightNoteAttributes, range: note.getRange())
@@ -292,7 +295,7 @@ struct PassageView: View {
             let notes = try modelContext.fetch(fetchDescriptor)
             return notes
         } catch {
-            print("Books fetch error: \(error)")
+            print("Notes fetch error: \(error)")
             return nil
         }
     }
@@ -306,7 +309,7 @@ struct PassageView: View {
             let highlights = try modelContext.fetch(fetchDescriptor)
             return highlights
         } catch {
-            print("Books fetch error: \(error)")
+            print("Highlights fetch error: \(error)")
             return nil
         }
     }
