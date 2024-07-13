@@ -30,7 +30,6 @@ struct NotesRowView: View {
         }
         .onAppear {
             passage = formatQuote(passage: note.passage)
-            print("User note: \(note.userNote)")
         }
         .padding()
     }

@@ -43,22 +43,18 @@ struct TextSelectable: UIViewRepresentable {
         }
 
         func textViewDidChange(_ textView: UITextView) {
-            print("TextSelectable: textViewDidChange")
             self.text = textView.attributedText
         }
         
         func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-            print("TextSelectable textViewShouldBeginEditing")
             return false
         }
         
         func textViewDidChangeSelection(_ textView: UITextView) {
-            print("TextSelectable textViewDidChangeSelection")
             textView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(textTapped(_:))))
         }
         
         @objc private func textTapped(_ sender: UITapGestureRecognizer) {
-            print("TextSelectable: textTapped called")
             let textView = sender.view as! CustomTextView
             let layoutManger = textView.layoutManager
             // Location of the tap
@@ -69,11 +65,8 @@ struct TextSelectable: UIViewRepresentable {
             let characterIndex = layoutManger.characterIndex(for: location, in: textView.textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
             // If index is valid
             if characterIndex < textView.textStorage.length {
-//                print("TextSelectable tap valid, index = \(characterIndex)")
-//                print("TextSelectable tap length: \(textView.textStorage.length)")
-//                let attributeValue = textView.attributedText.attribute(.backgroundColor, at: characterIndex, effectiveRange: nil) as? String
                 let attributes = textView.attributedText.attributes(at: characterIndex, effectiveRange: nil)
-                if let backgroundColor = attributes[.backgroundColor] as? UIColor {
+                if attributes[.backgroundColor] is UIColor {
                     // Determine is this is a highlight or note
                     if let highlight = attributes[.highlight] as? Highlight {
                         textView.noteToDelete(note: nil)
@@ -84,7 +77,6 @@ struct TextSelectable: UIViewRepresentable {
                     }
                     textView.setIsDestructive(isDestructive: true)
                 } else {
-                    print("No highlights found")
                     textView.setIsDestructive(isDestructive: false)
                 }
                 textView.layoutIfNeeded()
@@ -213,7 +205,6 @@ class CustomTextView: UITextView {
     }
     
     func setIsDestructive(isDestructive: Bool) {
-        print("Is destructive: \(isDestructive)")
         self.isDestructive = isDestructive
     }
     

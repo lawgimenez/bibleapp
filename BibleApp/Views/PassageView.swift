@@ -91,7 +91,6 @@ struct PassageView: View {
             }
             .onChange(of: addedNote) {
                 if addedNote {
-                    print("addedNote = \(addedNote)")
                     passageAttributed = addNotesAndHighlights(text: passageAttributed.string)
                     getPassage()
                     addedNote = false
@@ -157,8 +156,6 @@ struct PassageView: View {
                 if let note {
                     AddNotesView(isPresentAddNotesOptions: $isPresentAddNotesOptions, addedNote: $addedNote, note: note, modelContext: modelContext)
                         .environmentObject(noteObservable)
-                } else {
-                    let _ = print("No notes")
                 }
             }
             .background(Color.red)
@@ -203,7 +200,6 @@ struct PassageView: View {
     }
     
     private func addNotesAndHighlights(text: String) -> NSAttributedString {
-        print("addNotesAndHighlights()")
         if let highlightsFromDatabase = getHighlightsFromDatabase(modelContext: modelContext) {
             highlights = highlightsFromDatabase
         }
@@ -212,23 +208,10 @@ struct PassageView: View {
         }
         let mutableString = NSMutableAttributedString.init(string: text)
         for note in notes {
-            // Create note image attachment
-//            let noteAttachment = NSTextAttachment()
-//            noteAttachment.image = UIImage(systemName: "note.text")
-//            let noteAttributedString = NSMutableAttributedString(attachment: noteAttachment)
-//            // Get the highlight range
-//            let noteText = attributedString.attributedSubstring(from: note.getRange())
-//            let noteMutable = NSMutableAttributedString(attributedString: noteText)
-//            noteMutable.append(noteAttributedString)
-//            print("Note mutable = \(noteMutable)")
-//            let trimmed = mutableString.string.trimmingCharacters(in: .whitespaces)
-//            mutableString = NSMutableAttributedString(string: trimmed)
-//            mutableString.replaceCharacters(in: note.getRange(), with: noteMutable)
             // Add highlights for notes
             let highlightNoteAttributes: [NSAttributedString.Key: Any] = [
                 .backgroundColor: UIColor(Color(.highlightPink)),
                 .font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body),
-//                .attachment: noteAttachment,
                 .note: note
             ]
             mutableString.addAttributes(highlightNoteAttributes, range: note.getRange())
