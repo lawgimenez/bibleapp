@@ -93,6 +93,7 @@ struct PassageView: View {
                 if addedNote {
                     print("addedNote = \(addedNote)")
                     passageAttributed = addNotesAndHighlights(text: passageAttributed.string)
+                    getPassage()
                     addedNote = false
                 }
             }
@@ -154,7 +155,7 @@ struct PassageView: View {
             }
             .sheet(isPresented: $isPresentAddNotesOptions) {
                 if let note {
-                    AddNotesView(isPresentAddNotesOptions: $isPresentAddNotesOptions, addedNote: $addedNote, note: note)
+                    AddNotesView(isPresentAddNotesOptions: $isPresentAddNotesOptions, addedNote: $addedNote, note: note, modelContext: modelContext)
                         .environmentObject(noteObservable)
                 } else {
                     let _ = print("No notes")
@@ -209,8 +210,7 @@ struct PassageView: View {
         if let notesFromDatabase = getNotesFromDatabase(modelContext: modelContext) {
             notes = notesFromDatabase
         }
-        var mutableString = NSMutableAttributedString.init(string: text)
-        let attributedString = NSAttributedString(string: text)
+        let mutableString = NSMutableAttributedString.init(string: text)
         for note in notes {
             // Create note image attachment
 //            let noteAttachment = NSTextAttachment()
@@ -293,6 +293,7 @@ struct PassageView: View {
         let fetchDescriptor = FetchDescriptor(predicate: notePredicate)
         do {
             let notes = try modelContext.fetch(fetchDescriptor)
+            print("Notes fetched: \(notes.count)")
             return notes
         } catch {
             print("Notes fetch error: \(error)")

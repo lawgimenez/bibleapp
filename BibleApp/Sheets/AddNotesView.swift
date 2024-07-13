@@ -8,12 +8,12 @@
 import SwiftUI
 import MarkdownUI
 import Supabase
+import SwiftData
 
 private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
 
 struct AddNotesView: View {
     
-    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var noteObservable: NoteObservable
     @State private var userNote = ""
@@ -21,6 +21,7 @@ struct AddNotesView: View {
     @Binding var isPresentAddNotesOptions: Bool
     @Binding var addedNote: Bool
     var note: Note
+    var modelContext: ModelContext
     
     var body: some View {
         NavigationStack {
@@ -80,7 +81,7 @@ struct AddNotesView: View {
             let noteEncodable = NoteEncodable(passage: note.passage, userNote: $userNote.wrappedValue, color: note.uiColor.hexString, length: note.length, location: note.location, bibleId: note.bibleId, bibleName: note.bibleName, chapterId: note.chapterId, chapterName: note.chapterName, userUuid: UserDefaults.standard.string(forKey: User.Key.uuid.rawValue)!)
             do {
                 try await noteObservable.saveNote(noteEncodable: noteEncodable)
-                
+                noteObservable.addNoteStatus = .success
             } catch {
                 print("Save note error: \(error)")
             }

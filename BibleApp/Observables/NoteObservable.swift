@@ -11,6 +11,7 @@ import UIKit
 import SwiftUI
 import SwiftData
 
+@MainActor
 class NoteObservable: ObservableObject {
     
     enum AddNoteStatus {
