@@ -45,15 +45,15 @@ struct TextSelectable: UIViewRepresentable {
         func textViewDidChange(_ textView: UITextView) {
             self.text = textView.attributedText
         }
-        
+
         func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
             return false
         }
-        
+
         func textViewDidChangeSelection(_ textView: UITextView) {
             textView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(textTapped(_:))))
         }
-        
+
         @objc private func textTapped(_ sender: UITapGestureRecognizer) {
             let textView = sender.view as! CustomTextView
             let layoutManger = textView.layoutManager
@@ -90,8 +90,8 @@ class CustomTextView: UITextView {
     var bibleId: String
     var chapterId: String
     private var isDestructive = false
-    private var highlight: Highlight? = nil
-    private var note: Note? = nil
+    private var highlight: Highlight?
+    private var note: Note?
 
     init(bibleId: String, chapterId: String) {
         self.bibleId = bibleId
@@ -169,7 +169,7 @@ class CustomTextView: UITextView {
             NotificationCenter.default.post(name: Notification.Name("highlightAdded"), object: nil, userInfo: highlightDict)
         }
     }
-    
+
     @objc private func deleteHighlightText() {
         if let highlight {
             let highlightDict = [
@@ -178,7 +178,7 @@ class CustomTextView: UITextView {
             NotificationCenter.default.post(name: Notification.Name("deleteHighlight"), object: nil, userInfo: highlightDict)
         }
     }
-    
+
     @objc private func deleteNotes() {
         if let note {
             let highlightDict = [
@@ -187,7 +187,7 @@ class CustomTextView: UITextView {
             NotificationCenter.default.post(name: Notification.Name("deleteNote"), object: nil, userInfo: highlightDict)
         }
     }
-    
+
     @objc private func addNotes() {
         if let range = self.selectedTextRange, let selectedText = self.text(in: range) {
             let note = Note(id: 0, passage: selectedText, userNote: "", location: selectedRange.location, length: selectedRange.length, bibleId: bibleId, bibleName: "", chapterId: chapterId, chapterName: "", color: .highlightGrayish)
@@ -197,21 +197,21 @@ class CustomTextView: UITextView {
             NotificationCenter.default.post(name: Notification.Name("addNote"), object: nil, userInfo: noteDict)
         }
     }
-    
+
     @objc private func copyToClipboard() {
         if let range = self.selectedTextRange, let selectedText = self.text(in: range) {
             UIPasteboard.general.setValue(selectedText, forPasteboardType: UTType.plainText.identifier)
         }
     }
-    
+
     func setIsDestructive(isDestructive: Bool) {
         self.isDestructive = isDestructive
     }
-    
+
     func highlightToDelete(highlight: Highlight?) {
         self.highlight = highlight
     }
-    
+
     func noteToDelete(note: Note?) {
         self.note = note
     }

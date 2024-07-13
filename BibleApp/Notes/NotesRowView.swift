@@ -9,10 +9,10 @@ import SwiftUI
 import MarkdownUI
 
 struct NotesRowView: View {
-    
+
     var note: Note
     @State private var passage = ""
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             Markdown {
@@ -33,13 +33,13 @@ struct NotesRowView: View {
         }
         .padding()
     }
-    
+
     private func formatQuote(passage: String) -> String {
         let formattedQuote = passage.replacingOccurrences(of: "\n\n", with: " \n\n> ")
         return formattedQuote
     }
 }
 
-//#Preview {
+// #Preview {
 //    NotesRowView()
-//}
+// }

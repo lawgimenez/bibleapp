@@ -169,7 +169,7 @@ struct PassageView: View {
                 } catch {
                     print(error)
                 }
-                
+
             }
             .onAppear {
                 if let notesFound = getNotesFromDatabase(modelContext: modelContext) {
@@ -182,7 +182,7 @@ struct PassageView: View {
             }
         }
     }
-    
+
     private func getPassage() {
         if let passageData = passage.first {
             let passageData = passageData.content.data(using: .unicode)
@@ -190,7 +190,7 @@ struct PassageView: View {
             passageAttributed = addNotesAndHighlights(text: attributedPassageData!.string)
         }
     }
-    
+
     private func getPassageNoHighlights() {
         if let passageData = passage.first {
             let passageData = passageData.content.data(using: .unicode)
@@ -198,7 +198,7 @@ struct PassageView: View {
             passageAttributed = attributedPassageData!
         }
     }
-    
+
     private func addNotesAndHighlights(text: String) -> NSAttributedString {
         if let highlightsFromDatabase = getHighlightsFromDatabase(modelContext: modelContext) {
             highlights = highlightsFromDatabase
@@ -268,7 +268,7 @@ struct PassageView: View {
             }
         }
     }
-    
+
     private func getNotesFromDatabase(modelContext: ModelContext) -> [Note]? {
         let notePredicate = #Predicate<Note> {
             $0.bibleId == bibleId && $0.chapterId == chapterId
@@ -283,7 +283,7 @@ struct PassageView: View {
             return nil
         }
     }
-    
+
     private func getHighlightsFromDatabase(modelContext: ModelContext) -> [Highlight]? {
         let highlightPredicate = #Predicate<Highlight> {
             $0.bibleId == bibleId && $0.chapterId == chapterId
@@ -343,7 +343,7 @@ extension UIColor {
 }
 
 extension NSAttributedString.Key {
-    
+
     static let note: NSAttributedString.Key = .init("note")
     static let highlight: NSAttributedString.Key = .init("highlight")
 }

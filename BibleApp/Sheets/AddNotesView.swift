@@ -13,7 +13,7 @@ import SwiftData
 private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
 
 struct AddNotesView: View {
-    
+
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var noteObservable: NoteObservable
     @State private var userNote = ""
@@ -22,7 +22,7 @@ struct AddNotesView: View {
     @Binding var addedNote: Bool
     var note: Note
     var modelContext: ModelContext
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -74,7 +74,7 @@ struct AddNotesView: View {
             .navigationTitle("Add Notes")
         }
     }
-    
+
     private func saveNote() {
         Task {
             // Construct note model
@@ -89,6 +89,6 @@ struct AddNotesView: View {
     }
 }
 
-//#Preview {
+// #Preview {
 //    AddNotesView()
-//}
+// }

@@ -11,7 +11,7 @@ import SwiftData
 
 @Model
 class Note {
-    
+
     @Attribute(.unique) let id: Int
     let passage: String
     let userNote: String
@@ -30,7 +30,7 @@ class Note {
             uiColor = .init(newValue)
         }
     }
-    
+
     init(id: Int, passage: String, userNote: String, location: Int, length: Int, bibleId: String, bibleName: String, chapterId: String, chapterName: String, color: Color) {
         self.id = id
         self.passage = passage
@@ -43,9 +43,9 @@ class Note {
         self.chapterName = chapterName
         self.uiColor = .init(color)
     }
-    
+
     func getRange() -> NSRange {
         return NSRange(location: location, length: length)
     }
-    
+
 }

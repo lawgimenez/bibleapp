@@ -8,7 +8,7 @@
 import Foundation
 
 struct NoteEncodable: Encodable {
-    
+
     let passage: String
     let userNote: String
     let color: String

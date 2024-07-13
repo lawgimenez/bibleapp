@@ -13,22 +13,22 @@ import SwiftData
 
 @MainActor
 class NoteObservable: ObservableObject {
-    
+
     enum AddNoteStatus {
         case none
         case inProgress
         case success
         case failed
     }
-    
+
     private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
     private var modelContext: ModelContext?
     @Published var addNoteStatus: AddNoteStatus = .none
-    
+
     func setModelContext(_ modelContext: ModelContext) {
         self.modelContext = modelContext
     }
-    
+
     func getNotes(userUuid: String) async throws {
         let notes: [NoteDecodable] = try await client.from("Note").select().eq(NoteDecodable.CodingKeys.userUuid.rawValue, value: userUuid).execute().value
         for note in notes {
@@ -38,7 +38,7 @@ class NoteObservable: ObservableObject {
             try modelContext?.save()
         }
     }
-    
+
     func saveNote(noteEncodable: NoteEncodable) async throws {
         let response = try await client.from("Note").insert(noteEncodable).execute()
         if response.status == 201 {
@@ -47,7 +47,7 @@ class NoteObservable: ObservableObject {
             addNoteStatus = .failed
         }
     }
-    
+
     func deleteNote(note: Note) async throws {
         try await client.from("Note").delete().eq("id", value: note.id).execute()
         modelContext?.delete(note)

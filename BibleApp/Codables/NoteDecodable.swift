@@ -8,7 +8,7 @@
 import Foundation
 
 struct NoteDecodable: Decodable {
-    
+
     let id: Int
     let passage: String
     let userNote: String

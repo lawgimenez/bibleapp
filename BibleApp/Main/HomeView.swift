@@ -11,7 +11,7 @@ import Supabase
 private let client = SupabaseClient(supabaseURL: URL(string: Urls.supabaseBaseApi)!, supabaseKey: Urls.supabaseApiKey)
 
 struct HomeView: View {
-    
+
     enum Pages: String {
         case bible
         case highlights
