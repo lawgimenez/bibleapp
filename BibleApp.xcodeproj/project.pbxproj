@@ -913,7 +913,7 @@
 			repositoryURL = "https://github.com/supabase/supabase-swift";
 			requirement = {
 				kind = exactVersion;
-				version = 2.13.9;
+				version = 2.14.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
