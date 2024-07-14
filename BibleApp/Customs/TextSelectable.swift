@@ -125,13 +125,13 @@ class CustomTextView: UITextView {
     override func editMenu(for textRange: UITextRange, suggestedActions: [UIMenuElement]) -> UIMenu? {
         if isDestructive {
             var actions = suggestedActions
-            if let highlight {
+            if highlight != nil {
                 let deleteHighlightTextAction = UIAction(title: "Delete Highlight") { _ in
                     self.deleteHighlightText()
                 }
                 actions.insert(deleteHighlightTextAction, at: 0)
             }
-            if let note {
+            if note != nil {
                 let deleteNotesAction = UIAction(title: "Delete Notes") { _ in
                     self.deleteNotes()
                 }
