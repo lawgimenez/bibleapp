@@ -92,15 +92,23 @@ class CustomTextView: UITextView {
     private var isDestructive = false
     private var highlight: Highlight?
     private var note: Note?
+    private var customLayoutManager = NSLayoutManager()
 
     init(bibleId: String, chapterId: String) {
         self.bibleId = bibleId
         self.chapterId = chapterId
         super.init(frame: .zero, textContainer: nil)
+        customLayoutManager.textStorage = self.textStorage
+        customLayoutManager.addTextContainer(self.textContainer)
+        self.textContainer.replaceLayoutManager(customLayoutManager)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var layoutManager: NSLayoutManager {
+        return customLayoutManager
     }
 
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
