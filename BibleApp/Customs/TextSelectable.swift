@@ -132,7 +132,7 @@ class CustomTextView: UITextView {
                 actions.insert(deleteHighlightTextAction, at: 0)
             }
             if note != nil {
-                let deleteNotesAction = UIAction(title: "Delete Notes") { _ in
+                let deleteNotesAction = UIAction(title: "Delete Note") { _ in
                     self.deleteNotes()
                 }
                 actions.insert(deleteNotesAction, at: 0)
