@@ -79,7 +79,6 @@ struct TextSelectable: UIViewRepresentable {
                 } else {
                     textView.setIsDestructive(isDestructive: false)
                 }
-                textView.layoutIfNeeded()
             }
         }
     }

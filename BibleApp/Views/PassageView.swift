@@ -191,14 +191,6 @@ struct PassageView: View {
         }
     }
 
-    private func getPassageNoHighlights() {
-        if let passageData = passage.first {
-            let passageData = passageData.content.data(using: .unicode)
-            let attributedPassageData = try? NSAttributedString(data: passageData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
-            passageAttributed = attributedPassageData!
-        }
-    }
-
     private func addNotesAndHighlights(text: String) -> NSAttributedString {
         if let highlightsFromDatabase = getHighlightsFromDatabase(modelContext: modelContext) {
             highlights = highlightsFromDatabase
